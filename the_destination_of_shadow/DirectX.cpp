@@ -6,6 +6,7 @@
 #pragma comment (lib,"d3dx9.lib")
 #pragma comment (lib,"dxguid.lib")
 #pragma comment (lib,"dinput8.lib")
+#pragma comment (lib,"Xinput.lib")
 
 HRESULT DIRECTX::BuildDxDevice(HWND hWnd, CONST TCHAR* filepath)
 {
@@ -21,9 +22,6 @@ HRESULT DIRECTX::BuildDxDevice(HWND hWnd, CONST TCHAR* filepath)
 		MessageBox(0, _T("Direct3Dの作成に失敗しました"), NULL, MB_OK);
 		return E_FAIL;
 	}
-
-
-
 
 	return S_OK;
 }
@@ -79,6 +77,16 @@ HRESULT DIRECTX::InitD3Device(HWND hWnd, CONST TCHAR* FilePath)
 		MessageBox(0, _T("フォントの作成に失敗しました"), "", MB_OK);
 		return E_FAIL;
 	}
+
+	return S_OK;
+}
+
+HRESULT DIRECTX::UpdateControllerState()
+{
+	DWORD dwResult = XInputGetState(0, &XinputState);
+	if (dwResult == ERROR_SUCCESS) m_is_connect = TRUE;
+
+	if (dwResult != ERROR_SUCCESS) m_is_connect = FALSE;
 
 	return S_OK;
 }
