@@ -1,13 +1,6 @@
 ﻿
 #include "DirectX.h"
 
-#pragma comment (lib,"winmm.lib")
-#pragma comment (lib,"d3d9.lib")
-#pragma comment (lib,"d3dx9.lib")
-#pragma comment (lib,"dxguid.lib")
-#pragma comment (lib,"dinput8.lib")
-#pragma comment (lib,"Xinput.lib")
-
 HRESULT DIRECTX::BuildDxDevice(HWND hWnd, CONST TCHAR* filepath)
 {
 	if (FAILED(InitD3Device(hWnd, filepath)))
@@ -82,10 +75,8 @@ HRESULT DIRECTX::InitD3Device(HWND hWnd, CONST TCHAR* FilePath)
 }
 
 HRESULT DIRECTX::UpdateControllerState()
-{
-	DWORD dwResult = XInputGetState(0, &XinputState);
-
-	(dwResult == ERROR_SUCCESS) ? m_is_connected = TRUE : m_is_connected = FALSE;
+{	 
+	m_is_connected = (XInputGetState(0, &XinputState) == ERROR_SUCCESS) ?  TRUE :  FALSE;
 
 	return S_OK;
 }
