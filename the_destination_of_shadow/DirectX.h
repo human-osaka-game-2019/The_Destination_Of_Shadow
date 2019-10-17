@@ -27,9 +27,9 @@ enum KEY_STATE
 class DIRECTX
 {
 private:
-	static const INT m_max_key = 256;
+	static const INT MAX_KEY = 256;
 
-	const INT m_mask_num = 0x80;
+	const INT MASK_NUM = 0x80;
 
 	BOOL m_is_connected;
 
@@ -51,8 +51,10 @@ public:
 	//　DirectInputのインターフェイス
 	LPDIRECTINPUT8 pDinput;
 
+	//　コントローラーの状態
 	XINPUT_STATE XinputState;
 
+	//	バイブレーションの強さ
 	XINPUT_VIBRATION XinputVibration;
 
 	//　テクスチャ
@@ -60,12 +62,17 @@ public:
 
 	LPD3DXFONT pFont;//フォントオブジェクト
 
+	//! デバイスの作成
 	HRESULT BuildDxDevice(HWND hWnd, const TCHAR* FilePath);
 
+	//! デバイスの初期設定
 	HRESULT InitD3Device(HWND hWnd, const TCHAR* FilePath);
 
-	HRESULT UpdateControllerState();
+	
+	//! Xboxコントローラーの状態を更新する関数
+	VOID UpdateControllerState();
 
+	//! ウィンドウの初期設定
 	VOID InitPresentParameters(HWND hWnd);
 
 };
