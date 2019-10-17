@@ -16,8 +16,24 @@
 #define XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE  7849
 #define XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE 8689
 
+enum KEY_STATE
+{
+	PRESS,
+	RELEASE,
+	ON,
+	OFF
+};
+
 class DIRECTX
 {
+private:
+	static const INT m_max_key = 256;
+
+	const INT m_mask_num = 0x80;
+
+	BOOL m_is_connected;
+
+	KEY_STATE m_key_state[256];
 
 public:
 	//　Direct3Dのインターフェイス
@@ -43,23 +59,6 @@ public:
 	LPDIRECT3DTEXTURE9 pTexture[TEX_MAX];
 
 	LPD3DXFONT pFont;//フォントオブジェクト
-
-
-	enum KEY_STATE
-	{
-		PRESS,
-		RELEASE,
-		ON,
-		OFF
-	};
-
-	static const INT m_max_key = 256;
-
-	const INT m_mask_num = 0x80;
-
-	BOOL m_is_connected;
-
-	KEY_STATE m_key_state[256];
 
 	HRESULT BuildDxDevice(HWND hWnd, const TCHAR* FilePath);
 
