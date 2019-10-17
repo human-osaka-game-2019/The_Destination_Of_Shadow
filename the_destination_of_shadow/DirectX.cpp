@@ -84,9 +84,8 @@ HRESULT DIRECTX::InitD3Device(HWND hWnd, CONST TCHAR* FilePath)
 HRESULT DIRECTX::UpdateControllerState()
 {
 	DWORD dwResult = XInputGetState(0, &XinputState);
-	if (dwResult == ERROR_SUCCESS) m_is_connect = TRUE;
 
-	if (dwResult != ERROR_SUCCESS) m_is_connect = FALSE;
+	(dwResult == ERROR_SUCCESS) ? m_is_connected = TRUE : m_is_connected = FALSE;
 
 	return S_OK;
 }

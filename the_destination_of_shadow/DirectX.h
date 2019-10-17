@@ -53,12 +53,13 @@ public:
 		OFF
 	};
 
+	static const INT m_max_key = 256;
 
-	static const INT MAX_KEY = 256;
-	const INT MASK_NUM = 0x80;
-	BOOL m_is_connect;
+	const INT m_mask_num = 0x80;
 
-	KEY_STATE KeyState[256];
+	BOOL m_is_connected;
+
+	KEY_STATE m_key_state[256];
 
 	HRESULT BuildDxDevice(HWND hWnd, const TCHAR* FilePath);
 
