@@ -1,4 +1,8 @@
-﻿#ifndef DirectX_H
+﻿/**
+* @file DirectX.h
+*/
+
+#ifndef DirectX_H
 #define DirectX_H
 
 #include <windows.h>
@@ -13,7 +17,16 @@
 #define WINDOW_WIDTH 1920
 #define WINDOW_HEIGHT 1080
 
+/**
+* @def XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE
+* @brief Xboxコントローラー左スティックのデットゾーン
+*/
 #define XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE  7849
+
+/**
+* @def XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE
+* @brief Xboxコントローラー右スティックのデットゾーン
+*/
 #define XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE 8689
 
 enum KEY_STATE
@@ -24,7 +37,32 @@ enum KEY_STATE
 	OFF
 };
 
-class DIRECTX
+
+class Key
+{
+public:
+	static const INT MAX_KEY = 256;
+
+	KEY_STATE m_key_state[256];
+};
+
+class Connection
+{
+public:
+	//! 接続されているかを確認するためのフラグ
+	BOOL m_is_connected;
+};
+
+class Mash
+{
+public:
+	const INT MASK_NUM = 0x80;
+};
+
+/**
+* @brief DirectX使用に必要な構造体、関数を詰め込んだclass
+*/
+class DirectX
 {
 private:
 	
@@ -61,38 +99,31 @@ public:
 
 	LPD3DXFONT pFont;//フォントオブジェクト
 
-	//! デバイスの作成
+	/**
+	* @brief デバイスの作成
+	* @param (hWnd)
+	* @param (*FilePath)
+	*/
 	HRESULT BuildDxDevice(HWND hWnd, const TCHAR* FilePath);
 
-	//! デバイスの初期設定
+	/**
+	* @brief デバイスの初期化
+	* @param (hWnd)
+	* @param (*FilePath)
+	*/
 	HRESULT InitD3Device(HWND hWnd, const TCHAR* FilePath);
 
-	//! Xboxコントローラーの状態を更新する関数
+	/**
+	* @brief Xboxコントローラーの状態を更新する関数
+	*/
 	VOID UpdateControllerState();
 
-	//! ウィンドウの初期設定
+	/**
+	* @brief ウィンドウの初期設定
+	*/
 	VOID InitPresentParameters(HWND hWnd);
 
 };
 
-class Key
-{
-public:
-	static const INT MAX_KEY = 256;
-
-	KEY_STATE m_key_state[256];
-};
-
-class Connection
-{
-public:
-	BOOL m_is_connected;
-};
-
-class Mash
-{
-public:
-	const INT MASK_NUM = 0x80;
-};
 
 #endif

@@ -1,7 +1,7 @@
 ﻿
 #include "DirectX.h"
 
-HRESULT DIRECTX::BuildDxDevice(HWND hWnd, CONST TCHAR* filepath)
+HRESULT DirectX::BuildDxDevice(HWND hWnd, CONST TCHAR* filepath)
 {
 	if (FAILED(InitD3Device(hWnd, filepath)))
 	{
@@ -19,7 +19,7 @@ HRESULT DIRECTX::BuildDxDevice(HWND hWnd, CONST TCHAR* filepath)
 	return S_OK;
 }
 
-HRESULT DIRECTX::InitD3Device(HWND hWnd, CONST TCHAR* FilePath)
+HRESULT DirectX::InitD3Device(HWND hWnd, CONST TCHAR* FilePath)
 {
 	if (NULL == (pDirect3D = Direct3DCreate9(D3D_SDK_VERSION)))
 	{
@@ -74,13 +74,13 @@ HRESULT DIRECTX::InitD3Device(HWND hWnd, CONST TCHAR* FilePath)
 	return S_OK;
 }
 
-VOID DIRECTX::UpdateControllerState()
+VOID DirectX::UpdateControllerState()
 {	 
-	connection.m_is_connected = (XInputGetState(0, &XinputState) == ERROR_SUCCESS) ?  TRUE :  FALSE;
+	connection.m_is_connected= (XInputGetState(0, &XinputState) == ERROR_SUCCESS) ?  TRUE :  FALSE;
 }
 
 
-VOID DIRECTX::InitPresentParameters(HWND hWnd)
+VOID DirectX::InitPresentParameters(HWND hWnd)
 {
 	ZeroMemory(&D3dPresentParameters, sizeof(D3dPresentParameters));
 
