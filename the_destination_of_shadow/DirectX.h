@@ -27,13 +27,12 @@ enum KEY_STATE
 class DIRECTX
 {
 private:
-	static const INT MAX_KEY = 256;
+	
+	Key key;
 
-	const INT MASK_NUM = 0x80;
+	Connection connection;
 
-	BOOL m_is_connected;
-
-	KEY_STATE m_key_state[256];
+	Mash mash;
 
 public:
 	//　Direct3Dのインターフェイス
@@ -68,13 +67,32 @@ public:
 	//! デバイスの初期設定
 	HRESULT InitD3Device(HWND hWnd, const TCHAR* FilePath);
 
-	
 	//! Xboxコントローラーの状態を更新する関数
 	VOID UpdateControllerState();
 
 	//! ウィンドウの初期設定
 	VOID InitPresentParameters(HWND hWnd);
 
+};
+
+class Key
+{
+public:
+	static const INT MAX_KEY = 256;
+
+	KEY_STATE m_key_state[256];
+};
+
+class Connection
+{
+public:
+	BOOL m_is_connected;
+};
+
+class Mash
+{
+public:
+	const INT MASK_NUM = 0x80;
 };
 
 #endif

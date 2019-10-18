@@ -76,7 +76,7 @@ HRESULT DIRECTX::InitD3Device(HWND hWnd, CONST TCHAR* FilePath)
 
 VOID DIRECTX::UpdateControllerState()
 {	 
-	m_is_connected = (XInputGetState(0, &XinputState) == ERROR_SUCCESS) ?  TRUE :  FALSE;
+	connection.m_is_connected = (XInputGetState(0, &XinputState) == ERROR_SUCCESS) ?  TRUE :  FALSE;
 }
 
 
