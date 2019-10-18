@@ -145,12 +145,17 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Help.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="Result.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectX.h" />
     <ClInclude Include="Draw.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Character.h" />
+    <ClInclude Include="Pleyer.h" />
     <ClInclude Include="Help.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="Game.h" />

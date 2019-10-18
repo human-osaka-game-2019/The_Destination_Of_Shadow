@@ -1,5 +1,6 @@
 ﻿#include "Main.h"
 #include "DirectX.h"
+#include "Player.h"
 
 #include "Title.h"
 #include "Help.h"
@@ -13,6 +14,8 @@ Help help;
 Game game;
 Result result;
 DrawTex draw_tex;
+Player player;
+WindowSize ws;
 
 SCENE scene = TITLE_SCENE;
 
