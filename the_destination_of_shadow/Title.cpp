@@ -1,10 +1,10 @@
 ﻿#include "Title.h"
 
 //タイトルのフェーズの宣言
-TITLE::SCENE_PHASE phase = TITLE::LOAD;
+Title::SCENE_PHASE phase = Title::LOAD;
 
 //タイトルのフェーズの移動
-VOID TITLE::Title_Scene()
+VOID Title::Title_Scene()
 {
 
 	switch (phase)
@@ -23,7 +23,7 @@ VOID TITLE::Title_Scene()
 }
 
 //タイトルのテクスチャの読み込み
-VOID TITLE::Loading()
+VOID Title::Loading()
 {
 	draw.LoadTexture("../Texture/bird.png", PYON);
 	phase = PROCESSING;
@@ -32,7 +32,7 @@ VOID TITLE::Loading()
 }
 
 //タイトルの描画処理
-VOID TITLE::Process()
+VOID Title::Process()
 {
 	draw.Draw(0, 0, 0xffffffff, 0.0f, 0.0f, 1920, 1080, 1.0f, 1.0f, PYON);
 
@@ -41,7 +41,7 @@ VOID TITLE::Process()
 }
 
 //タイトルのテクスチャの解放
-VOID TITLE::Release()
+VOID Title::Release()
 {
 
 	for (INT i = 0; i < TEX_MAX; i++)

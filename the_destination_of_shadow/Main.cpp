@@ -7,15 +7,12 @@
 #include "Result.h"
 
 //ここ出来ればなくしたい
-DIRECTX directx;
-TITLE title;
-HELP help;
-GAME game;
-RESULT result;
-DRAW draw;
-
-
-
+DirectX directx;
+Title title;
+Help help;
+Game game;
+Result result;
+DrawTex draw_tex;
 
 SCENE scene = TITLE_SCENE;
 

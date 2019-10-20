@@ -12,23 +12,6 @@
 #include <d3dx9tex.h>
 #include <tchar.h>
 
-#define TEX_MAX 20
-
-#define WINDOW_WIDTH 1920
-#define WINDOW_HEIGHT 1080
-
-/**
-* @def XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE
-* @brief Xboxコントローラー左スティックのデットゾーン
-*/
-#define XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE  7849
-
-/**
-* @def XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE
-* @brief Xboxコントローラー右スティックのデットゾーン
-*/
-#define XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE 8689
-
 enum KEY_STATE
 {
 	PRESS,
@@ -37,6 +20,21 @@ enum KEY_STATE
 	OFF
 };
 
+class WindowSize
+{
+public:
+	const INT m_WINDOW_WIDTH = 1920;
+	const INT m_WINDOW_HEIGHT = 1080;
+};
+
+ class GamePadDeadZone
+{
+public:
+	const FLOAT m_GAMEPAD_LEFT_DEADZONE = 7849;	//! Xboxコントローラー左スティックのデットゾーン
+
+	const FLOAT m_GAMEPAD_RIGHT_DEADZONE = 8689;	//! Xboxコントローラー右スティックのデットゾーン
+
+};
 
 class Key
 {
@@ -53,10 +51,10 @@ public:
 	BOOL m_is_connected;
 };
 
-class Mash
+class Mesh
 {
 public:
-	const INT MASK_NUM = 0x80;
+	const INT MESK_NUM = 0x80;
 };
 
 /**
@@ -65,12 +63,16 @@ public:
 class DirectX
 {
 private:
+
+	GamePadDeadZone game_pad_dead_zone;
+
+	WindowSize window_size;
 	
 	Key key;
 
 	Connection connection;
 
-	Mash mash;
+	Mesh mesh;
 
 public:
 	//　Direct3Dのインターフェイス
@@ -95,7 +97,7 @@ public:
 	XINPUT_VIBRATION XinputVibration;
 
 	//　テクスチャ
-	LPDIRECT3DTEXTURE9 pTexture[TEX_MAX];
+	LPDIRECT3DTEXTURE9 pTexture[20];
 
 	LPD3DXFONT pFont;//フォントオブジェクト
 

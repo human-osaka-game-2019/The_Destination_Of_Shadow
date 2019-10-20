@@ -15,7 +15,7 @@ struct CUSTOMVERTEX
 };
 
 
-class DRAW
+class DrawTex
 {
 public:
 	VOID Rotate(CUSTOMVERTEX  original[], CUSTOMVERTEX rotatevertex[], DOUBLE degree = 0.0f);

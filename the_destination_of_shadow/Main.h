@@ -22,11 +22,11 @@ enum SCENE
 };
 
 
-extern DIRECTX directx;
+extern DirectX directx;
 
 extern SCENE scene;
 
-extern DRAW draw;
+extern DrawTex draw_tex;
 
 
 //WinMain関数

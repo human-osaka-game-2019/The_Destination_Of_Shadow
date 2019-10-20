@@ -5,11 +5,11 @@
 
 #include "Main.h"
 
-GAME::SCENE_PAHSE phase = GAME::LOAD;
+Game::SCENE_PAHSE phase = Game::LOAD;
 
 
 //ゲームのフェーズの移動
-VOID GAME::Game_Scene()
+VOID Game::Game_Scene()
 {
 	switch (phase)
 	{
@@ -27,21 +27,21 @@ VOID GAME::Game_Scene()
 }
 
 //ゲームのテクスチャの読み込み
-VOID GAME::Loading()
+VOID Game::Loading()
 {
 
 
 	phase = PROCESSING;
 }
 
-VOID GAME::Process()
+VOID Game::Process()
 {
 
 	phase = RELEASES;
 }
 
 //ゲームのテクスチャの解放
-VOID GAME::Release() {
+VOID Game::Release() {
 
 	//テクスチャの開放
 	for (INT i = 0; i < TEX_MAX; i++)

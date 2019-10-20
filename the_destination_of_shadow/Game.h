@@ -3,7 +3,7 @@
 
 #include <Windows.h>
 
-class GAME
+class Game
 {
 public:
 

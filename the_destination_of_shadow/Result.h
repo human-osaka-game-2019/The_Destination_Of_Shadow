@@ -4,7 +4,7 @@
 #include <Windows.h>
 
 
-class RESULT
+class Result
 {
 public:
 
@@ -18,10 +18,7 @@ public:
 	};
 
 	//リザルトのフェーズの宣言
-	RESULT::SCENE_PHASE phase = RESULT::LOAD;
-
-
-
+	Result::SCENE_PHASE phase = Result::LOAD;
 
 private:
 

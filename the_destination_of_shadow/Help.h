@@ -3,7 +3,7 @@
 #include "DirectX.h"
 #include "Main.h"
 #include "Draw.h"
-class HELP
+class Help
 {
 public:
 
@@ -14,7 +14,7 @@ public:
 		PROCESSING,
 		RELEASES
 	};
-	HELP::SCENE_PAHSE phase = HELP::LOAD;
+	Help::SCENE_PAHSE phase = Help::LOAD;
 private:
 	VOID Loading();
 	VOID Process();

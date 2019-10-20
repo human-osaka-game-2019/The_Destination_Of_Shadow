@@ -5,7 +5,7 @@
 
 #include "Main.h"
 
-class TITLE
+class Title
 {
 public:
 

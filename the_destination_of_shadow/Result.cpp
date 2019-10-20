@@ -6,7 +6,7 @@
 
 
 //リザルトのフェーズの移動
-VOID RESULT::Result_Scene()
+VOID Result::Result_Scene()
 {
 
 	switch (phase)
@@ -26,21 +26,21 @@ VOID RESULT::Result_Scene()
 }
 
 //リザルトのテクスチャの読み込み
-VOID RESULT::Loading()
+VOID Result::Loading()
 {
 
 	phase = PROCESSING;
 }
 
 //リザルトの描画処理
-VOID RESULT::Process()
+VOID Result::Process()
 {
 	phase = RELEASES;
 }
 
 
 //リザルトのテクスチャの解放
-VOID RESULT::Release()
+VOID Result::Release()
 {
 
 	for (INT i = 0; i < TEX_MAX; i++)

@@ -1,7 +1,7 @@
 ﻿#include "Help.h"
 #include <time.h>
 //リザルトのフェーズの移動
-VOID HELP::Help_Scene()
+VOID Help::Help_Scene()
 {
 	switch (phase)
 	{
@@ -18,18 +18,18 @@ VOID HELP::Help_Scene()
 	}
 }
 //リザルトのテクスチャの読み込み
-VOID HELP::Loading()
+VOID Help::Loading()
 {
 	phase = PROCESSING;
 }
 //リザルトの描画処理
-VOID HELP::Process()
+VOID Help::Process()
 {
 	phase = RELEASES;
 
 }
 //リザルトのテクスチャの解放
-VOID HELP::Release()
+VOID Help::Release()
 {
 	for (INT i = 0; i < TEX_MAX; i++)
 	{
