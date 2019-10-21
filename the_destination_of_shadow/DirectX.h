@@ -18,10 +18,17 @@
  */
 enum KEY_STATE
 {
-	PRESS,	//! 押した瞬間
-	RELEASE,//! 放した瞬間
-	ON,		//! 押している状態
-	OFF		//! 押していない状態
+	//! 押した瞬間
+	PRESS,
+
+	//! 放した瞬間
+	RELEASE,
+
+	//! 押している状態
+	ON,		
+
+	//! 押していない状態
+	OFF,	
 };
 
 /**
@@ -30,8 +37,8 @@ enum KEY_STATE
 class WindowSize
 {
 public:
-	const INT m_WINDOW_WIDTH = 1920;
-	const INT m_WINDOW_HEIGHT = 1080;
+	const INT WIDTH = 1920;
+	const INT HEIGHT = 1080;
 };
 
 /**
@@ -40,9 +47,9 @@ public:
  class GamePadDeadZone
 {
 public:
-	const FLOAT m_GAMEPAD_LEFT_DEADZONE = 7849;	//! Xboxコントローラー左スティックのデットゾーン
+	const FLOAT LEFT = 7849;	//! Xboxコントローラー左スティックのデットゾーン
 
-	const FLOAT m_GAMEPAD_RIGHT_DEADZONE = 8689;	//! Xboxコントローラー右スティックのデットゾーン
+	const FLOAT RIGHT = 8689;	//! Xboxコントローラー右スティックのデットゾーン
 
 };
 
@@ -52,9 +59,9 @@ public:
 class Key
 {
 public:
-	static const INT MAX_KEY = 256;
+	static const INT MAX = 256;
 
-	KEY_STATE m_key_state[256];
+	KEY_STATE m_state[256];
 };
 
 /**
@@ -73,7 +80,7 @@ public:
 class Mask
 {
 public:
-	const INT MASK_NUM = 0x80;
+	const INT NUM = 0x80;
 };
 
 /**
