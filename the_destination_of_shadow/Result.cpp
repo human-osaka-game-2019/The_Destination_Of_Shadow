@@ -43,7 +43,7 @@ VOID Result::Process()
 VOID Result::Release()
 {
 
-	for (INT i = 0; i < TEX_MAX; i++)
+	for (INT i = 0; i < MAX_TEX; i++)
 	{
 		if (directx.pTexture[i] != nullptr)
 		{

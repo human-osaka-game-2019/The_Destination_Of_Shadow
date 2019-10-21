@@ -25,7 +25,7 @@ VOID Title::Title_Scene()
 //タイトルのテクスチャの読み込み
 VOID Title::Loading()
 {
-	draw.LoadTexture("../Texture/bird.png", PYON);
+	draw_tex.LoadTexture("../Texture/bird.png", PYON);
 	phase = PROCESSING;
 
 
@@ -34,7 +34,7 @@ VOID Title::Loading()
 //タイトルの描画処理
 VOID Title::Process()
 {
-	draw.Draw(0, 0, 0xffffffff, 0.0f, 0.0f, 1920, 1080, 1.0f, 1.0f, PYON);
+	draw_tex.Draw(0, 0, 0xffffffff, 0.0f, 0.0f, 1920, 1080, 1.0f, 1.0f, PYON);
 
 	//phase = RELEASES;
 
@@ -44,7 +44,7 @@ VOID Title::Process()
 VOID Title::Release()
 {
 
-	for (INT i = 0; i < TEX_MAX; i++)
+	for (INT i = 0; i < MAX_TEX; i++)
 	{
 		if (directx.pTexture[i] != nullptr)
 		{

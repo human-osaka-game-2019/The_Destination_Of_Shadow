@@ -95,8 +95,8 @@ HWND GenerateWindow(HWND* hWnd, HINSTANCE* hInstance, const TCHAR* p_api_name)
 //		WS_VISIBLE | WS_POPUP,	//ウィンドウのスタイル
 0,		            				//Xの位置
 0,		            				//Yの位置
-WINDOW_WIDTH,								//幅
-WINDOW_HEIGHT,								//高さ
+1920,								//幅
+1080,								//高さ
 NULL,								//親ウィンドウのハンドル
 NULL,								//メニューのハンドル
 *hInstance,							//インスタンスハンドル

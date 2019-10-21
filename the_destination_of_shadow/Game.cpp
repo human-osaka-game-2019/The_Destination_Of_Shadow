@@ -44,7 +44,7 @@ VOID Game::Process()
 VOID Game::Release() {
 
 	//テクスチャの開放
-	for (INT i = 0; i < TEX_MAX; i++)
+	for (INT i = 0; i < MAX_TEX; i++)
 	{
 		if (directx.pTexture[i] != nullptr)
 		{

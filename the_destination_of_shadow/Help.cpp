@@ -31,7 +31,7 @@ VOID Help::Process()
 //リザルトのテクスチャの解放
 VOID Help::Release()
 {
-	for (INT i = 0; i < TEX_MAX; i++)
+	for (INT i = 0; i < MAX_TEX; i++)
 	{
 		if (directx.pTexture[i] != nullptr)
 		{
