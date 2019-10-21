@@ -3,20 +3,30 @@
 
 #include"DirectX.h"
 
+/**
+* @enum Direction
+* キャラクターの向きを管理する
+*/
+
 enum Direction
 {
+	/*! 右を向いている */
 	Right,
+	/*! 左を向いている */
 	Left,
 };
 
-class CHARACTER_BASE 
+/**
+* @brief PlayerとEnemyの親class
+*/
+class CharacterBase
 {
 protected:
 	INT m_hp;
 	FLOAT m_move_speed;
 	Direction m_save_direction;
 
-	TEX m_TEX;
+	TEX m_tex;
 
 	FLOAT m_x;
 	FLOAT m_y;
@@ -33,4 +43,5 @@ public:
 };
 
 #endif
+
 

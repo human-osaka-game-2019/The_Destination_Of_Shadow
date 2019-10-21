@@ -1,15 +1,16 @@
 ﻿#include "DirectX.h"
 #include "Character.h"
 
-class WALKING_ENEMY :public CHARACTER_BASE 
+class WalkingEnemy :public CharacterBase
 {
 public:
 	VOID Move();
 
 };
 
-class FLYING_ENEMY :public CHARACTER_BASE
+class FlyingEnemy :public CharacterBase
 {
 public:
 	VOID Move();
+
 };

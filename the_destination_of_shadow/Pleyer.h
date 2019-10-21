@@ -1,7 +1,7 @@
 ﻿#include "DirectX.h"
 #include "Character.h"
 
-class PLAYER :public CHARACTER_BASE
+class Player :public CharacterBase
 {
 public:
 	FLOAT acceleration;

@@ -21,7 +21,6 @@ VOID Player::ShadowInstallation()
 	return VOID();
 }
 
-
 Player::Player()
 {
 
@@ -29,7 +28,7 @@ Player::Player()
 	m_move_speed = 4.0f;
 	m_save_direction;
 
-	m_TEX = PLAYER;
+	m_tex = PLAYER;
 	
 	m_x = 0;
 	m_y = 780.0f;
@@ -75,4 +74,5 @@ VOID Player::Move()
 
 
 }
+
 

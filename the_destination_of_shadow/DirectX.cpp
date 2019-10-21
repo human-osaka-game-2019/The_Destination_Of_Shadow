@@ -1,7 +1,8 @@
 ﻿
 #include "DirectX.h"
 
-namespace {
+namespace 
+{
 	const INT KEY_MAX = 256;
 }
 
