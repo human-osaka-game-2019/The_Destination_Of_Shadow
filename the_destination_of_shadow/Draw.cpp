@@ -55,15 +55,7 @@ VOID DrawTex::Draw(FLOAT x, FLOAT y, DWORD color, FLOAT tu, FLOAT tv, FLOAT widt
 }
 
 //アニメーション関数
-/**
-* @breaf アニメーションの関数
-* @param flamecount   なんのアニメーションをするためのflamecountか
-* @param count  　　　何回処理に入るのか
-* @param tu  　　　　 アニメーションをする初めのtu座標
-* @param tv           アニメーションをする初めのtv座標
-* @param split_tu     tuの幅（1/???）
-* @param split_tv     tvの幅（1/???）
-*/
+
 VOID DrawTex::Animetion(INT * flamecount, INT count, FLOAT * tu, FLOAT * tv, FLOAT split_tu, FLOAT split_tv, FLOAT start_tu, FLOAT start_tv, FLOAT finish_tu, FLOAT finish_tv)
 {
 	if (*flamecount >= count)

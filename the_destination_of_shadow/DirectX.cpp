@@ -43,7 +43,7 @@ HRESULT DirectX::InitD3Device(HWND hWnd, CONST TCHAR* FilePath)
 			return E_FAIL;
 		}
 	}
-	for (INT i = 0; i < TEX_MAX; i++)
+	for (INT i = 0; i < MAX_TEX; i++)
 	{
 		if (FAILED(D3DXCreateTextureFromFileEx(pD3Device, FilePath, 100, 100, 0, 0, D3DFMT_UNKNOWN,
 			D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_DEFAULT,
@@ -84,8 +84,8 @@ VOID DirectX::InitPresentParameters(HWND hWnd)
 {
 	ZeroMemory(&D3dPresentParameters, sizeof(D3dPresentParameters));
 
-	D3dPresentParameters.BackBufferWidth = WINDOW_WIDTH;
-	D3dPresentParameters.BackBufferHeight = WINDOW_HEIGHT;
+	D3dPresentParameters.BackBufferWidth = window_size.WIDTH;
+	D3dPresentParameters.BackBufferHeight = window_size.HEIGHT;
 	D3dPresentParameters.BackBufferFormat = D3DFMT_UNKNOWN;
 	D3dPresentParameters.BackBufferCount = 1;
 	D3dPresentParameters.MultiSampleType = D3DMULTISAMPLE_NONE;

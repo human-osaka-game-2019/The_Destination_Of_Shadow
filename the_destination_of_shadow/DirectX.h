@@ -8,7 +8,7 @@
 #include <windows.h>
 #include <d3d9.h>
 #include <dinput.h>
-#include<Xinput.h>
+#include <Xinput.h>
 #include <d3dx9tex.h>
 #include <tchar.h>
 
@@ -31,6 +31,9 @@ enum KEY_STATE
 	OFF,	
 };
 
+//!最大Textuer数
+const INT MAX_TEX = 20; 
+
 /**
 * @brief Windowのサイズ
 */
@@ -47,9 +50,11 @@ public:
  class GamePadDeadZone
 {
 public:
-	const FLOAT LEFT = 7849;	//! Xboxコントローラー左スティックのデットゾーン
+	//! Xboxコントローラー左スティックのデットゾーン
+	const FLOAT LEFT = 7849;
 
-	const FLOAT RIGHT = 8689;	//! Xboxコントローラー右スティックのデットゾーン
+	//! Xboxコントローラー右スティックのデットゾーン
+	const FLOAT RIGHT = 8689;
 
 };
 
@@ -111,21 +116,21 @@ public:
 	XINPUT_VIBRATION XinputVibration;
 
 	//　テクスチャ
-	LPDIRECT3DTEXTURE9 pTexture[20];
+	LPDIRECT3DTEXTURE9 pTexture[MAX_TEX];
 
 	LPD3DXFONT pFont;//フォントオブジェクト
 
 	/**
 	* @brief デバイスの作成
-	* @param hWnd
-	* @param FilePath
+	* @param hWnd ウィンドウハンドル
+	* @param FilePath ファイルパス
 	*/
 	HRESULT BuildDxDevice(HWND hWnd, const TCHAR* FilePath);
 
 	/**
 	* @brief デバイスの初期化
-	* @param hWnd
-	* @param FilePath
+	* @param hWnd ウィンドウハンドル
+	* @param FilePath ファイルパス
 	*/
 	HRESULT InitD3Device(HWND hWnd, const TCHAR* FilePath);
 
@@ -137,11 +142,10 @@ public:
 
 	/**
 	* @brief ウィンドウの初期設定
-	* @param hWnd
+	* @param hWnd ウィンドウハンドル
 	*/
 	VOID InitPresentParameters(HWND hWnd);
 
 };
-
 
 #endif
