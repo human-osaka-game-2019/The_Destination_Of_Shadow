@@ -51,10 +51,10 @@ public:
 	BOOL m_is_connected;
 };
 
-class Mesh
+class Mask
 {
 public:
-	const INT MESK_NUM = 0x80;
+	const INT MASK_NUM = 0x80;
 };
 
 /**
@@ -72,7 +72,7 @@ private:
 
 	Connection connection;
 
-	Mesh mesh;
+	Mask mask;
 
 public:
 	//　Direct3Dのインターフェイス
