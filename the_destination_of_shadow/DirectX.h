@@ -12,14 +12,21 @@
 #include <d3dx9tex.h>
 #include <tchar.h>
 
+/**
+ * @enum KEY_STATE
+ * DirectInputで使用するキーの状態
+ */
 enum KEY_STATE
 {
-	PRESS,
-	RELEASE,
-	ON,
-	OFF
+	PRESS,	//! 押した瞬間
+	RELEASE,//! 放した瞬間
+	ON,		//! 押している状態
+	OFF		//! 押していない状態
 };
 
+/**
+* @brief Windowのサイズ
+*/
 class WindowSize
 {
 public:
@@ -27,6 +34,9 @@ public:
 	const INT m_WINDOW_HEIGHT = 1080;
 };
 
+/**
+* @brief XInputで使用するコントローラーのスティックのデットゾーン
+*/
  class GamePadDeadZone
 {
 public:
@@ -36,6 +46,9 @@ public:
 
 };
 
+ /**
+* @brief DirectInputで使用するKeyState
+*/
 class Key
 {
 public:
@@ -44,6 +57,9 @@ public:
 	KEY_STATE m_key_state[256];
 };
 
+/**
+* @brief Xboxコントローラーの接続確認用
+*/
 class Connection
 {
 public:
@@ -51,6 +67,9 @@ public:
 	BOOL m_is_connected;
 };
 
+/**
+* @brief マスク値
+*/
 class Mask
 {
 public:
@@ -103,15 +122,15 @@ public:
 
 	/**
 	* @brief デバイスの作成
-	* @param (hWnd)
-	* @param (*FilePath)
+	* @param hWnd
+	* @param FilePath
 	*/
 	HRESULT BuildDxDevice(HWND hWnd, const TCHAR* FilePath);
 
 	/**
 	* @brief デバイスの初期化
-	* @param (hWnd)
-	* @param (*FilePath)
+	* @param hWnd
+	* @param FilePath
 	*/
 	HRESULT InitD3Device(HWND hWnd, const TCHAR* FilePath);
 
@@ -122,6 +141,7 @@ public:
 
 	/**
 	* @brief ウィンドウの初期設定
+	* @param hWnd
 	*/
 	VOID InitPresentParameters(HWND hWnd);
 
