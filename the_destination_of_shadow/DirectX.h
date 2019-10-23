@@ -131,6 +131,7 @@ public:
 
 	/**
 	* @brief Xboxコントローラーの状態を更新する関数
+	* @return Xboxコントローラーが接続されているならtrueを返す
 	*/
 	BOOL UpdateControllerState();
 
