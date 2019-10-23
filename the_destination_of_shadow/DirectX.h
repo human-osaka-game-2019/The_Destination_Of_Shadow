@@ -65,16 +65,6 @@ public:
 };
 
 /**
-* @brief Xboxコントローラーの接続確認用
-*/
-class Connection
-{
-public:
-	//! 接続されているかを確認するためのフラグ
-	BOOL m_is_connected;
-};
-
-/**
 * @brief マスク値
 */
 class Mask
@@ -95,8 +85,6 @@ private:
 	WindowSize window_size;
 	
 	Key key;
-
-	Connection connection;
 
 	Mask mask;
 
