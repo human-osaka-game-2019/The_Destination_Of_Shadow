@@ -144,7 +144,7 @@ public:
 	/**
 	* @brief Xboxコントローラーの状態を更新する関数
 	*/
-	VOID UpdateControllerState();
+	BOOL UpdateControllerState();
 
 	/**
 	* @brief ウィンドウの初期設定
