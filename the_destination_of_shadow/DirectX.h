@@ -64,7 +64,6 @@ public:
 class Key
 {
 public:
-	static const INT MAX = 256;
 
 	KEY_STATE m_state[256];
 };

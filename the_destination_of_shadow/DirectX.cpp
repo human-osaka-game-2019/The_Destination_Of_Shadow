@@ -1,6 +1,10 @@
 ﻿
 #include "DirectX.h"
 
+namespace {
+	const INT KEY_MAX = 256;
+}
+
 HRESULT DirectX::BuildDxDevice(HWND hWnd, CONST TCHAR* filepath)
 {
 	if (FAILED(InitD3Device(hWnd, filepath)))
