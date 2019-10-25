@@ -46,24 +46,6 @@ public:
 	const INT HEIGHT = 1080;
 };
 
-/**
-* @brief XInputで使用するコントローラーのスティックのデットゾーン
-*/
- class GamePadDeadZone
-{
-private:
-	 GamePadDeadZone(const GamePadDeadZone&);
-	 GamePadDeadZone& operator =(const GamePadDeadZone&);
-public:
-	GamePadDeadZone(){}
-	//! Xboxコントローラー左スティックのデットゾーン
-	const FLOAT LEFT = 7849;
-
-	//! Xboxコントローラー右スティックのデットゾーン
-	const FLOAT RIGHT = 8689;
-
-};
-
  /**
 * @brief DirectInputで使用するKeyState
 */
@@ -97,7 +79,6 @@ class DirectX
 {
 private:
 
-	GamePadDeadZone game_pad_dead_zone;
 
 	WindowSize window_size;
 	
