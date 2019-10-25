@@ -8,6 +8,7 @@ protected:
 	FLOAT height;
 	FLOAT move_speed;
 
-	virtual VOID Move();
+public:
+	virtual VOID Move()=0;
 
 };

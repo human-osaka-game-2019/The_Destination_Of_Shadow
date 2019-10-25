@@ -8,7 +8,12 @@
 
 enum TEX
 {
-	PYON,
+	SKY,
+	CLOUD,
+	CLOUD02,
+	CLOUD03,
+	MOUNT,
+	PLAYER,
 	MAXTEX,
 };
 
