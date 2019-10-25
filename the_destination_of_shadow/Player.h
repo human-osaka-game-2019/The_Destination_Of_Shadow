@@ -88,14 +88,7 @@ public:
 	* @brief 影の設置に関する関数
 	*/
 	VOID ShadowInstallation();
-
-/**
-* @breaf 自機の移動に関する関数
-* @param player_x     自機のx座標
-* @param player  　　 プレイヤークラスのインスタンス
-*/
-	VOID Move(INT* palyer_x,Player* player);
-
+		 
 };
 
 #endif
