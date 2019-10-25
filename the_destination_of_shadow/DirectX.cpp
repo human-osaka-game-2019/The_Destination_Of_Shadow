@@ -12,6 +12,11 @@ HRESULT DirectX::BuildDxDevice(HWND hWnd, CONST TCHAR* filepath)
 		return E_FAIL;
 	}
 
+	if (FAILED(InitDinput(hWnd)))
+	{
+		return E_FAIL;
+	}
+
 	pDirect3D = Direct3DCreate9(D3D_SDK_VERSION);
 
 	if (pDirect3D == NULL)
@@ -22,6 +27,36 @@ HRESULT DirectX::BuildDxDevice(HWND hWnd, CONST TCHAR* filepath)
 
 	return S_OK;
 }
+
+HRESULT DirectX::InitDinput(HWND hWnd)
+{
+	HRESULT hr;
+
+	if (FAILED(hr = DirectInput8Create(GetModuleHandle(NULL), DIRECTINPUT_VERSION, IID_IDirectInput8, (VOID * *)& pDinput, NULL)))
+	{
+		MessageBox(0, _T("DirectInputの作成に失敗しました"), NULL, MB_OK);
+		return hr;
+	}
+
+	if (FAILED(hr = pDinput->CreateDevice(GUID_SysKeyboard, &pDxIKeyDevice, NULL)))
+	{
+		return hr;
+	}
+
+	if (FAILED(hr = pDxIKeyDevice->SetDataFormat(&c_dfDIKeyboard)))
+	{
+		return hr;
+	}
+
+	if (FAILED(hr = pDxIKeyDevice->SetCooperativeLevel(hWnd, DISCL_NONEXCLUSIVE | DISCL_BACKGROUND)))
+	{
+		return hr;
+	}
+
+	pDxIKeyDevice->Acquire();
+	return S_OK;
+}
+
 
 HRESULT DirectX::InitD3Device(HWND hWnd, CONST TCHAR* FilePath)
 {
@@ -76,6 +111,54 @@ HRESULT DirectX::InitD3Device(HWND hWnd, CONST TCHAR* FilePath)
 	}
 
 	return S_OK;
+}
+
+
+VOID DirectX::UpdateKeyState()
+{
+
+	BYTE curr_diks[KEY_MAX];
+
+	static BYTE prev_diks[KEY_MAX] = { OFF };
+
+	HRESULT hr = pDxIKeyDevice->Acquire();
+
+	if ((hr == DI_OK) || (hr == S_FALSE))
+	{
+		pDxIKeyDevice->GetDeviceState(sizeof(curr_diks), &curr_diks);
+		for (INT i = 0; i < KEY_MAX; i++)
+		{
+			if (curr_diks[i] & mask.NUM)
+			{
+				if (prev_diks[i] == OFF)
+				{
+					key.m_state[i] = PRESS;
+				}
+				else
+				{
+					key.m_state[i] = ON;
+				}
+
+				prev_diks[i] = ON;
+			}
+			else {
+				if (prev_diks[i] == ON)
+				{
+					key.m_state[i] = RELEASE;
+				}
+				else {
+					key.m_state[i] = OFF;
+				}
+				prev_diks[i] = OFF;
+			}
+
+		}
+	}
+}
+
+KEY_STATE DirectX::GetKeyState(INT diks)
+{
+	return key.m_state[diks];
 }
 
 BOOL DirectX::UpdateControllerState()

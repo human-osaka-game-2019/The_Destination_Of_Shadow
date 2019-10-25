@@ -120,6 +120,12 @@ public:
 	LPD3DXFONT pFont;//フォントオブジェクト
 
 	/**
+	* @brief デバイスの初期化
+	* @param hWnd ウィンドウハンドル
+	*/
+	HRESULT InitDinput(HWND hWnd);
+
+	/**
 	* @brief デバイスの作成
 	* @param hWnd ウィンドウハンドル
 	* @param FilePath ファイルパス
@@ -145,6 +151,16 @@ public:
 	*/
 	VOID InitPresentParameters(HWND hWnd);
 
+	/**
+	* @brief キーボードの状態を更新
+	*/
+	VOID UpdateKeyState();
+
+	/**
+	* @brief キーボードの状態を取得
+	* @return キーの状態を返す
+	*/
+	KEY_STATE GetKeyState(INT diks);
 };
 
 #endif

@@ -24,7 +24,10 @@ INT WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	//メッセージ
 	MSG msg;
 	hWnd = GenerateWindow(&hWnd, &hInstance, api_name);
-	directx.BuildDxDevice(hWnd, _T("../Texture/Blank.jpg"));
+	if (FAILED(directx.BuildDxDevice(hWnd, _T("../Texture/Blank.jpg"))))
+	{
+		return 0;
+	}
 
 	Mainloop(&msg);
 
@@ -132,7 +135,7 @@ VOID Mainloop(MSG* msg)
 
 				directx.pD3Device->BeginScene();
 
-				//directx.UpdateKeyState();
+				directx.UpdateKeyState();
 
 				//ここからゲーム処理
 				switch (scene)
