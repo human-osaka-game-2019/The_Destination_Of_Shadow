@@ -156,10 +156,6 @@ VOID DirectX::UpdateKeyState()
 	}
 }
 
-KEY_STATE DirectX::GetKeyState(INT diks)
-{
-	return key.m_state[diks];
-}
 
 BOOL DirectX::UpdateControllerState()
 {	 

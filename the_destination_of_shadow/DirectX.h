@@ -160,7 +160,10 @@ public:
 	* @brief キーボードの状態を取得
 	* @return キーの状態を返す
 	*/
-	KEY_STATE GetKeyState(INT diks);
+	inline KEY_STATE GetKeyState(INT diks)
+	{
+		return key.m_state[diks];
+	}
 };
 
 #endif
