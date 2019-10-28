@@ -157,13 +157,36 @@ public:
 	VOID UpdateKeyState();
 
 	/**
-	* @brief キーボードの状態を取得
+	* @brief キーの状態を取得
+	* @param 入手したいキーのマクロ
 	* @return キーの状態を返す
 	*/
-	inline KEY_STATE GetKeyState(INT diks)
+	inline KEY_STATE GetKeyState(INT diks)const
 	{
 		return key.m_state[diks];
 	}
+
+	/**
+	* @brief 現在のキー入力状態を取得する
+	* @param 最上位ビットチェック用配列
+	* @param 前のキー状態記憶用配列
+	* @return 現在のキー入力状態 
+	*/
+	KEY_STATE GetInputState(BYTE curr_diks, BYTE prev_diks);
+
+	/**
+	* @brief 前のキー入力状態を取得する
+	* @param 最上位ビットチェック用配列
+	* @return 前のキー入力状態
+	*/
+	KEY_STATE GetPrevDik(BYTE curr_diks);
+
+	/**
+	* @brief 最上位ビットが立っているかを確認し、キーの状態を確認する
+	* @sa KEY_STATE GetInputState(BYTE curr_diks, BYTE prev_diks)
+	* @sa KEY_STATE GetPrevDik(BYTE curr_diks);
+	*/
+	VOID CheckInputStateDetails();
 };
 
 #endif

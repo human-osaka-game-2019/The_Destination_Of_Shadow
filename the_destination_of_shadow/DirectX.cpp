@@ -113,46 +113,46 @@ HRESULT DirectX::InitD3Device(HWND hWnd, CONST TCHAR* FilePath)
 	return S_OK;
 }
 
-
-VOID DirectX::UpdateKeyState()
+KEY_STATE DirectX::GetInputState(BYTE curr_diks, BYTE prev_diks)
 {
+	if (curr_diks & mask.NUM)
+	{
+		return (prev_diks == OFF) ? PRESS : ON;
+	}
+	else
+	{
+		return (prev_diks == ON) ? RELEASE : OFF;
+	}
+}
 
+KEY_STATE DirectX::GetPrevDik(BYTE curr_diks)
+{
+	return (curr_diks & mask.NUM) ? ON : OFF;
+}
+
+VOID DirectX::CheckInputStateDetails()
+{
 	BYTE curr_diks[KEY_MAX];
 
 	static BYTE prev_diks[KEY_MAX] = { OFF };
 
+	pDxIKeyDevice->GetDeviceState(sizeof(curr_diks), &curr_diks);
+
+	for (int i=0;i< KEY_MAX;i++)
+	{
+		key.m_state[i] = GetInputState(curr_diks[i], prev_diks[i]);
+		prev_diks[i] = GetPrevDik(curr_diks[i]);
+	}
+}
+
+
+VOID DirectX::UpdateKeyState()
+{
 	HRESULT hr = pDxIKeyDevice->Acquire();
 
 	if ((hr == DI_OK) || (hr == S_FALSE))
 	{
-		pDxIKeyDevice->GetDeviceState(sizeof(curr_diks), &curr_diks);
-		for (INT i = 0; i < KEY_MAX; i++)
-		{
-			if (curr_diks[i] & mask.NUM)
-			{
-				if (prev_diks[i] == OFF)
-				{
-					key.m_state[i] = PRESS;
-				}
-				else
-				{
-					key.m_state[i] = ON;
-				}
-
-				prev_diks[i] = ON;
-			}
-			else {
-				if (prev_diks[i] == ON)
-				{
-					key.m_state[i] = RELEASE;
-				}
-				else {
-					key.m_state[i] = OFF;
-				}
-				prev_diks[i] = OFF;
-			}
-
-		}
+		CheckInputStateDetails();
 	}
 }
 
