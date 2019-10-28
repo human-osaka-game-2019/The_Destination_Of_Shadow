@@ -1,12 +1,13 @@
 ---
 name: issue template
-about: issueのためのtemplate
+about: issue作成のためのtemplate
 title: ''
 labels: ''
 assignees: ''
 
 ---
 
+<!-- すべて埋める必要はありません -->
 ## 概要
 
 ## 変更内容
