@@ -12,7 +12,6 @@
 #include <d3dx9tex.h>
 #include <tchar.h>
 
-
 /**
  * @enum KEY_STATE
  * DirectInputで使用するキーの状態
@@ -134,7 +133,8 @@ public:
 	//　テクスチャ
 	LPDIRECT3DTEXTURE9 pTexture[MAX_TEX];
 
-	LPD3DXFONT pFont;//フォントオブジェクト
+	//フォントオブジェクト
+	LPD3DXFONT pFont;
 
 	/**
 	* @brief デバイスの初期化

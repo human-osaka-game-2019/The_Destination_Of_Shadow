@@ -115,18 +115,17 @@ HRESULT DirectX::InitD3Device(HWND hWnd, CONST TCHAR* FilePath)
 
 KEY_STATE DirectX::GetInputState(BYTE curr_diks, BYTE prev_diks)
 {
-	if (curr_diks & mask.NUM)
+	if (IsKeyPressed(curr_diks))
 	{
 		return (prev_diks == OFF) ? PRESS : ON;
 	}
-	else
-	{
+
 		return (prev_diks == ON) ? RELEASE : OFF;
-	}
 }
 
 BOOL DirectX::IsKeyPressed(BYTE curr_diks)
 {
+	// キーが押されているときはcurr_diksの最上位ビットが立っている
 	return (curr_diks & mask.NUM) ? TRUE : FALSE;
 }
 
@@ -134,7 +133,11 @@ VOID DirectX::CheckInputStateDetails()
 {
 	BYTE curr_diks[KEY_MAX];
 
-	static BYTE prev_diks[KEY_MAX] = { OFF };
+	static BYTE prev_diks[KEY_MAX] = {};
+	for (int i = 0; i < KEY_MAX; i++)
+	{
+		prev_diks[i] = OFF;
+	}
 
 	pDxIKeyDevice->GetDeviceState(sizeof(curr_diks), &curr_diks);
 
@@ -144,7 +147,6 @@ VOID DirectX::CheckInputStateDetails()
 		prev_diks[i] = (IsKeyPressed(curr_diks[i])) ? ON : OFF;
 	}
 }
-
 
 VOID DirectX::UpdateKeyState()
 {
@@ -156,12 +158,10 @@ VOID DirectX::UpdateKeyState()
 	}
 }
 
-
 BOOL DirectX::UpdateControllerState()
 {	 
 	return (XInputGetState(0, &XinputState) == ERROR_SUCCESS) ?  TRUE :  FALSE;
 }
-
 
 VOID DirectX::InitPresentParameters(HWND hWnd)
 {
