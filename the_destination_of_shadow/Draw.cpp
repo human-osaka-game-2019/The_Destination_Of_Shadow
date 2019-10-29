@@ -2,6 +2,21 @@
 
 #include "Main.h"
 
+VOID DrawTex::InitRender()
+{
+	// テクスチャの設定
+	directx.pD3Device->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_MODULATE);
+	directx.pD3Device->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
+	directx.pD3Device->SetTextureStageState(0, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
+
+	// アルファ・ブレンディングを行う
+	directx.pD3Device->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+	// 透過処理を行う
+	directx.pD3Device->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+	// 半透明処理を行う
+	directx.pD3Device->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+}
+
 VOID DrawTex::Rotate(CUSTOMVERTEX  original[], CUSTOMVERTEX rotatevertex[], DOUBLE degree)
 {
 	FLOAT center_x = (original[0].x + original[1].x) / 2.0f;
@@ -40,10 +55,6 @@ VOID DrawTex::Draw(FLOAT x, FLOAT y, DWORD color, FLOAT tu, FLOAT tv, FLOAT widt
 		{x + width,y + height,0,1,color,tu + tu_width,tv + tv_height},
 		{x        ,y + height,0,1,color,tu           ,tv + tv_height},
 	};
-
-	directx.pD3Device->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
-	directx.pD3Device->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-	directx.pD3Device->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 
 	directx.pD3Device->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
 

@@ -24,6 +24,12 @@ struct CUSTOMVERTEX
 class DrawTex
 {
 public:
+
+	/**
+	* @brief Renderの初期化
+	*/
+	VOID InitRender();
+
 	/**
 	* @brief 画像回転用
 	* @param original[]		回転前の座標
