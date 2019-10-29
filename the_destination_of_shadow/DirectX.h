@@ -18,17 +18,15 @@
  */
 enum KEY_STATE
 {
+	//! 押していない状態
+	OFF,	
 	//! 押した瞬間
 	PRESS,
-
+	//! 押している状態
+	ON,		
 	//! 放した瞬間
 	RELEASE,
 
-	//! 押している状態
-	ON,		
-
-	//! 押していない状態
-	OFF,	
 };
 
 //!最大Textuer数
@@ -43,6 +41,7 @@ private:
 	WindowSize(const WindowSize&);
 	WindowSize& operator =(const WindowSize&);
 public:
+	WindowSize(){}
 	const INT WIDTH = 1920;
 	const INT HEIGHT = 1080;
 };
@@ -56,6 +55,7 @@ private:
 	 GamePadDeadZone(const GamePadDeadZone&);
 	 GamePadDeadZone& operator =(const GamePadDeadZone&);
 public:
+	GamePadDeadZone(){}
 	//! Xboxコントローラー左スティックのデットゾーン
 	const FLOAT LEFT = 7849;
 
@@ -73,7 +73,7 @@ private:
 	Key(const Key&);
 	Key& operator =(const Key&);
 public:
-
+	Key(){}
 	KEY_STATE m_state[256];
 };
 
@@ -86,6 +86,7 @@ private:
 	Mask(const Mask&);
 	Mask& operator =(const Mask&);
 public:
+	Mask(){}
 	const INT NUM = 0x80;
 };
 
@@ -109,6 +110,7 @@ private:
 	DirectX& operator = (const DirectX&);
 
 public:
+	DirectX(){}
 	//　Direct3Dのインターフェイス
 	LPDIRECT3D9 pDirect3D;
 

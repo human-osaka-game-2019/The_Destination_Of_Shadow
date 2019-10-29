@@ -134,10 +134,6 @@ VOID DirectX::CheckInputStateDetails()
 	BYTE curr_diks[KEY_MAX];
 
 	static BYTE prev_diks[KEY_MAX] = {};
-	for (int i = 0; i < KEY_MAX; i++)
-	{
-		prev_diks[i] = OFF;
-	}
 
 	pDxIKeyDevice->GetDeviceState(sizeof(curr_diks), &curr_diks);
 
