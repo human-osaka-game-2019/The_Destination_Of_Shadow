@@ -125,9 +125,9 @@ KEY_STATE DirectX::GetInputState(BYTE curr_diks, BYTE prev_diks)
 	}
 }
 
-KEY_STATE DirectX::GetPrevDik(BYTE curr_diks)
+BOOL DirectX::IsKeyPressed(BYTE curr_diks)
 {
-	return (curr_diks & mask.NUM) ? ON : OFF;
+	return (curr_diks & mask.NUM) ? TRUE : FALSE;
 }
 
 VOID DirectX::CheckInputStateDetails()
@@ -141,7 +141,7 @@ VOID DirectX::CheckInputStateDetails()
 	for (int i=0;i< KEY_MAX;i++)
 	{
 		key.m_state[i] = GetInputState(curr_diks[i], prev_diks[i]);
-		prev_diks[i] = GetPrevDik(curr_diks[i]);
+		prev_diks[i] = (IsKeyPressed(curr_diks[i])) ? ON : OFF;
 	}
 }
 

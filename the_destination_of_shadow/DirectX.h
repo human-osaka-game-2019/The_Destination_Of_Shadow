@@ -192,11 +192,11 @@ public:
 	KEY_STATE GetInputState(BYTE curr_diks, BYTE prev_diks);
 
 	/**
-	* @brief 前のキー入力状態を取得する
+	* @brief キーが押されたかを判断する
 	* @param 最上位ビットチェック用配列
-	* @return 前のキー入力状態
+	* @return 押されていたならtrueを返す
 	*/
-	KEY_STATE GetPrevDik(BYTE curr_diks);
+	BOOL IsKeyPressed(BYTE curr_diks);
 
 	/**
 	* @brief 最上位ビットが立っているかを確認し、キーの状態を確認する
