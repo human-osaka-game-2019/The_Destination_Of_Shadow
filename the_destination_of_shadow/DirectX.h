@@ -12,6 +12,7 @@
 #include <d3dx9tex.h>
 #include <tchar.h>
 
+
 /**
  * @enum KEY_STATE
  * DirectInputで使用するキーの状態
@@ -39,6 +40,9 @@ const INT MAX_TEX = 20;
 */
 class WindowSize
 {
+private:
+	WindowSize(const WindowSize&);
+	WindowSize& operator =(const WindowSize&);
 public:
 	const INT WIDTH = 1920;
 	const INT HEIGHT = 1080;
@@ -49,6 +53,9 @@ public:
 */
  class GamePadDeadZone
 {
+private:
+	 GamePadDeadZone(const GamePadDeadZone&);
+	 GamePadDeadZone& operator =(const GamePadDeadZone&);
 public:
 	//! Xboxコントローラー左スティックのデットゾーン
 	const FLOAT LEFT = 7849;
@@ -63,6 +70,9 @@ public:
 */
 class Key
 {
+private:
+	Key(const Key&);
+	Key& operator =(const Key&);
 public:
 
 	KEY_STATE m_state[256];
@@ -73,6 +83,9 @@ public:
 */
 class Mask
 {
+private:
+	Mask(const Mask&);
+	Mask& operator =(const Mask&);
 public:
 	const INT NUM = 0x80;
 };
@@ -91,6 +104,10 @@ private:
 	Key key;
 
 	Mask mask;
+
+	DirectX(const DirectX&);
+
+	DirectX& operator = (const DirectX&);
 
 public:
 	//　Direct3Dのインターフェイス
