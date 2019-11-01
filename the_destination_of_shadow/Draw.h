@@ -42,7 +42,6 @@ public:
 	* @brief 描画関数
 	* @param x			描画したい画像のx座標
 	* @param y			描画したい画像のy座標
-	* @param color		背景色
 	* @param tu			描画したい画像のtu
 	* @param tv			描画したい画像のtv
 	* @param width		描画したい画像の幅
@@ -50,9 +49,10 @@ public:
 	* @param tu_width	描画したい画像のtuの幅
 	* @param tv_height	描画したい画像のtvの高さ
 	* @param texture	描画したい画像のTextuerID
+	* @param alpha		描画したい画像の透明度（255～0まで）
 	* @param degree		描画したい画像の角度
 	*/
-	VOID Draw(FLOAT x, FLOAT y, DWORD color, FLOAT tu, FLOAT tv, FLOAT width, FLOAT height, FLOAT tu_width, FLOAT tv_height, INT texture, DOUBLE degree = 0.0f);
+	VOID Draw(FLOAT x, FLOAT y, FLOAT tu, FLOAT tv, FLOAT width, FLOAT height, FLOAT tu_width, FLOAT tv_height, INT texture, INT alpha = 255, DOUBLE degree = 0.0f);
 
 	/**
 	* @brief アニメーションの関数

@@ -45,9 +45,16 @@ VOID DrawTex::Rotate(CUSTOMVERTEX  original[], CUSTOMVERTEX rotatevertex[], DOUB
 
 }
 
+
 //描画関数
-VOID DrawTex::Draw(FLOAT x, FLOAT y, DWORD color, FLOAT tu, FLOAT tv, FLOAT width, FLOAT height, FLOAT tu_width, FLOAT tv_height, INT texture, DOUBLE degree)
+VOID DrawTex::Draw(FLOAT x, FLOAT y, FLOAT tu, FLOAT tv, FLOAT width, FLOAT height, FLOAT tu_width, FLOAT tv_height, INT texture, INT alpha, DOUBLE degree)
 {
+	InitRender();
+
+	D3DCOLOR    color;  // 頂点カラー
+	// 半透明処理をするかどうかを判断し、頂点カラーを決定
+	color = (alpha >= 255) ? D3DCOLOR_XRGB(255, 255, 255) : D3DCOLOR_RGBA(255, 255, 255, alpha);
+
 	CUSTOMVERTEX customvertex[4]
 	{
 		{x        ,y         ,0,1,color,tu           ,tv            },
