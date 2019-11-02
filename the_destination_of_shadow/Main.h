@@ -6,16 +6,6 @@
 
 #include "Draw.h"
 
-enum TEX
-{
-	SKY,
-	CLOUD,
-	CLOUD02,
-	CLOUD03,
-	MOUNT,
-	PLAYER,
-	MAXTEX,
-};
 
 enum SCENE
 {

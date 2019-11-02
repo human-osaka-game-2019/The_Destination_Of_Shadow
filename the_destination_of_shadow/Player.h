@@ -24,45 +24,6 @@ public:
 	* @brief m_save_directionのゲット関数
 	*/
 	inline Direction GetSaveDirection() { return m_save_direction; }
-
-	/**
-	* @brief m_texのゲット関数
-	*/
-	inline TEX GetTex() { return m_tex; }
-
-	/**
-	* @brief m_xのゲット関数
-	*/
-	inline FLOAT GetX() { return m_x; }
-	/**
-	* @brief m_yのゲット関数
-	*/
-	inline FLOAT GetY() { return m_y; }
-	/**
-	* @brief m_x_widthのゲット関数
-	*/
-	inline FLOAT GetXWidth() { return m_x_width; }
-	/**
-	* @brief m_y_heightのゲット関数
-	*/
-	inline FLOAT GetYHeight() { return m_y_height; }
-
-	/**
-	* @brief m_tuのゲット関数
-	*/
-	inline FLOAT GetTu() { return m_tu; }
-	/**
-	* @brief m_tvのゲット関数
-	*/
-	inline FLOAT GetTv() { return m_tv; }
-	/**
-	* @brief m_tu_widthのゲット関数
-	*/
-	inline FLOAT GetTuWidth() { return m_tu_width; }
-	/**
-	* @brief m_tv_heightのゲット関数
-	*/
-	inline FLOAT GetTvHeight() { return m_tv_height; }
 	
 	//! 加速度
 	FLOAT m_acceleration;
@@ -75,6 +36,8 @@ public:
 	* @brief コンストラクタ
 	*/
 	Player();
+
+	virtual ~Player() {}
 	
 	/**
 	* @brief 攻撃に関する関数
