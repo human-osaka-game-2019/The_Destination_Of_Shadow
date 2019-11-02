@@ -47,20 +47,20 @@ VOID DrawTex::Rotate(CUSTOMVERTEX  original[], CUSTOMVERTEX rotatevertex[], DOUB
 
 
 //描画関数
-VOID DrawTex::Draw(FLOAT x, FLOAT y, FLOAT tu, FLOAT tv, FLOAT width, FLOAT height, FLOAT tu_width, FLOAT tv_height, INT texture, INT alpha, DOUBLE degree)
+VOID DrawTex::Draw(Object object, DOUBLE degree)
 {
 	InitRender();
 
 	D3DCOLOR    color;  // 頂点カラー
 	// 半透明処理をするかどうかを判断し、頂点カラーを決定
-	color = (alpha >= 255) ? D3DCOLOR_XRGB(255, 255, 255) : D3DCOLOR_RGBA(255, 255, 255, alpha);
+	color = (object.GetAlpha() >= 255) ? D3DCOLOR_XRGB(255, 255, 255) : D3DCOLOR_RGBA(255, 255, 255, object.GetAlpha());
 
 	CUSTOMVERTEX customvertex[4]
 	{
-		{x        ,y         ,0,1,color,tu           ,tv            },
-		{x + width,y         ,0,1,color,tu + tu_width,tv            },
-		{x + width,y + height,0,1,color,tu + tu_width,tv + tv_height},
-		{x        ,y + height,0,1,color,tu           ,tv + tv_height},
+		{object.GetX()						,object.GetY()						,0,1,color,object.GetTu()					   ,object.GetTv()						 },
+		{object.GetX() + object.GetXWidth() ,object.GetY()						,0,1,color,object.GetTu() + object.GetTuWidth(),object.GetTv()						 },
+		{object.GetX() + object.GetXWidth()	,object.GetY() + object.GetYHeight(),0,1,color,object.GetTu() + object.GetTuWidth(),object.GetTv() + object.GetTvHeight()},
+		{object.GetX()						,object.GetY() + object.GetYHeight(),0,1,color,object.GetTu()					   ,object.GetTv() + object.GetTvHeight()},
 	};
 
 	directx.pD3Device->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
@@ -68,7 +68,7 @@ VOID DrawTex::Draw(FLOAT x, FLOAT y, FLOAT tu, FLOAT tv, FLOAT width, FLOAT heig
 	CUSTOMVERTEX vertex[4];
 	Rotate(customvertex, vertex, degree);
 
-	directx.pD3Device->SetTexture(0, directx.pTexture[texture]);
+	directx.pD3Device->SetTexture(0, directx.pTexture[object.GetTex()]);
 	directx.pD3Device->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, vertex, sizeof(CUSTOMVERTEX));
 }
 
