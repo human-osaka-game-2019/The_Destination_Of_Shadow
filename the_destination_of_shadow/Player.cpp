@@ -40,22 +40,49 @@ Player::Player()
 
 }
 
-VOID Player::Move()
+VOID Player::XinputMove()
 {
 
-	
 	if (directx.XinputState.Gamepad.sThumbLX >= DEAD_ZONE_RIGHT)
 	{
 		m_save_direction = Right;
 		xy_coordinate.m_x += m_move_speed;
 
 	}
-
 	else if (directx.XinputState.Gamepad.sThumbLX <= -DEAD_ZONE_LEFT)
 	{
 		m_save_direction = Left;
 		xy_coordinate.m_x -= m_move_speed;
 
+	}
+}
+
+VOID Player::DirectInputMove()
+{
+	if (directx.GetKeyState(DIK_RIGHT)==KEY_STATE::ON)
+	{
+		m_save_direction = Right;
+		m_x += m_move_speed;
+
+	}
+	else if (directx.GetKeyState(DIK_LEFT) == KEY_STATE::ON)
+	{
+		m_save_direction = Left;
+		m_x -= m_move_speed;
+
+	}
+}
+
+VOID Player::Move()
+{
+
+	if (directx.UpdateControllerState())
+	{
+		XinputMove();
+	}
+	else
+	{
+		DirectInputMove();
 	}
 
 	switch (m_save_direction)
