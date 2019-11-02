@@ -1,16 +1,24 @@
-﻿#ifndef GAME_SCENE_H
+﻿/**
+* @file Game.h
+*/
+
+#ifndef GAME_SCENE_H
 #define GAME_SCENE_H
 
 #include <Windows.h>
 
 #include "Main.h"
+#include "Background.h"
 #include "Player.h"
 
 class Game
 {
-public:
+private:
 
-	VOID Game_Scene();
+	/**
+	* @brief 影の世界と現実世界を切り替える関数
+	*/
+	VOID ChangeStage();
 
 	enum SCENE_PAHSE
 	{
@@ -18,16 +26,33 @@ public:
 		PROCESSING,
 		RELEASES
 	};
+	
+	/**
+	* @enum CurrentStage
+	* 現在どのステージにいるかの判定
+	*/
+	enum CurrentStage
+	{
+		SHADOW,
+		REAL
+	};
+	CurrentStage current_stage;
+
+	//! 遷移のクールタイム
+	INT fc_cooldown = 30;
 
 	Player player;
+	RealBackground real_background;
+	ShadowBackground shadow_background;
 
-	Game::SCENE_PAHSE phase = Game::LOAD;
-
-private:
 
 	VOID Load();
 	VOID Process();
 	VOID Release();
 
+public:
+
+	VOID Game_Scene();
+	Game::SCENE_PAHSE phase = Game::LOAD;
 };
 #endif
