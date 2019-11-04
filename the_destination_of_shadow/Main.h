@@ -21,9 +21,6 @@ extern DirectX directx;
 
 extern SCENE scene;
 
-extern Texture texture;
-
-
 //WinMain関数
 INT WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ PSTR lpCmdline, _In_ INT nCmdShow);
 

@@ -13,7 +13,6 @@ Title title;
 Help help;
 Game game;
 Result result;
-Texture texture;
 Player player;
 WindowSize ws;
 

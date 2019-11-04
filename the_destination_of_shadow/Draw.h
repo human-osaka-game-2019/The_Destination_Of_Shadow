@@ -9,7 +9,17 @@
 #include <d3d9.h>
 
 #include "DirectX.h"
-#include"Object.h"
+
+enum TEX
+{
+	SKY,
+	CLOUD,
+	CLOUD02,
+	CLOUD03,
+	MOUNT,
+	PLAYER,
+	MAXTEX,
+};
 
 //カスタムバーテックス
 struct CUSTOMVERTEX
@@ -19,11 +29,32 @@ struct CUSTOMVERTEX
 	FLOAT tu, tv;
 };
 
+struct XyCoordinate
+{
+	FLOAT m_x;
+	FLOAT m_y;
+	FLOAT m_x_width;
+	FLOAT m_y_height;
+};
+
+struct UvCoordinate
+{
+	FLOAT m_tu;
+	FLOAT m_tv;
+	FLOAT m_tu_width;
+	FLOAT m_tv_height;
+};
+
 /**
 * @brief Textuer描画関係class
 */
 class Texture
 {
+private:
+	TEX m_tex;
+	INT m_alpha;
+	UvCoordinate uv_coordinate;
+
 public:
 
 	/**
@@ -44,7 +75,7 @@ public:
 	* @param object		描画したい画像のクラス
 	* @param degree		描画したい画像の角度
 	*/
-	VOID Draw(Object object, DOUBLE degree = 0.0f);
+	VOID Draw(XyCoordinate xy_coordinate,INT alpha=255, DOUBLE degree = 0.0f);
 
 	/**
 	* @brief アニメーションの関数
@@ -73,6 +104,31 @@ public:
 	* @param degree 変換したい角度
 	*/
 	DOUBLE to_Rad(DOUBLE degree);
+
+	/**
+	* @brief m_tuのセット関数
+	* @param tu
+	*/
+	inline VOID SetTu(FLOAT tu) { uv_coordinate.m_tu = tu; }
+	/**
+	* @brief m_tvのセット関数
+	* @param tv
+	*/
+	inline VOID SetTv(FLOAT tv) { uv_coordinate.m_tv = tv; }
+	/**
+	* @brief m_tu_widthのセット関数
+	* @param tu tuの幅
+	*/
+	inline VOID SetTuWidth(FLOAT tu_width) { uv_coordinate.m_tu_width = tu_width; }
+	/**
+	* @brief m_tv_heightのセット関数
+	* @param tv tvの高さ
+	*/
+	inline VOID SetTvHeight(FLOAT tv_height) { uv_coordinate.m_tv_height = tv_height; }
+
+	inline VOID SetTextureNum(TEX tex) { m_tex = tex; }
+
+	inline VOID SetAlpha(INT alpha) { m_alpha = alpha; }
 };
 
 

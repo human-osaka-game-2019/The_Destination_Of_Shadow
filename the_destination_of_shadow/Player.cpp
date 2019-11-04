@@ -27,18 +27,17 @@ Player::Player()
 	m_hp;
 	m_move_speed = 4.0f;
 	m_save_direction;
-
-	m_tex = PLAYER;
 	
-	m_x = 0;
-	m_y = 780.0f;
-	m_x_width = 300.0f;
-	m_y_height = 300.0f;
+	xy_coordinate.m_x = 0;
+	xy_coordinate.m_y = 780.0f;
+	xy_coordinate.m_x_width = 300.0f;
+	xy_coordinate.m_y_height = 300.0f;
 
-	m_tu = 0.0f;
-	m_tv = 0.0f;
-	m_tu_width = 1.0f;
-	m_tv_height = 1.0f;
+	texture.SetTu(0.0f);
+	texture.SetTv(0.0f);
+	texture.SetTuWidth(1.0f);
+	texture.SetTvHeight(1.0f);
+	texture.SetTextureNum(PLAYER);
 
 }
 
@@ -49,24 +48,24 @@ VOID Player::Move()
 	if (directx.XinputState.Gamepad.sThumbLX >= DEAD_ZONE_RIGHT)
 	{
 		m_save_direction = Right;
-		m_x += m_move_speed;
+		xy_coordinate.m_x += m_move_speed;
 
 	}
 
 	else if (directx.XinputState.Gamepad.sThumbLX <= -DEAD_ZONE_LEFT)
 	{
 		m_save_direction = Left;
-		m_x -= m_move_speed;
+		xy_coordinate.m_x -= m_move_speed;
 
 	}
 
 	switch (m_save_direction)
 	{
 	case Right:
-		m_tu_width = -1.0;
+		texture.SetTuWidth(-1.0f);
 		break;
 	case Left:
-		m_tu_width = 1.0;
+		texture.SetTuWidth(1.0f);
 		break;
 	default:
 		break;
