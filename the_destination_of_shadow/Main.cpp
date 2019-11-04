@@ -13,7 +13,7 @@ Title title;
 Help help;
 Game game;
 Result result;
-DrawTex draw_tex;
+Texture texture;
 Player player;
 WindowSize ws;
 

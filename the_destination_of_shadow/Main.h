@@ -21,7 +21,7 @@ extern DirectX directx;
 
 extern SCENE scene;
 
-extern DrawTex draw_tex;
+extern Texture texture;
 
 
 //WinMain関数

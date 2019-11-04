@@ -22,7 +22,7 @@ struct CUSTOMVERTEX
 /**
 * @brief Textuer描画関係class
 */
-class DrawTex
+class Texture
 {
 public:
 

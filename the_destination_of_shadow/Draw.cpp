@@ -2,7 +2,7 @@
 
 #include "Main.h"
 
-VOID DrawTex::InitRender()
+VOID Texture::InitRender()
 {
 	// テクスチャの設定
 	directx.pD3Device->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_MODULATE);
@@ -17,7 +17,7 @@ VOID DrawTex::InitRender()
 	directx.pD3Device->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 }
 
-VOID DrawTex::Rotate(CUSTOMVERTEX  original[], CUSTOMVERTEX rotatevertex[], DOUBLE degree)
+VOID Texture::Rotate(CUSTOMVERTEX  original[], CUSTOMVERTEX rotatevertex[], DOUBLE degree)
 {
 	FLOAT center_x = (original[0].x + original[1].x) / 2.0f;
 	FLOAT center_y = (original[0].y + original[3].y) / 2.0f;
@@ -47,7 +47,7 @@ VOID DrawTex::Rotate(CUSTOMVERTEX  original[], CUSTOMVERTEX rotatevertex[], DOUB
 
 
 //描画関数
-VOID DrawTex::Draw(Object object, DOUBLE degree)
+VOID Texture::Draw(Object object, DOUBLE degree)
 {
 	InitRender();
 
@@ -74,7 +74,7 @@ VOID DrawTex::Draw(Object object, DOUBLE degree)
 
 //アニメーション関数
 
-VOID DrawTex::Animetion(INT * flamecount, INT count, FLOAT * tu, FLOAT * tv, FLOAT split_tu, FLOAT split_tv, FLOAT start_tu, FLOAT start_tv, FLOAT finish_tu, FLOAT finish_tv)
+VOID Texture::Animetion(INT * flamecount, INT count, FLOAT * tu, FLOAT * tv, FLOAT split_tu, FLOAT split_tv, FLOAT start_tu, FLOAT start_tv, FLOAT finish_tu, FLOAT finish_tv)
 {
 	if (*flamecount >= count)
 	{
@@ -96,7 +96,7 @@ VOID DrawTex::Animetion(INT * flamecount, INT count, FLOAT * tu, FLOAT * tv, FLO
 }
 
 
-VOID DrawTex::LoadTexture(const CHAR * file_name, INT TEX)
+VOID Texture::LoadTexture(const CHAR * file_name, INT TEX)
 {
 
 	D3DXCreateTextureFromFileEx(
@@ -117,7 +117,7 @@ VOID DrawTex::LoadTexture(const CHAR * file_name, INT TEX)
 }
 
 
-DOUBLE DrawTex::to_Rad(DOUBLE degree)
+DOUBLE Texture::to_Rad(DOUBLE degree)
 {
 
 	return degree * atan(1.0)* 4.0 / 180.0;
