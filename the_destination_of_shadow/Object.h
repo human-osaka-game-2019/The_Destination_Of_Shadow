@@ -41,11 +41,11 @@ public:
 	/**
 	* @brief m_x_widthのゲット関数
 	*/
-	inline FLOAT GetXWidth() { return xy_coordinate.m_x_size; }
+	inline FLOAT GetXWidth() { return xy_coordinate.m_width; }
 	/**
 	* @brief m_y_heightのゲット関数
 	*/
-	inline FLOAT GetYHeight() { return xy_coordinate.m_y_size; }
+	inline FLOAT GetYHeight() { return xy_coordinate.m_height; }
 
 };
 

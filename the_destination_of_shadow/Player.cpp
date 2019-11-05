@@ -29,8 +29,8 @@ Player::Player()
 	
 	xy_coordinate.m_x = 0;
 	xy_coordinate.m_y = 780.0f;
-	xy_coordinate.m_x_size = 300.0f;
-	xy_coordinate.m_y_size = 300.0f;
+	xy_coordinate.m_width = 300.0f;
+	xy_coordinate.m_height = 300.0f;
 
 	texture.SetTu(0.0f);
 	texture.SetTv(0.0f);

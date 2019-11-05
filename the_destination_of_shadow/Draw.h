@@ -33,8 +33,8 @@ struct XyCoordinate
 {
 	FLOAT m_x;
 	FLOAT m_y;
-	FLOAT m_x_size;
-	FLOAT m_y_size;
+	FLOAT m_width;
+	FLOAT m_height;
 };
 
 struct UvCoordinate
