@@ -21,6 +21,9 @@ public:
 
 	Texture texture;
 
+	/**
+	* @brief XyCoordinateのゲット関数
+	*/
 	XyCoordinate GetXyCoordinate() { return xy_coordinate; }
 
 	/**

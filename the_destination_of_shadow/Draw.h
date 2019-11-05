@@ -72,8 +72,9 @@ public:
 
 	/**
 	* @brief 描画関数
-	* @param object		描画したい画像のクラス
-	* @param degree		描画したい画像の角度
+	* @param xy_coordinate	描画したい画像のxy座標
+	* @param alpha			アルファ値、最大255
+	* @param degree			描画したい画像の角度
 	*/
 	VOID Draw(XyCoordinate xy_coordinate,INT alpha=255, DOUBLE degree = 0.0f);
 
@@ -110,27 +111,36 @@ public:
 	* @param tu
 	*/
 	inline VOID SetTu(FLOAT tu) { uv_coordinate.m_tu = tu; }
+
 	/**
 	* @brief m_tvのセット関数
 	* @param tv
 	*/
 	inline VOID SetTv(FLOAT tv) { uv_coordinate.m_tv = tv; }
+
 	/**
 	* @brief m_tu_widthのセット関数
 	* @param tu tuの幅
 	*/
 	inline VOID SetTuWidth(FLOAT tu_width) { uv_coordinate.m_tu_size = tu_width; }
+
 	/**
 	* @brief m_tv_heightのセット関数
 	* @param tv tvの高さ
 	*/
 	inline VOID SetTvHeight(FLOAT tv_height) { uv_coordinate.m_tv_size = tv_height; }
 
+	/**
+	* @brief TextureIDのセット関数
+	* @param TextureID
+	*/
 	inline VOID SetTextureNum(TEX tex) { m_tex = tex; }
 
+	/**
+	* @brief Alpha値のセット関数
+	* @param Alpha値
+	*/
 	inline VOID SetAlpha(INT alpha) { m_alpha = alpha; }
 };
-
-
 
 #endif
