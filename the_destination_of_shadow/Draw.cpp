@@ -57,10 +57,10 @@ VOID Texture::Draw(XyCoordinate xy_coordinate,INT alpha, DOUBLE degree)
 
 	CUSTOMVERTEX customvertex[4]
 	{
-		{xy_coordinate.m_x							,xy_coordinate.m_y							 ,0,1,color,uv_coordinate.m_tu							 ,uv_coordinate.m_tv							},
-		{xy_coordinate.m_x + xy_coordinate.m_x_width,xy_coordinate.m_y							 ,0,1,color,uv_coordinate.m_tu + uv_coordinate.m_tu_width,uv_coordinate.m_tv							},
-		{xy_coordinate.m_x + xy_coordinate.m_x_width,xy_coordinate.m_y + xy_coordinate.m_y_height,0,1,color,uv_coordinate.m_tu + uv_coordinate.m_tu_width,uv_coordinate.m_tv + uv_coordinate.m_tv_height},
-		{xy_coordinate.m_x							,xy_coordinate.m_y + xy_coordinate.m_y_height,0,1,color,uv_coordinate.m_tu							 ,uv_coordinate.m_tv + uv_coordinate.m_tv_height},
+		{xy_coordinate.m_x							,xy_coordinate.m_y							,0,1,color,uv_coordinate.m_tu							,uv_coordinate.m_tv							 },
+		{xy_coordinate.m_x + xy_coordinate.m_x_size ,xy_coordinate.m_y							,0,1,color,uv_coordinate.m_tu + uv_coordinate.m_tu_size ,uv_coordinate.m_tv							 },
+		{xy_coordinate.m_x + xy_coordinate.m_x_size ,xy_coordinate.m_y + xy_coordinate.m_y_size	,0,1,color,uv_coordinate.m_tu + uv_coordinate.m_tu_size ,uv_coordinate.m_tv + uv_coordinate.m_tv_size},
+		{xy_coordinate.m_x							,xy_coordinate.m_y + xy_coordinate.m_y_size	,0,1,color,uv_coordinate.m_tu							,uv_coordinate.m_tv + uv_coordinate.m_tv_size},
 	};
 
 	directx.pD3Device->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);

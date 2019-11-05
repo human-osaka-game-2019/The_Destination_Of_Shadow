@@ -33,16 +33,16 @@ struct XyCoordinate
 {
 	FLOAT m_x;
 	FLOAT m_y;
-	FLOAT m_x_width;
-	FLOAT m_y_height;
+	FLOAT m_x_size;
+	FLOAT m_y_size;
 };
 
 struct UvCoordinate
 {
 	FLOAT m_tu;
 	FLOAT m_tv;
-	FLOAT m_tu_width;
-	FLOAT m_tv_height;
+	FLOAT m_tu_size;
+	FLOAT m_tv_size;
 };
 
 /**
@@ -119,12 +119,12 @@ public:
 	* @brief m_tu_widthのセット関数
 	* @param tu tuの幅
 	*/
-	inline VOID SetTuWidth(FLOAT tu_width) { uv_coordinate.m_tu_width = tu_width; }
+	inline VOID SetTuWidth(FLOAT tu_width) { uv_coordinate.m_tu_size = tu_width; }
 	/**
 	* @brief m_tv_heightのセット関数
 	* @param tv tvの高さ
 	*/
-	inline VOID SetTvHeight(FLOAT tv_height) { uv_coordinate.m_tv_height = tv_height; }
+	inline VOID SetTvHeight(FLOAT tv_height) { uv_coordinate.m_tv_size = tv_height; }
 
 	inline VOID SetTextureNum(TEX tex) { m_tex = tex; }
 
