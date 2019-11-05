@@ -20,7 +20,7 @@ enum Direction
 /**
 * @brief PlayerとEnemyの親class
 */
-class CharacterBase:public Object
+class CharacterBase : public Object
 {
 protected:
 
@@ -29,7 +29,8 @@ protected:
 	Direction m_save_direction;
 
 public:
-	virtual VOID Move()=0;
+
+	virtual VOID Move() = 0;
 };
 
 #endif

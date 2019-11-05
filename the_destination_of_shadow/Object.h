@@ -5,7 +5,10 @@
 #ifndef OBJECT_H_
 #define OBJECT_H_
 
-#include"DirectX.h"
+#include <windows.h>
+#include <d3d9.h>
+
+#include"Draw.h"
 
 /**
 * @brief 全てのオブジェクトのもとになるクラス
@@ -17,6 +20,7 @@ protected:
 	XyCoordinate xy_coordinate;
 
 public:
+
 	virtual ~Object() {}
 
 	Texture texture;

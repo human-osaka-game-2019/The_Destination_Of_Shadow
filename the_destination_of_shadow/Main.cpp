@@ -1,6 +1,5 @@
 ﻿#include "Main.h"
 #include "DirectX.h"
-#include "Player.h"
 
 #include "Title.h"
 #include "Help.h"
@@ -13,8 +12,6 @@ Title title;
 Help help;
 Game game;
 Result result;
-Player player;
-WindowSize ws;
 
 SCENE scene = TITLE_SCENE;
 

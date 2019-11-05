@@ -4,6 +4,7 @@
 class WalkingEnemy :public CharacterBase
 {
 public:
+
 	VOID Move();
 
 };
@@ -11,6 +12,7 @@ public:
 class FlyingEnemy :public CharacterBase
 {
 public:
+
 	VOID Move();
 
 };

@@ -1,14 +1,8 @@
-﻿#include "Game.h"
-
-#include <stdlib.h>
+﻿#include <stdlib.h>
 #include <time.h>
 
+#include "Game.h"
 #include "Main.h"
-#include "Player.h"
-
-Game::SCENE_PAHSE phase = Game::LOAD;
-
-extern Player player;
 
 //ゲームのフェーズの移動
 VOID Game::Game_Scene()
@@ -31,6 +25,7 @@ VOID Game::Game_Scene()
 //ゲームのテクスチャの読み込み
 VOID Game::Loading()
 {
+
 	player.texture.LoadTexture("../Texture/player.png", PLAYER);
 
 	phase = PROCESSING;

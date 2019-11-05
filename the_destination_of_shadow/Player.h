@@ -12,6 +12,7 @@
 class Player :public CharacterBase
 {
 public:
+
 	/**
 	* @brief m_hpのゲット関数
 	*/
@@ -55,4 +56,3 @@ public:
 };
 
 #endif
-

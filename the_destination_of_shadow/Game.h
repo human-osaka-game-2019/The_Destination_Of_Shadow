@@ -3,16 +3,13 @@
 
 #include <Windows.h>
 
+#include "Player.h"
+
 class Game
 {
 public:
 
-
 	VOID Game_Scene();
-
-	VOID Loading();
-	VOID Process();
-	VOID Release();
 
 	enum SCENE_PAHSE
 	{
@@ -20,6 +17,16 @@ public:
 		PROCESSING,
 		RELEASES
 	};
+
+	Player player;
+
+	Game::SCENE_PAHSE phase = Game::LOAD;
+
+private:
+
+	VOID Loading();
+	VOID Process();
+	VOID Release();
 
 };
 #endif

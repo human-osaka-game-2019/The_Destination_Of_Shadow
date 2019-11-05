@@ -51,6 +51,7 @@ struct UvCoordinate
 class Texture
 {
 private:
+
 	TEX m_tex;
 	INT m_alpha;
 	UvCoordinate uv_coordinate;
@@ -76,7 +77,7 @@ public:
 	* @param alpha			アルファ値、最大255
 	* @param degree			描画したい画像の角度
 	*/
-	VOID Draw(XyCoordinate xy_coordinate,INT alpha=255, DOUBLE degree = 0.0f);
+	VOID Draw(XyCoordinate xy_coordinate, INT alpha = 255, DOUBLE degree = 0.0f);
 
 	/**
 	* @brief アニメーションの関数

@@ -38,9 +38,11 @@ const INT MAX_TEX = 20;
 class WindowSize
 {
 private:
+
 	WindowSize(const WindowSize&);
 	WindowSize& operator =(const WindowSize&);
 public:
+
 	WindowSize(){}
 	const INT WIDTH = 1920;
 	const INT HEIGHT = 1080;
@@ -52,9 +54,11 @@ public:
 class Key
 {
 private:
+
 	Key(const Key&);
 	Key& operator =(const Key&);
 public:
+
 	Key(){}
 	KEY_STATE m_state[256];
 };
@@ -65,9 +69,11 @@ public:
 class Mask
 {
 private:
+
 	Mask(const Mask&);
 	Mask& operator =(const Mask&);
 public:
+
 	Mask(){}
 	const INT NUM = 0x80;
 };
@@ -78,7 +84,6 @@ public:
 class DirectX
 {
 private:
-
 
 	WindowSize window_size;
 	
@@ -91,6 +96,7 @@ private:
 	DirectX& operator = (const DirectX&);
 
 public:
+
 	DirectX(){}
 	//　Direct3Dのインターフェイス
 	LPDIRECT3D9 pDirect3D;

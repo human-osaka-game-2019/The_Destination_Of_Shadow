@@ -1,5 +1,4 @@
 ﻿#include "Draw.h"
-
 #include "Main.h"
 
 VOID Texture::InitRender()
