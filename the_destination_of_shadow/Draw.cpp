@@ -30,10 +30,10 @@ VOID Texture::Rotate(CUSTOMVERTEX  original[], CUSTOMVERTEX rotatevertex[], DOUB
 		rotatevertex[i] = original[i];
 
 		// 回転後のx = 回転前のx・cosθ - 回転前のy・sinθ
-		rotatevertex[i].x = (FLOAT)(original[i].x * cos(to_Rad(degree)) - original[i].y * sin(to_Rad(degree)));
+		rotatevertex[i].x = (FLOAT)(original[i].x * cos(ToRadian(degree)) - original[i].y * sin(ToRadian(degree)));
 
 		// 回転後のy = 回転前のx・sinθ + 回転前のy・cosθ
-		rotatevertex[i].y = (FLOAT)(original[i].x * sin(to_Rad(degree)) + original[i].y * cos(to_Rad(degree)));
+		rotatevertex[i].y = (FLOAT)(original[i].x * sin(ToRadian(degree)) + original[i].y * cos(ToRadian(degree)));
 
 		original[i].x += center_x;
 		original[i].y += center_y;
@@ -42,33 +42,6 @@ VOID Texture::Rotate(CUSTOMVERTEX  original[], CUSTOMVERTEX rotatevertex[], DOUB
 		rotatevertex[i].y += center_y;
 	}
 
-}
-
-
-//描画関数
-VOID Texture::Draw(XyCoordinate xy_coordinate,INT alpha, DOUBLE degree)
-{
-	InitRender();
-
-	D3DCOLOR    color;  // 頂点カラー
-	// 半透明処理をするかどうかを判断し、頂点カラーを決定
-	color = (alpha >= 255) ? D3DCOLOR_XRGB(255, 255, 255) : D3DCOLOR_RGBA(255, 255, 255, alpha);
-
-	CUSTOMVERTEX customvertex[4]
-	{
-		{xy_coordinate.m_x							,xy_coordinate.m_y							,0,1,color,uv_coordinate.m_tu							,uv_coordinate.m_tv							 },
-		{xy_coordinate.m_x + xy_coordinate.m_x_size ,xy_coordinate.m_y							,0,1,color,uv_coordinate.m_tu + uv_coordinate.m_tu_size ,uv_coordinate.m_tv							 },
-		{xy_coordinate.m_x + xy_coordinate.m_x_size ,xy_coordinate.m_y + xy_coordinate.m_y_size	,0,1,color,uv_coordinate.m_tu + uv_coordinate.m_tu_size ,uv_coordinate.m_tv + uv_coordinate.m_tv_size},
-		{xy_coordinate.m_x							,xy_coordinate.m_y + xy_coordinate.m_y_size	,0,1,color,uv_coordinate.m_tu							,uv_coordinate.m_tv + uv_coordinate.m_tv_size},
-	};
-
-	directx.pD3Device->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
-
-	CUSTOMVERTEX vertex[4];
-	Rotate(customvertex, vertex, degree);
-
-	directx.pD3Device->SetTexture(0, directx.pTexture[m_tex]);
-	directx.pD3Device->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, vertex, sizeof(CUSTOMVERTEX));
 }
 
 //アニメーション関数
@@ -94,29 +67,7 @@ VOID Texture::Animetion(INT * flamecount, INT count, FLOAT * tu, FLOAT * tv, FLO
 	}
 }
 
-
-VOID Texture::LoadTexture(const CHAR * file_name, INT TEX)
-{
-
-	D3DXCreateTextureFromFileEx(
-		directx.pD3Device,
-		_T(file_name),
-		0,
-		0,
-		1,
-		0,
-		D3DFMT_UNKNOWN,
-		D3DPOOL_MANAGED,
-		D3DX_DEFAULT,
-		D3DX_DEFAULT,
-		0x00000000,
-		nullptr,
-		nullptr,
-		&directx.pTexture[TEX]);
-}
-
-
-DOUBLE Texture::to_Rad(DOUBLE degree)
+DOUBLE Texture::ToRadian(DOUBLE degree)
 {
 
 	return degree * atan(1.0)* 4.0 / 180.0;

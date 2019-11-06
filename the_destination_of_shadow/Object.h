@@ -26,6 +26,22 @@ public:
 	Texture texture;
 
 	/**
+	* @brief 画像読み込み用関数
+	* @param FilePath	読み込む画像のファイルパス
+	* @param TEX		TextuerID
+	*/
+	VOID LoadTexture(const CHAR* file_name, INT TEX);
+
+	/**
+	* @brief 描画関数
+	* @param xy_coordinate	描画したい画像のuv座標
+	* @param tex			TextureID
+	* @param alpha			アルファ値、最大255
+	* @param degree			描画したい画像の角度
+	*/
+	VOID Draw(UvCoordinate uv_coordinate,TEX tex, INT alpha = 255, DOUBLE degree = 0.0f);
+
+	/**
 	* @brief XyCoordinateのゲット関数
 	*/
 	XyCoordinate GetXyCoordinate() { return xy_coordinate; }

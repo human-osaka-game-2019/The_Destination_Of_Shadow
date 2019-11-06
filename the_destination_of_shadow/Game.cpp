@@ -26,7 +26,7 @@ VOID Game::Game_Scene()
 VOID Game::Loading()
 {
 
-	player.texture.LoadTexture("../Texture/player.png", PLAYER);
+	player.LoadTexture("../Texture/player.png", PLAYER);
 
 	phase = PROCESSING;
 }
@@ -36,7 +36,7 @@ VOID Game::Process()
 {
 	directx.UpdateControllerState();
 
-	player.texture.Draw(player.GetXyCoordinate());
+	player.Draw(player.texture.GetUvCoordinate(),PLAYER);
 
 	player.Move();
 
