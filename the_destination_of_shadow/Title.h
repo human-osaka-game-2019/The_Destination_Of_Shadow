@@ -23,7 +23,7 @@ private:
 	SCENE nextscene = GAME_SCENE;
 
 	//プロトタイプ宣言
-	VOID Loading();
+	VOID Load();
 	VOID Process();
 	VOID Release();
 

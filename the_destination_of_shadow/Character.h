@@ -30,6 +30,9 @@ protected:
 
 public:
 
+	/**
+	* @brief キャラクターの動作、エネミーならAI、プレイヤーなら動作に関する処理を書く
+	*/
 	virtual VOID Move() = 0;
 };
 

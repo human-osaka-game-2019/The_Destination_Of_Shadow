@@ -24,7 +24,7 @@ public:
 
 private:
 
-	VOID Loading();
+	VOID Load();
 	VOID Process();
 	VOID Release();
 

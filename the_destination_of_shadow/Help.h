@@ -17,7 +17,7 @@ public:
 	Help::SCENE_PAHSE phase = Help::LOAD;
 private:
 
-	VOID Loading();
+	VOID Load();
 	VOID Process();
 	VOID Release();
 };

@@ -10,6 +10,10 @@
 
 #include "DirectX.h"
 
+/**
+* @enum TEX
+* TextureIDリスト
+*/
 enum TEX
 {
 	SKY,
@@ -29,6 +33,9 @@ struct CUSTOMVERTEX
 	FLOAT tu, tv;
 };
 
+/**
+* @brief xy座標をまとめた構造体
+*/
 struct XyCoordinate
 {
 	FLOAT m_x;
@@ -37,6 +44,9 @@ struct XyCoordinate
 	FLOAT m_height;
 };
 
+/**
+* @brief uv座標をまとめた構造体
+*/
 struct UvCoordinate
 {
 	FLOAT m_tu;
@@ -105,7 +115,12 @@ public:
 	* @brief 角度をラジアンに変換する
 	* @param degree 変換したい角度
 	*/
-	DOUBLE to_Rad(DOUBLE degree);
+	DOUBLE ToRadian(DOUBLE degree);
+
+	/**
+	* @brief UvCoordinate構造体のゲット関数
+	*/
+	inline UvCoordinate GetUvCoordinate() { return uv_coordinate; }
 
 	/**
 	* @brief m_tuのセット関数

@@ -6,7 +6,7 @@ VOID Help::Help_Scene()
 	switch (phase)
 	{
 	case LOAD:
-		Loading();
+		Load();
 		break;
 	case PROCESSING:
 		Process();
@@ -18,7 +18,7 @@ VOID Help::Help_Scene()
 	}
 }
 //リザルトのテクスチャの読み込み
-VOID Help::Loading()
+VOID Help::Load()
 {
 	phase = PROCESSING;
 }

@@ -10,7 +10,7 @@ VOID Game::Game_Scene()
 	switch (phase)
 	{
 	case LOAD:
-		Loading();
+		Load();
 		break;
 	case PROCESSING:
 		Process();
@@ -23,7 +23,7 @@ VOID Game::Game_Scene()
 }
 
 //ゲームのテクスチャの読み込み
-VOID Game::Loading()
+VOID Game::Load()
 {
 
 	player.LoadTexture("../Texture/player.png", PLAYER);

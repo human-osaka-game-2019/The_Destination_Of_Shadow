@@ -10,7 +10,7 @@ VOID Title::Title_Scene()
 	switch (phase)
 	{
 	case LOAD:
-		Loading();
+		Load();
 		break;
 	case PROCESSING:
 		Process();
@@ -23,7 +23,7 @@ VOID Title::Title_Scene()
 }
 
 //タイトルのテクスチャの読み込み
-VOID Title::Loading()
+VOID Title::Load()
 {
 	
 	phase = PROCESSING;

@@ -12,7 +12,7 @@ VOID Result::Result_Scene()
 	switch (phase)
 	{
 	case LOAD:
-		Loading();
+		Load();
 		break;
 	case PROCESSING:
 		Process();
@@ -26,7 +26,7 @@ VOID Result::Result_Scene()
 }
 
 //リザルトのテクスチャの読み込み
-VOID Result::Loading()
+VOID Result::Load()
 {
 
 	phase = PROCESSING;
