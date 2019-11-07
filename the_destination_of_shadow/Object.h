@@ -44,24 +44,24 @@ public:
 	/**
 	* @brief XyCoordinateのゲット関数
 	*/
-	XyCoordinate GetXyCoordinate() { return xy_coordinate; }
+	inline XyCoordinate GetXyCoordinate() const { return xy_coordinate; }
 
 	/**
 	* @brief m_xのゲット関数
 	*/
-	inline FLOAT GetX() { return xy_coordinate.m_x; }
+	inline FLOAT GetX() const { return xy_coordinate.m_x; }
 	/**
 	* @brief m_yのゲット関数
 	*/
-	inline FLOAT GetY() { return xy_coordinate.m_y; }
+	inline FLOAT GetY() const { return xy_coordinate.m_y; }
 	/**
 	* @brief m_x_widthのゲット関数
 	*/
-	inline FLOAT GetXWidth() { return xy_coordinate.m_width; }
+	inline FLOAT GetXWidth() const { return xy_coordinate.m_width; }
 	/**
 	* @brief m_y_heightのゲット関数
 	*/
-	inline FLOAT GetYHeight() { return xy_coordinate.m_height; }
+	inline FLOAT GetYHeight() const { return xy_coordinate.m_height; }
 
 };
 
