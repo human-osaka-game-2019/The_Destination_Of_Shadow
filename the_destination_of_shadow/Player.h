@@ -11,6 +11,14 @@
 
 class Player :public CharacterBase
 {
+private:
+	//! 加速度
+	FLOAT m_acceleration;
+	//! 歩くスピード
+	FLOAT m_work_speed = 4.0f;
+	//! 最大のスピード
+	FLOAT m_max_speed;
+
 public:
 
 	/**
@@ -25,13 +33,6 @@ public:
 	* @brief m_save_directionのゲット関数
 	*/
 	inline Direction GetSaveDirection() { return m_save_direction; }
-	
-	//! 加速度
-	FLOAT m_acceleration;
-	//! 歩くスピード
-	FLOAT m_work_speed=4.0f;
-	//! 最大のスピード
-	FLOAT m_max_speed;
 
 	/**
 	* @brief コンストラクタ
