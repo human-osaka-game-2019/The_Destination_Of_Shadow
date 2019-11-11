@@ -45,6 +45,8 @@ public:
 	FLOAT m_work_speed=4.0f;
 	//! 最大のスピード
 	FLOAT m_max_speed;
+	//! 鏡を使用したか
+	BOOL m_uses_mirror;
 
 	/**
 	* @brief コンストラクタ
