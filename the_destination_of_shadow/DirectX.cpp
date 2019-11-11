@@ -155,11 +155,6 @@ VOID DirectX::UpdateKeyState()
 	}
 }
 
-BOOL DirectX::UpdateControllerState()
-{	 
-	return (XInputGetState(0, &XinputState) == ERROR_SUCCESS) ?  TRUE :  FALSE;
-}
-
 VOID DirectX::InitPresentParameters(HWND hWnd)
 {
 	ZeroMemory(&D3dPresentParameters, sizeof(D3dPresentParameters));
