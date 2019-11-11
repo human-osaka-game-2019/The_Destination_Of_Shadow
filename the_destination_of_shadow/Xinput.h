@@ -1,4 +1,8 @@
-﻿#ifndef XINPUT_H_
+﻿/**
+* @file Xinput.h
+*/
+
+#ifndef XINPUT_H_
 #define XINPUT_H_
 
 #include<Windows.h>
@@ -32,6 +36,9 @@ enum STICK
 	RIGHT_Y_STICK,
 };
 
+/**
+* @brief Xboxコントローラーの操作に関するクラス
+*/
 class Xinput
 {
 private:
@@ -52,6 +59,9 @@ private:
 
 public:
 
+	/**
+	* @brief Xinputのインスタンスをゲットする
+	*/
 	static Xinput* GetInstance()
 	{
 		if (instance == NULL)
@@ -59,6 +69,9 @@ public:
 		return instance;
 	}
 
+	/**
+	* @brief インスタンスを破棄
+	*/
 	static VOID Destroy()
 	{
 		delete instance;
