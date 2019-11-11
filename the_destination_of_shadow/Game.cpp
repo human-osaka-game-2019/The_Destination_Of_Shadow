@@ -26,10 +26,31 @@ VOID Game::Load()
 	phase = PROCESSING;
 }
 
+VOID Game::ChangeStage()
+{
+	switch (current_stage)
+	{
+	case SHADOW:
+		current_stage = REAL;
+		break;
+	case REAL:
+		current_stage = SHADOW;
+		break;
+	}
+}
 
 VOID Game::Process()
 {
-	player.Draw(player.texture.GetUvCoordinate(),PLAYER);
+	if (current_stage == REAL)
+	{
+		real_background.Draw(real_background.texture.GetUvCoordinate(), REAL_BACKGROUND);
+	}
+	if (current_stage == SHADOW)
+	{
+		shadow_background.Draw(shadow_background.texture.GetUvCoordinate(), SHADOW_BACKGROUND);
+	}
+
+	//player.Draw(player.texture.GetUvCoordinate(),PLAYER);
 
 	player.Move();
 
@@ -41,7 +62,8 @@ VOID Game::Process()
 }
 
 //ゲームのテクスチャの解放
-VOID Game::Release() {
+VOID Game::Release() 
+{
 	//テクスチャの開放
 	for (INT i = 0; i < MAX_TEX; i++)
 	{

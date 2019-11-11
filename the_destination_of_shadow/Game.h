@@ -8,8 +8,8 @@
 #include <Windows.h>
 
 #include "Main.h"
-#include "Background.h"
 #include "Player.h"
+#include "Background.h"
 
 class Game
 {
