@@ -4,17 +4,31 @@
 #include<Windows.h>
 #include <Xinput.h>
 
+/**
+* @enum TRIGGER
+* xBoxコントローラーの左右のトリガー
+*/
 enum TRIGGER
 {
+	//! 左トリガー
 	LEFT_TRIGGER,
+	//! 右トリガー
 	RIGHT_TRIGGER,
 };
 
+/**
+* @enum STICK
+* xBoxコントローラーの左右スティック、XY軸
+*/
 enum STICK
 {
+	//! 左スティックX軸
 	LEFT_X_STICK,
+	//! 左スティックY軸
 	LEFT_Y_STICK,
+	//! 右スティックX軸
 	RIGHT_X_STICK,
+	//! 右スティックY軸
 	RIGHT_Y_STICK,
 };
 
@@ -28,16 +42,55 @@ private:
 	//	バイブレーションの強さ
 	XINPUT_VIBRATION XinputVibration;
 
+	Xinput(const Xinput&);
+
+	Xinput& operator =(const Xinput&);
+
+	static Xinput* instance;
+
+	Xinput(){}
+
 public:
 
+	static Xinput* GetInstance()
+	{
+		if (instance == NULL)
+			instance = new Xinput;
+		return instance;
+	}
+
+	static VOID Destroy()
+	{
+		delete instance;
+		instance = NULL;
+	}
+
+	/**
+	* @brief xBoxコントローラーの左モーターの強さをセット
+	* @param power モーターの強さ。最大65535 
+	*/
 	inline VOID SetVibrationLeft(INT power) { XinputVibration.wLeftMotorSpeed = power; }
 
+	/**
+	* @brief xBoxコントローラーの右モーターの強さをセット
+	* @param power モーターの強さ。最大65535
+	*/
 	inline VOID SetVibrationRight(INT power) { XinputVibration.wRightMotorSpeed = power; }
 
+	/**
+	* @brief XINPUT_VIBRATIONのゲット関数
+	*/
 	inline XINPUT_VIBRATION GetXinputVibration() const { return XinputVibration; }
 
+	/**
+	* @brief xBoxコントローラーのボタン状態を取得
+	*/
 	inline auto GetBotton() const { return XinputState.Gamepad.wButtons; }
 
+	/**
+	* @brief xBoxコントローラーのトリガー状態を取得
+	* @param trigger 左右どちらか
+	*/
 	inline auto GetTriggrt(TRIGGER trigger)  const
 	{
 		switch (trigger)
@@ -49,6 +102,10 @@ public:
 		}
 	}
 
+	/**
+	* @brief xBoxコントローラーのスティック状態を取得
+	* @param stick 左右、XYどちらか
+	*/
 	inline auto GetStick(STICK stick) const
 	{
 		switch (stick)
