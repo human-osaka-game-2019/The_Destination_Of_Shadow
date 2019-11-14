@@ -68,7 +68,6 @@ public:
 			instance = new Xinput;
 		return instance;
 	}
-
 	/**
 	* @brief インスタンスを破棄
 	*/
@@ -77,29 +76,24 @@ public:
 		delete instance;
 		instance = NULL;
 	}
-
 	/**
 	* @brief xBoxコントローラーの左モーターの強さをセット
 	* @param power モーターの強さ。最大65535 
 	*/
 	inline VOID SetVibrationLeft(INT power) { XinputVibration.wLeftMotorSpeed = power; }
-
 	/**
 	* @brief xBoxコントローラーの右モーターの強さをセット
 	* @param power モーターの強さ。最大65535
 	*/
 	inline VOID SetVibrationRight(INT power) { XinputVibration.wRightMotorSpeed = power; }
-
 	/**
 	* @brief XINPUT_VIBRATIONのゲット関数
 	*/
 	inline XINPUT_VIBRATION GetXinputVibration() const { return XinputVibration; }
-
 	/**
 	* @brief xBoxコントローラーのボタン状態を取得
 	*/
 	inline auto GetBotton() const { return XinputState.Gamepad.wButtons; }
-
 	/**
 	* @brief xBoxコントローラーのトリガー状態を取得
 	* @param trigger 左右どちらか
@@ -114,7 +108,6 @@ public:
 			return XinputState.Gamepad.bRightTrigger;
 		}
 	}
-
 	/**
 	* @brief xBoxコントローラーのスティック状態を取得
 	* @param stick 左右、XYどちらか
@@ -133,13 +126,11 @@ public:
 			return XinputState.Gamepad.sThumbRY;
 		}
 	}
-
 	/**
 	* @brief Xboxコントローラーの状態を更新する関数
 	* @return Xboxコントローラーが接続されているならtrueを返す
 	*/
 	BOOL UpdateControllerState();
-
 };
 
 #endif // !XINPUT_H_

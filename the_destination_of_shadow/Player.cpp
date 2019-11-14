@@ -21,6 +21,7 @@ VOID Player::ShadowInstallation()
 
 Player::Player()
 {
+	xinput = Xinput::GetInstance();
 
 	m_hp;
 	m_move_speed = 4.0f;
@@ -43,14 +44,14 @@ VOID Player::Move()
 {
 
 	
-	if (Xinput::GetInstance()->GetStick(LEFT_X_STICK) >= DEAD_ZONE_RIGHT)
+	if (xinput->GetStick(STICK::LEFT_X) >= DEAD_ZONE_RIGHT)
 	{
 		m_save_direction = Right;
 		xy_coordinate.m_x += m_move_speed;
 
 	}
 
-	else if (Xinput::GetInstance()->GetStick(LEFT_X_STICK) <= -DEAD_ZONE_LEFT)
+	else if (xinput->GetStick(STICK::LEFT_X) <= -DEAD_ZONE_LEFT)
 	{
 		m_save_direction = Left;
 		xy_coordinate.m_x -= m_move_speed;

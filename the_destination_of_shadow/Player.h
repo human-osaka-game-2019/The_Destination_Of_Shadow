@@ -7,9 +7,14 @@
 
 #include "Main.h"
 #include "Character.h"
+#include "Xinput.h"
 
 class Player :public CharacterBase
 {
+private:
+
+	Xinput* xinput;
+
 public:
 
 	/**

@@ -21,7 +21,6 @@ VOID Game::Game_Scene()
 //ゲームのテクスチャの読み込み
 VOID Game::Load()
 {
-
 	player.LoadTexture("../Texture/player.png", PLAYER);
 
 	phase = PROCESSING;
@@ -30,7 +29,6 @@ VOID Game::Load()
 
 VOID Game::Process()
 {
-
 	player.Draw(player.texture.GetUvCoordinate(),PLAYER);
 
 	player.Move();
@@ -44,7 +42,6 @@ VOID Game::Process()
 
 //ゲームのテクスチャの解放
 VOID Game::Release() {
-
 	//テクスチャの開放
 	for (INT i = 0; i < MAX_TEX; i++)
 	{
