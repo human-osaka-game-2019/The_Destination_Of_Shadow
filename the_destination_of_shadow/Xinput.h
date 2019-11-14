@@ -12,28 +12,28 @@
 * @enum TRIGGER
 * xBoxコントローラーの左右のトリガー
 */
-enum TRIGGER
+enum class TRIGGER
 {
 	//! 左トリガー
-	LEFT_TRIGGER,
+	LEFT,
 	//! 右トリガー
-	RIGHT_TRIGGER,
+	RIGHT,
 };
 
 /**
 * @enum STICK
 * xBoxコントローラーの左右スティック、XY軸
 */
-enum STICK
+enum class STICK
 {
 	//! 左スティックX軸
-	LEFT_X_STICK,
+	LEFT_X,
 	//! 左スティックY軸
-	LEFT_Y_STICK,
+	LEFT_Y,
 	//! 右スティックX軸
-	RIGHT_X_STICK,
+	RIGHT_X,
 	//! 右スティックY軸
-	RIGHT_Y_STICK,
+	RIGHT_Y,
 };
 
 /**
@@ -104,13 +104,13 @@ public:
 	* @brief xBoxコントローラーのトリガー状態を取得
 	* @param trigger 左右どちらか
 	*/
-	inline auto GetTriggrt(TRIGGER trigger)  const
+	inline BYTE GetTriggrt(TRIGGER trigger)  const
 	{
 		switch (trigger)
 		{
-		case LEFT_TRIGGER:
+		case TRIGGER::LEFT:
 			return XinputState.Gamepad.bLeftTrigger;
-		case RIGHT_TRIGGER:
+		case TRIGGER::RIGHT:
 			return XinputState.Gamepad.bRightTrigger;
 		}
 	}
@@ -119,17 +119,17 @@ public:
 	* @brief xBoxコントローラーのスティック状態を取得
 	* @param stick 左右、XYどちらか
 	*/
-	inline auto GetStick(STICK stick) const
+	inline SHORT GetStick(STICK stick) const
 	{
 		switch (stick)
 		{
-		case LEFT_X_STICK:
+		case STICK::LEFT_X:
 			return XinputState.Gamepad.sThumbLX;
-		case LEFT_Y_STICK:
+		case STICK::LEFT_Y:
 			return XinputState.Gamepad.sThumbLY;
-		case RIGHT_X_STICK:
+		case STICK::RIGHT_X:
 			return XinputState.Gamepad.sThumbRX;
-		case RIGHT_Y_STICK:
+		case STICK::RIGHT_Y:
 			return XinputState.Gamepad.sThumbRY;
 		}
 	}
