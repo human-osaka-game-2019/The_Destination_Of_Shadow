@@ -4,7 +4,8 @@
 #include <windows.h>
 #include <d3d9.h>
 
-#include "Draw.h"
+#include "Xinput.h"
+#include "DirectX.h"
 
 
 enum SCENE

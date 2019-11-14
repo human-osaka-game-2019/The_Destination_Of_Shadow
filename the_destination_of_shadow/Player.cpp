@@ -1,5 +1,4 @@
-﻿#include "Main.h"
-#include "Player.h"
+﻿#include "Player.h"
 
 namespace
 {
@@ -44,14 +43,14 @@ VOID Player::Move()
 {
 
 	
-	if (directx.XinputState.Gamepad.sThumbLX >= DEAD_ZONE_RIGHT)
+	if (Xinput::GetInstance()->GetStick(LEFT_X_STICK) >= DEAD_ZONE_RIGHT)
 	{
 		m_save_direction = Right;
 		xy_coordinate.m_x += m_move_speed;
 
 	}
 
-	else if (directx.XinputState.Gamepad.sThumbLX <= -DEAD_ZONE_LEFT)
+	else if (Xinput::GetInstance()->GetStick(LEFT_X_STICK) <= -DEAD_ZONE_LEFT)
 	{
 		m_save_direction = Left;
 		xy_coordinate.m_x -= m_move_speed;

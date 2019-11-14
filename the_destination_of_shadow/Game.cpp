@@ -1,8 +1,4 @@
-﻿#include <stdlib.h>
-#include <time.h>
-
-#include "Game.h"
-#include "Main.h"
+﻿#include "Game.h"
 
 //ゲームのフェーズの移動
 VOID Game::Game_Scene()
@@ -34,13 +30,13 @@ VOID Game::Load()
 
 VOID Game::Process()
 {
-	directx.UpdateControllerState();
 
 	player.Draw(player.texture.GetUvCoordinate(),PLAYER);
 
 	player.Move();
 
-	if (directx.XinputState.Gamepad.wButtons & XINPUT_GAMEPAD_A)
+	//仮コード
+	if (Xinput::GetInstance()->GetBotton() & XINPUT_GAMEPAD_A)
 	{
 		phase = RELEASES;
 	}

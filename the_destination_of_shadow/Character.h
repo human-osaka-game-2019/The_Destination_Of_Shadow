@@ -1,8 +1,8 @@
 ﻿#ifndef CHARACTER_H
 #define CHARACTER_H
 
-#include"DirectX.h"
 #include"Object.h"
+#include"DirectX.h"
 
 /**
 * @enum Direction

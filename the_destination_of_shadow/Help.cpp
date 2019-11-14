@@ -1,5 +1,5 @@
 ﻿#include "Help.h"
-#include <time.h>
+
 //リザルトのフェーズの移動
 VOID Help::Help_Scene()
 {

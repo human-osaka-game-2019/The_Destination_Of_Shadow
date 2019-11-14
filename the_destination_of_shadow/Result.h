@@ -3,6 +3,8 @@
 
 #include <Windows.h>
 
+#include "Main.h"
+
 class Result
 {
 public:

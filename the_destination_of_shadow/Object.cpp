@@ -1,5 +1,4 @@
 ﻿#include"Object.h"
-#include"Main.h"
 
 VOID Object::LoadTexture(const CHAR* file_name, INT TEX)
 {

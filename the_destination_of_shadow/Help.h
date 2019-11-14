@@ -1,8 +1,8 @@
 ﻿#ifndef HELP_SCENE_H
 #define HELP_SCENE_H
-#include "DirectX.h"
+
 #include "Main.h"
-#include "Draw.h"
+
 class Help
 {
 public:

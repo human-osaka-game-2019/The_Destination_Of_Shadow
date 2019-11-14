@@ -1,5 +1,4 @@
 ﻿#include "Main.h"
-#include "DirectX.h"
 
 #include "Title.h"
 #include "Help.h"
@@ -29,7 +28,6 @@ INT WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	}
 
 	Mainloop(&msg);
-
 
 	//ウィンドウ情報をみて更新
 	ShowWindow(hWnd, SW_SHOW);
@@ -136,6 +134,8 @@ VOID Mainloop(MSG* msg)
 
 				directx.UpdateKeyState();
 
+				Xinput::GetInstance()->UpdateControllerState();
+
 				//ここからゲーム処理
 				switch (scene)
 				{
@@ -159,10 +159,12 @@ VOID Mainloop(MSG* msg)
 
 				Prev = Curr;
 
-				/*if (directx.KeyState[DIK_ESCAPE] == directx.PRESS)
+				//仮コード
+				if (Xinput::GetInstance()->GetBotton() & XINPUT_GAMEPAD_A)
 				{
+					Xinput::Destroy();
 					PostQuitMessage(0);
-				}*/
+				}
 			}
 		}
 		Sleep(1);

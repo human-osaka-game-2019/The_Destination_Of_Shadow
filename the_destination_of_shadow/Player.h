@@ -2,12 +2,11 @@
 * @file Player.h
 */
 
-
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include "Main.h"
 #include "Character.h"
-#include "DirectX.h"
 
 class Player :public CharacterBase
 {

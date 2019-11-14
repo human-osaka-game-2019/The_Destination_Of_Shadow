@@ -3,6 +3,7 @@
 
 #include <Windows.h>
 
+#include "Main.h"
 #include "Player.h"
 
 class Game

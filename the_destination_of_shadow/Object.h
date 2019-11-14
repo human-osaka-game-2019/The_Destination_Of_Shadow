@@ -8,6 +8,7 @@
 #include <windows.h>
 #include <d3d9.h>
 
+#include"Main.h"
 #include"Draw.h"
 
 /**

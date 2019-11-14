@@ -1,10 +1,5 @@
 ﻿#include "Result.h"
 
-#include "Main.h"
-#include"Game.h"
-
-
-
 //リザルトのフェーズの移動
 VOID Result::Result_Scene()
 {

@@ -5,11 +5,11 @@
 #ifndef DirectX_H
 #define DirectX_H
 
-#include <windows.h>
 #include <d3d9.h>
-#include <dinput.h>
 #include <d3dx9tex.h>
+#include <dinput.h>
 #include <tchar.h>
+#include <windows.h>
 
 /**
  * @enum KEY_STATE
