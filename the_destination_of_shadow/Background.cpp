@@ -1,5 +1,6 @@
-﻿#include "Main.h"
-#include "Background.h"
+﻿#include "Background.h"
+
+#include "Main.h"
 
 RealBackground::RealBackground()
 {

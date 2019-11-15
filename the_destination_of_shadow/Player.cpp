@@ -4,7 +4,6 @@ namespace
 {
 	//! Xboxコントローラー左スティックのデットゾーン
 	const FLOAT DEAD_ZONE_LEFT = 7849;
-
 	//! Xboxコントローラー右スティックのデットゾーン
 	const FLOAT DEAD_ZONE_RIGHT = 8689;
 }
