@@ -22,6 +22,8 @@ private:
 
 	Xinput* xinput;
 
+	MODE current_mode = MODE::NORMAL;
+
 public:
 
 	/**
@@ -56,13 +58,21 @@ public:
 	*/
 	VOID Attack();
 	/**
-	* @brief 自機の移動に関する関数
+	* @brief NORMAL_MODE時の自機の動作に関する関数
+	*/
+	VOID BaseMove();
+	/**
+	* @brief 現在のMODEによって動作を切り替える関数
 	*/
 	VOID Move();
 	/**
 	* @brief 影の設置に関する関数
 	*/
 	VOID ShadowInstallation();
+	/**
+	* @brief 影を借りる関数
+	*/
+	VOID ShadowBorrow();
 		 
 };
 

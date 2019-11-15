@@ -42,8 +42,25 @@ Player::Player()
 
 VOID Player::Move()
 {
+	switch (current_mode)
+	{
+	case MODE::NORMAL:
+		BaseMove();
+		break;
+	case MODE::SHADOW_BORROW:
+		ShadowBorrow();
+		break;
+	case MODE::SHADOW_USE:
+		ShadowInstallation();
+		break;
+	default:
+		break;
+	}
+}
 
-	
+VOID Player::BaseMove()
+{
+
 	if (xinput->GetStick(STICK::LEFT_X) >= DEAD_ZONE_RIGHT)
 	{
 		m_save_direction = Right;
@@ -72,5 +89,3 @@ VOID Player::Move()
 
 
 }
-
-
