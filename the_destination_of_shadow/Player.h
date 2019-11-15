@@ -9,6 +9,13 @@
 #include "Character.h"
 #include "Xinput.h"
 
+enum class MODE
+{
+	NORMAL,
+	SHADOW_BORROW,
+	SHADOW_USE,
+};
+
 class Player :public CharacterBase
 {
 private:
