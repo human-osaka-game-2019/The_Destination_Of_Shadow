@@ -1,29 +1,11 @@
 ﻿#include "Player.h"
 
-namespace
-{
-	//! Xboxコントローラー左スティックのデットゾーン
-	const FLOAT DEAD_ZONE_LEFT = 7849;
-	//! Xboxコントローラー右スティックのデットゾーン
-	const FLOAT DEAD_ZONE_RIGHT = 8689;
-}
-
-VOID Player::Attack()
-{
-	return VOID();
-}
-
-VOID Player::ShadowInstallation()
-{
-	return VOID();
-}
-
 Player::Player()
 {
 	xinput = Xinput::GetInstance();
 
 	m_hp;
-	m_move_speed = 4.0f;
+	m_move_speed =4.0f;
 	m_save_direction;
 	
 	xy_coordinate.m_x = 0;
@@ -39,9 +21,58 @@ Player::Player()
 
 }
 
+VOID Player::ModeChange()
+{
+
+}
+
+VOID Player::Attack()
+{
+	return VOID();
+}
+
+VOID Player::ShadowInstallation()
+{
+	return VOID();
+}
+
+VOID Player::BaseMove()
+{
+	if (xinput->GetStick(STICK::LEFT_X)>= XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
+	{
+		m_save_direction = Right;
+		xy_coordinate.m_x += m_move_speed;
+
+	}
+
+	if (xinput->GetStick(STICK::LEFT_X) <= -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
+	{
+		m_save_direction = Left;
+		xy_coordinate.m_x -= m_move_speed;
+
+	}
+
+	if (xinput->IsKeyStrokePushed(VK_PAD_RTRIGGER))
+	{
+		ModeChange();
+	}
+
+	switch (m_save_direction)
+	{
+	case Right:
+		texture.SetTuWidth(-1.0f);
+		break;
+	case Left:
+		texture.SetTuWidth(1.0f);
+		break;
+	default:
+		break;
+	}
+}
+
 VOID Player::Move()
 {
-	switch (current_mode)
+	switch (m_current_mode)
 	{
 	case MODE::NORMAL:
 		BaseMove();
@@ -57,34 +88,10 @@ VOID Player::Move()
 	}
 }
 
-VOID Player::BaseMove()
+VOID Player::ShadowBorrow()
 {
-
-	if (xinput->GetStick(STICK::LEFT_X) >= DEAD_ZONE_RIGHT)
+	if (xinput->IsKeyStrokePushed(VK_PAD_RTRIGGER))
 	{
-		m_save_direction = Right;
-		xy_coordinate.m_x += m_move_speed;
-
+		m_current_mode = MODE::NORMAL;
 	}
-
-	else if (xinput->GetStick(STICK::LEFT_X) <= -DEAD_ZONE_LEFT)
-	{
-		m_save_direction = Left;
-		xy_coordinate.m_x -= m_move_speed;
-
-	}
-
-	switch (m_save_direction)
-	{
-	case Right:
-		texture.SetTuWidth(-1.0f);
-		break;
-	case Left:
-		texture.SetTuWidth(1.0f);
-		break;
-	default:
-		break;
-	}
-
-
 }
