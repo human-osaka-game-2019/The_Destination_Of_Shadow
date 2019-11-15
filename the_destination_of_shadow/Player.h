@@ -54,7 +54,10 @@ public:
 	Player();
 
 	virtual ~Player() {}
-	
+	/**
+	* @brief 現在の世界に応じてモードを切り替える関数
+	*/
+	VOID ModeChange();
 	/**
 	* @brief 攻撃に関する関数
 	*/

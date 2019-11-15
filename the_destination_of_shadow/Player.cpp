@@ -8,15 +8,6 @@ namespace
 	const FLOAT DEAD_ZONE_RIGHT = 8689;
 }
 
-VOID Player::Attack()
-{
-	return VOID();
-}
-
-VOID Player::ShadowInstallation()
-{
-	return VOID();
-}
 
 Player::Player()
 {
@@ -39,6 +30,59 @@ Player::Player()
 
 }
 
+VOID Player::ModeChange()
+{
+	switch ()
+	{
+	default:
+		break;
+	}
+}
+
+VOID Player::Attack()
+{
+	return VOID();
+}
+
+VOID Player::ShadowInstallation()
+{
+	return VOID();
+}
+
+VOID Player::BaseMove()
+{
+	if (xinput->GetStick(STICK::LEFT_X) >= DEAD_ZONE_RIGHT)
+	{
+		m_save_direction = Right;
+		xy_coordinate.m_x += m_move_speed;
+
+	}
+
+	if (xinput->GetStick(STICK::LEFT_X) <= -DEAD_ZONE_LEFT)
+	{
+		m_save_direction = Left;
+		xy_coordinate.m_x -= m_move_speed;
+
+	}
+
+	if (xinput->GetTriggrt(TRIGGER::RIGHT) > XINPUT_GAMEPAD_TRIGGER_THRESHOLD)
+	{
+		ModeChange();
+	}
+
+	switch (m_save_direction)
+	{
+	case Right:
+		texture.SetTuWidth(-1.0f);
+		break;
+	case Left:
+		texture.SetTuWidth(1.0f);
+		break;
+	default:
+		break;
+	}
+}
+
 VOID Player::Move()
 {
 	switch (current_mode)
@@ -57,34 +101,3 @@ VOID Player::Move()
 	}
 }
 
-VOID Player::BaseMove()
-{
-
-	if (xinput->GetStick(STICK::LEFT_X) >= DEAD_ZONE_RIGHT)
-	{
-		m_save_direction = Right;
-		xy_coordinate.m_x += m_move_speed;
-
-	}
-
-	else if (xinput->GetStick(STICK::LEFT_X) <= -DEAD_ZONE_LEFT)
-	{
-		m_save_direction = Left;
-		xy_coordinate.m_x -= m_move_speed;
-
-	}
-
-	switch (m_save_direction)
-	{
-	case Right:
-		texture.SetTuWidth(-1.0f);
-		break;
-	case Left:
-		texture.SetTuWidth(1.0f);
-		break;
-	default:
-		break;
-	}
-
-
-}
