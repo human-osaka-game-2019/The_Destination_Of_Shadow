@@ -14,7 +14,7 @@
 class RealBackground :public Object
 {
 public:
-
+	
 	/**
 	* @brief コンストラクタ
 	*/
