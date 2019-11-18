@@ -46,6 +46,8 @@ private:
 	//　コントローラーの状態
 	XINPUT_STATE XinputState;
 
+	XINPUT_KEYSTROKE XinputKeyStroke;
+
 	//	バイブレーションの強さ
 	XINPUT_VIBRATION XinputVibration;
 
