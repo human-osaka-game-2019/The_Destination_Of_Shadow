@@ -129,11 +129,28 @@ public:
 		}
 	}
 	/**
-	* @brief Xboxコントローラーの状態を更新する関数
+	* @brief Xboxコントローラーの状態を更新する関数キー入力判定も取得している
 	* @return Xboxコントローラーが接続されているならtrueを返す
 	*/
 	BOOL UpdateControllerState();
+	/**
+	* @brief 指定したXboxコントローラーKeyが押された瞬間か判断する関数
+	* @param key_type 何Keyか指定する
+	* @return 指定されたKeyが押された瞬間ならばTRUEを返す
+	*/
+	BOOL IsKeyStrokePushed(WORD key_type);
+	/**
+	* @brief 指定したXboxコントローラーKeyが放された瞬間か判断する関数
+	* @param key_type 何Keyか指定する
+	* @return 指定されたKeyが放された瞬間ならばTRUEを返す
+	*/
+	BOOL IsKeyStrokeReleased(WORD key_type);
+	/**
+	* @brief 指定したXboxコントローラーKeyが押され続けているか判断する関数
+	* @param key_type 何Keyか指定する
+	* @return 指定されたKeyが押され続けているならばTRUEを返す
+	*/
+	BOOL IsKeyStrokePressed(WORD key_type);
 };
 
 #endif // !XINPUT_H_
-
