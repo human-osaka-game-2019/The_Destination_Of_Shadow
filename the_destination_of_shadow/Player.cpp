@@ -1,20 +1,11 @@
 ﻿#include "Player.h"
 
-namespace
-{
-	//! Xboxコントローラー左スティックのデットゾーン
-	const FLOAT DEAD_ZONE_LEFT = 7849;
-	//! Xboxコントローラー右スティックのデットゾーン
-	const FLOAT DEAD_ZONE_RIGHT = 8689;
-}
-
-
 Player::Player()
 {
 	xinput = Xinput::GetInstance();
 
 	m_hp;
-	m_move_speed = 4.0f;
+	m_move_speed =4.0f;
 	m_save_direction;
 	
 	xy_coordinate.m_x = 0;
@@ -32,11 +23,7 @@ Player::Player()
 
 VOID Player::ModeChange()
 {
-	switch ()
-	{
-	default:
-		break;
-	}
+
 }
 
 VOID Player::Attack()
@@ -51,21 +38,21 @@ VOID Player::ShadowInstallation()
 
 VOID Player::BaseMove()
 {
-	if (xinput->GetStick(STICK::LEFT_X) >= DEAD_ZONE_RIGHT)
+	if (xinput->GetStick(STICK::LEFT_X)>= XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
 	{
 		m_save_direction = Right;
 		xy_coordinate.m_x += m_move_speed;
 
 	}
 
-	if (xinput->GetStick(STICK::LEFT_X) <= -DEAD_ZONE_LEFT)
+	if (xinput->GetStick(STICK::LEFT_X) <= -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
 	{
 		m_save_direction = Left;
 		xy_coordinate.m_x -= m_move_speed;
 
 	}
 
-	if (xinput->GetTriggrt(TRIGGER::RIGHT) > XINPUT_GAMEPAD_TRIGGER_THRESHOLD)
+	if (xinput->IsKeyStrokePushed(VK_PAD_RTRIGGER))
 	{
 		ModeChange();
 	}
@@ -85,7 +72,7 @@ VOID Player::BaseMove()
 
 VOID Player::Move()
 {
-	switch (current_mode)
+	switch (m_current_mode)
 	{
 	case MODE::NORMAL:
 		BaseMove();
@@ -101,3 +88,10 @@ VOID Player::Move()
 	}
 }
 
+VOID Player::ShadowBorrow()
+{
+	if (xinput->IsKeyStrokePushed(VK_PAD_RTRIGGER))
+	{
+		m_current_mode = MODE::NORMAL;
+	}
+}

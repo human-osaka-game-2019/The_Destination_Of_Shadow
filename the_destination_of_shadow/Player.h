@@ -22,7 +22,7 @@ private:
 
 	Xinput* xinput;
 
-	MODE current_mode = MODE::NORMAL;
+	MODE m_current_mode = MODE::NORMAL;
 
 public:
 
