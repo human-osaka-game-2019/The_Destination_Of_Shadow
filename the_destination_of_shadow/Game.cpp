@@ -22,21 +22,21 @@ VOID Game::Game_Scene()
 VOID Game::Load()
 {
 	player.LoadTexture("../Texture/player.png", PLAYER);
-	real_background.LoadTexture("../Texture/real_background.png", REAL_BACKGROUND);
-	shadow_background.LoadTexture("../Texture/shadow_background.png", SHADOW_BACKGROUND);
+	stage.real_background.LoadTexture("../Texture/real_background.png", REAL_BACKGROUND);
+	stage.shadow_background.LoadTexture("../Texture/shadow_background.png", SHADOW_BACKGROUND);
 
 	phase = PROCESSING;
 }
 
 VOID Game::ChangeStage()
 {
-	switch (current_stage)
+	switch (stage.current_stage)
 	{
-	case SHADOW:
-		current_stage = REAL;
+	case Stage::CurrentStage::SHADOW:
+		stage.current_stage = Stage::CurrentStage::REAL;
 		break;
-	case REAL:
-		current_stage = SHADOW;
+	case Stage::CurrentStage::REAL:
+		stage.current_stage = Stage::CurrentStage::SHADOW;
 		break;
 	default:
 			break;
@@ -47,26 +47,26 @@ VOID Game::ChangeStage()
 VOID Game::Process()
 {
 		player.m_uses_mirror = TRUE;
-	if (fc_cooldown >= 30)
+	if (stage.fc_cooldown >= 30)
 	{
 		ChangeStage();
-		fc_cooldown = 0;
+		stage.fc_cooldown = 0;
 	}
 	else
 	{
-		if (fc_cooldown <= 30)
+		if (stage.fc_cooldown <= 30)
 		{
-			fc_cooldown++;
+			stage.fc_cooldown++;
 		}
 	}
 
-	switch (current_stage)
+	switch (stage.current_stage)
 	{
-	case SHADOW:
-		real_background.Draw(real_background.texture.GetUvCoordinate(), REAL_BACKGROUND);
+	case Stage::CurrentStage::SHADOW:
+		stage.real_background.Draw(stage.real_background.texture.GetUvCoordinate(), REAL_BACKGROUND);
 		break;
-	case REAL:
-		shadow_background.Draw(shadow_background.texture.GetUvCoordinate(), SHADOW_BACKGROUND);
+	case Stage::CurrentStage::REAL:
+		stage.shadow_background.Draw(stage.shadow_background.texture.GetUvCoordinate(), SHADOW_BACKGROUND);
 		break;
 	default:
 		break;
