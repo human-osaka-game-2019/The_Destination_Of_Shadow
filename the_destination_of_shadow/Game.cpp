@@ -72,7 +72,7 @@ VOID Game::Process()
 		break;
 	}
 
-	//player.Draw(player.texture.GetUvCoordinate(),PLAYER);
+	player.Draw(player.texture.GetUvCoordinate(),PLAYER);
 
 	player.Move();
 

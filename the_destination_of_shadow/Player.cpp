@@ -23,7 +23,19 @@ Player::Player()
 
 VOID Player::ModeChange()
 {
-
+	switch (m_current_mode)
+	{
+	case MODE::NORMAL:
+		break;
+	case MODE::SHADOW_BORROW:
+		m_current_mode = MODE::NORMAL;
+		break;
+	case MODE::SHADOW_USE:
+		m_current_mode = MODE::NORMAL;
+		break;
+	default:
+		break;
+	}
 }
 
 VOID Player::Attack()
