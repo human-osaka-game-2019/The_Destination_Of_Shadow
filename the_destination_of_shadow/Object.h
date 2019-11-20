@@ -32,7 +32,6 @@ public:
 	* @param TEX		TextuerID
 	*/
 	VOID LoadTexture(const CHAR* file_name, INT TEX);
-
 	/**
 	* @brief 描画関数
 	* @param xy_coordinate	描画したい画像のuv座標
@@ -41,12 +40,10 @@ public:
 	* @param degree			描画したい画像の角度
 	*/
 	VOID Draw(UvCoordinate uv_coordinate,TEX tex, INT alpha = 255, DOUBLE degree = 0.0f);
-
 	/**
 	* @brief XyCoordinateのゲット関数
 	*/
 	inline XyCoordinate GetXyCoordinate() const { return xy_coordinate; }
-
 	/**
 	* @brief m_xのゲット関数
 	*/
@@ -63,7 +60,6 @@ public:
 	* @brief m_y_heightのゲット関数
 	*/
 	inline FLOAT GetYHeight() const { return xy_coordinate.m_height; }
-
 };
 
 #endif // !OBJECT_H_
