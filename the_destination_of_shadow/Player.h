@@ -11,6 +11,7 @@
 
 enum class PLAYER_MODE
 {
+	NO_CHANGE,
 	NORMAL,
 	SHADOW_BORROW,
 	SHADOW_USE,
@@ -22,7 +23,7 @@ private:
 
 	Xinput* xinput;
 
-	PLAYER_MODE m_current_mode = PLAYER_MODE::NORMAL;
+	PLAYER_MODE m_next_mode = PLAYER_MODE::NO_CHANGE;
 
 public:
 
@@ -39,9 +40,9 @@ public:
 	*/
 	inline Direction GetSaveDirection() { return m_save_direction; }
 	/**
-	* @brief m_current_modeのゲット関数
+	* @brief m_next_modeのゲット関数
 	*/
-	inline PLAYER_MODE GetCurrentMode() { return m_current_mode; }
+	inline PLAYER_MODE GetNextMode() { return m_next_mode; }
 	
 	//! 加速度
 	FLOAT m_acceleration;
@@ -59,19 +60,11 @@ public:
 
 	~Player() {}
 	/**
-	* @brief 現在の世界に応じてモードを切り替える関数
-	*/
-	VOID ModeChange();
-	/**
 	* @brief 攻撃に関する関数
 	*/
 	VOID Attack();
 	/**
 	* @brief NORMAL_MODE時の自機の動作に関する関数
-	*/
-	VOID BaseMove();
-	/**
-	* @brief 現在のMODEによって動作を切り替える関数
 	*/
 	VOID Move();
 	/**

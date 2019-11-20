@@ -21,23 +21,6 @@ Player::Player()
 
 }
 
-VOID Player::ModeChange()
-{
-	switch (m_current_mode)
-	{
-	case PLAYER_MODE::NORMAL:
-		break;
-	case PLAYER_MODE::SHADOW_BORROW:
-		m_current_mode = PLAYER_MODE::NORMAL;
-		break;
-	case PLAYER_MODE::SHADOW_USE:
-		m_current_mode = PLAYER_MODE::NORMAL;
-		break;
-	default:
-		break;
-	}
-}
-
 VOID Player::Attack()
 {
 	return VOID();
@@ -48,8 +31,11 @@ VOID Player::ShadowInstallation()
 	return VOID();
 }
 
-VOID Player::BaseMove()
+VOID Player::Move()
 {
+
+	m_next_mode = PLAYER_MODE::NO_CHANGE;
+
 	if (xinput->GetStick(STICK::LEFT_X)>= XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
 	{
 		m_save_direction = Right;
@@ -66,7 +52,7 @@ VOID Player::BaseMove()
 
 	if (xinput->IsKeyStrokePushed(VK_PAD_RTRIGGER))
 	{
-		ModeChange();
+		m_next_mode = PLAYER_MODE::SHADOW_BORROW;
 	}
 
 	switch (m_save_direction)
@@ -80,12 +66,15 @@ VOID Player::BaseMove()
 	default:
 		break;
 	}
+
 }
 
 VOID Player::ShadowBorrow()
 {
+	m_next_mode = PLAYER_MODE::NO_CHANGE;
+
 	if (xinput->IsKeyStrokePushed(VK_PAD_RTRIGGER))
 	{
-		m_current_mode = PLAYER_MODE::NORMAL;
+		m_next_mode = PLAYER_MODE::NORMAL;
 	}
 }
