@@ -5,24 +5,11 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "Main.h"
 #include "Character.h"
-#include "Xinput.h"
 
-enum class MODE
-{
-	NORMAL,
-	SHADOW_BORROW,
-	SHADOW_USE,
-};
-
-class Player :public CharacterBase
+class Player : public CharacterBase
 {
 private:
-
-	Xinput* xinput;
-
-	MODE m_current_mode = MODE::NORMAL;
 
 public:
 
@@ -37,12 +24,17 @@ public:
 	/**
 	* @brief m_save_directionのゲット関数
 	*/
-	inline Direction GetSaveDirection() { return m_save_direction; }
+	inline DIRECTION GetSaveDirection() { return m_save_direction; }
+	/**
+	* @brief m_save_directionのセット関数
+	* @direction playerの方向
+	*/
+	inline VOID SetSaveDirection(DIRECTION direction) { m_save_direction = direction; }
 	
 	//! 加速度
 	FLOAT m_acceleration;
 	//! 歩くスピード
-	FLOAT m_work_speed=4.0f;
+	FLOAT m_work_speed = 4.0f;
 	//! 最大のスピード
 	FLOAT m_max_speed;
 	//! 鏡を使用したか
@@ -53,21 +45,13 @@ public:
 	*/
 	Player();
 
-	virtual ~Player() {}
-	/**
-	* @brief 現在の世界に応じてモードを切り替える関数
-	*/
-	VOID ModeChange();
+	~Player() {}
 	/**
 	* @brief 攻撃に関する関数
 	*/
 	VOID Attack();
 	/**
 	* @brief NORMAL_MODE時の自機の動作に関する関数
-	*/
-	VOID BaseMove();
-	/**
-	* @brief 現在のMODEによって動作を切り替える関数
 	*/
 	VOID Move();
 	/**

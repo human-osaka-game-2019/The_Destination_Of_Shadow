@@ -24,6 +24,7 @@ enum TEX
 	PLAYER,
 	REAL_BACKGROUND,
 	SHADOW_BACKGROUND,
+	KARI,
 	MAXTEX,
 };
 
@@ -159,6 +160,11 @@ public:
 	* @param Alpha値
 	*/
 	inline VOID SetAlpha(INT alpha) { m_alpha = alpha; }
+	/**
+	* @brief Alpha値のゲット関数
+	* @return Alpha値
+	*/
+	inline INT GetAlpha() { return m_alpha; }
 };
 
 #endif

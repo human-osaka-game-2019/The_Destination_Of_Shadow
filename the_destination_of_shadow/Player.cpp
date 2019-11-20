@@ -2,8 +2,6 @@
 
 Player::Player()
 {
-	xinput = Xinput::GetInstance();
-
 	m_hp;
 	m_move_speed =4.0f;
 	m_save_direction;
@@ -13,29 +11,13 @@ Player::Player()
 	xy_coordinate.m_width = 300.0f;
 	xy_coordinate.m_height = 300.0f;
 
+	texture.SetAlpha(255);
 	texture.SetTu(0.0f);
 	texture.SetTv(0.0f);
 	texture.SetTuWidth(1.0f);
 	texture.SetTvHeight(1.0f);
 	texture.SetTextureNum(PLAYER);
 
-}
-
-VOID Player::ModeChange()
-{
-	switch (m_current_mode)
-	{
-	case MODE::NORMAL:
-		break;
-	case MODE::SHADOW_BORROW:
-		m_current_mode = MODE::NORMAL;
-		break;
-	case MODE::SHADOW_USE:
-		m_current_mode = MODE::NORMAL;
-		break;
-	default:
-		break;
-	}
 }
 
 VOID Player::Attack()
@@ -48,62 +30,36 @@ VOID Player::ShadowInstallation()
 	return VOID();
 }
 
-VOID Player::BaseMove()
+VOID Player::Move()
 {
-	if (xinput->GetStick(STICK::LEFT_X)>= XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
+
+	switch (m_save_direction)
 	{
-		m_save_direction = Right;
+	case RIGHT:
 		xy_coordinate.m_x += m_move_speed;
-
-	}
-
-	if (xinput->GetStick(STICK::LEFT_X) <= -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
-	{
-		m_save_direction = Left;
+		break;
+	case LEFT:
 		xy_coordinate.m_x -= m_move_speed;
-
-	}
-
-	if (xinput->IsKeyStrokePushed(VK_PAD_RTRIGGER))
-	{
-		ModeChange();
+		break;
+	default:
+		break;
 	}
 
 	switch (m_save_direction)
 	{
-	case Right:
+	case RIGHT:
 		texture.SetTuWidth(-1.0f);
 		break;
-	case Left:
+	case LEFT:
 		texture.SetTuWidth(1.0f);
 		break;
 	default:
 		break;
 	}
-}
 
-VOID Player::Move()
-{
-	switch (m_current_mode)
-	{
-	case MODE::NORMAL:
-		BaseMove();
-		break;
-	case MODE::SHADOW_BORROW:
-		ShadowBorrow();
-		break;
-	case MODE::SHADOW_USE:
-		ShadowInstallation();
-		break;
-	default:
-		break;
-	}
 }
 
 VOID Player::ShadowBorrow()
 {
-	if (xinput->IsKeyStrokePushed(VK_PAD_RTRIGGER))
-	{
-		m_current_mode = MODE::NORMAL;
-	}
+
 }
