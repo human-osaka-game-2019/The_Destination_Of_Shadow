@@ -25,13 +25,13 @@ VOID Player::ModeChange()
 {
 	switch (m_current_mode)
 	{
-	case MODE::NORMAL:
+	case PLAYER_MODE::NORMAL:
 		break;
-	case MODE::SHADOW_BORROW:
-		m_current_mode = MODE::NORMAL;
+	case PLAYER_MODE::SHADOW_BORROW:
+		m_current_mode = PLAYER_MODE::NORMAL;
 		break;
-	case MODE::SHADOW_USE:
-		m_current_mode = MODE::NORMAL;
+	case PLAYER_MODE::SHADOW_USE:
+		m_current_mode = PLAYER_MODE::NORMAL;
 		break;
 	default:
 		break;
@@ -82,28 +82,10 @@ VOID Player::BaseMove()
 	}
 }
 
-VOID Player::Move()
-{
-	switch (m_current_mode)
-	{
-	case MODE::NORMAL:
-		BaseMove();
-		break;
-	case MODE::SHADOW_BORROW:
-		ShadowBorrow();
-		break;
-	case MODE::SHADOW_USE:
-		ShadowInstallation();
-		break;
-	default:
-		break;
-	}
-}
-
 VOID Player::ShadowBorrow()
 {
 	if (xinput->IsKeyStrokePushed(VK_PAD_RTRIGGER))
 	{
-		m_current_mode = MODE::NORMAL;
+		m_current_mode = PLAYER_MODE::NORMAL;
 	}
 }

@@ -9,20 +9,20 @@
 #include "Character.h"
 #include "Xinput.h"
 
-enum class MODE
+enum class PLAYER_MODE
 {
 	NORMAL,
 	SHADOW_BORROW,
 	SHADOW_USE,
 };
 
-class Player :public CharacterBase
+class Player : public CharacterBase
 {
 private:
 
 	Xinput* xinput;
 
-	MODE m_current_mode = MODE::NORMAL;
+	PLAYER_MODE m_current_mode = PLAYER_MODE::NORMAL;
 
 public:
 
@@ -38,6 +38,10 @@ public:
 	* @brief m_save_directionのゲット関数
 	*/
 	inline Direction GetSaveDirection() { return m_save_direction; }
+	/**
+	* @brief m_current_modeのゲット関数
+	*/
+	inline PLAYER_MODE GetCurrentMode() { return m_current_mode; }
 	
 	//! 加速度
 	FLOAT m_acceleration;
@@ -53,7 +57,7 @@ public:
 	*/
 	Player();
 
-	virtual ~Player() {}
+	~Player() {}
 	/**
 	* @brief 現在の世界に応じてモードを切り替える関数
 	*/
