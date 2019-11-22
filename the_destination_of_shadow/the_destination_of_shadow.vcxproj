@@ -143,6 +143,7 @@
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="DirectX.cpp" />
     <ClCompile Include="Draw.cpp" />
+    <ClCompile Include="Gimmick.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Help.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="Draw.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="Gimmick.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="Player.h" />
