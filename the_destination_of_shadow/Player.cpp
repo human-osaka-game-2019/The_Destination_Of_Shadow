@@ -1,13 +1,5 @@
 ﻿#include "Player.h"
 
-namespace
-{
-	//! Xboxコントローラー左スティックのデットゾーン
-	const FLOAT DEAD_ZONE_LEFT = 7849;
-	//! Xboxコントローラー右スティックのデットゾーン
-	const FLOAT DEAD_ZONE_RIGHT = 8689;
-}
-
 VOID Player::Attack()
 {
 	return VOID();
@@ -18,6 +10,9 @@ VOID Player::ShadowInstallation()
 	return VOID();
 }
 
+/**
+* @brief プレイヤー関するクラス
+*/
 Player::Player()
 {
 	xinput = Xinput::GetInstance();
@@ -47,7 +42,7 @@ VOID Player::Move()
 		BaseMove();
 		break;
 	case MODE::SHADOW_BORROW:
-		ShadowBorrow();
+		//ShadowBorrow();
 		break;
 	case MODE::SHADOW_USE:
 		ShadowInstallation();
@@ -60,18 +55,16 @@ VOID Player::Move()
 VOID Player::BaseMove()
 {
 
-	if (xinput->GetStick(STICK::LEFT_X) >= DEAD_ZONE_RIGHT)
+	if (xinput->GetStick(STICK::LEFT_X) >= XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
 	{
 		m_save_direction = Right;
 		xy_coordinate.m_x += m_move_speed;
-
 	}
 
-	else if (xinput->GetStick(STICK::LEFT_X) <= -DEAD_ZONE_LEFT)
+	else if (xinput->GetStick(STICK::LEFT_X) <= -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
 	{
 		m_save_direction = Left;
 		xy_coordinate.m_x -= m_move_speed;
-
 	}
 
 	switch (m_save_direction)
