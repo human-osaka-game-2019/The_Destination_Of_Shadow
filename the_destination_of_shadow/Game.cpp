@@ -21,7 +21,7 @@ VOID Game::Game_Scene()
 //ゲームのテクスチャの読み込み
 VOID Game::Load()
 {
-	player.LoadTexture("../Texture/player.png", PLAYER);
+	player_manager.Load();
 	real_background.LoadTexture("../Texture/real_background.png", REAL_BACKGROUND);
 	shadow_background.LoadTexture("../Texture/shadow_background.png", SHADOW_BACKGROUND);
 
@@ -46,19 +46,20 @@ VOID Game::ChangeStage()
 
 VOID Game::Process()
 {
-		player.m_uses_mirror = TRUE;
-	if (fc_cooldown >= 30)
-	{
-		ChangeStage();
-		fc_cooldown = 0;
-	}
-	else
-	{
-		if (fc_cooldown <= 30)
-		{
-			fc_cooldown++;
-		}
-	}
+	//一応残してます
+	//	player.m_uses_mirror = TRUE;
+	//if (fc_cooldown >= 30)
+	//{
+	//	ChangeStage();
+	//	fc_cooldown = 0;
+	//}
+	//else
+	//{
+	//	if (fc_cooldown <= 30)
+	//	{
+	//		fc_cooldown++;
+	//	}
+	//}
 
 	switch (current_stage)
 	{
@@ -72,9 +73,11 @@ VOID Game::Process()
 		break;
 	}
 
-	player.Draw(player.texture.GetUvCoordinate(),PLAYER);
+	player_manager.Draw();
 
-	player.Move();
+	player_manager.ModeChange();
+
+	player_manager.Move();
 
 	//仮コード
 	if (Xinput::GetInstance()->GetBotton() & XINPUT_GAMEPAD_A)

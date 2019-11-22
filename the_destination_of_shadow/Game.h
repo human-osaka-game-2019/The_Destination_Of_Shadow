@@ -7,9 +7,9 @@
 
 #include <Windows.h>
 
-#include "Main.h"
 #include "Background.h"
-#include "Player.h"
+#include "Main.h"
+#include "PlayerManager.h"
 
 class Game
 {
@@ -41,10 +41,9 @@ private:
 	//! 遷移のクールタイム
 	INT fc_cooldown = 30;
 
-	Player player;
+	PlayerManager player_manager;
 	RealBackground real_background;
 	ShadowBackground shadow_background;
-
 
 	VOID Load();
 	VOID Process();
