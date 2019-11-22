@@ -24,6 +24,7 @@ public:
 
 	RealBackground real_background;
 	ShadowBackground shadow_background;
+	Mountain mountain;
 
 	//! 遷移のクールタイム
 	INT fc_cooldown = 30;
