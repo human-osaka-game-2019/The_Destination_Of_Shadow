@@ -7,7 +7,6 @@
 
 #include <Windows.h>
 
-#include "Main.h"
 #include "Stage.h"
 #include "Player.h"
 

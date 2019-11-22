@@ -10,6 +10,9 @@ VOID Player::ShadowInstallation()
 	return VOID();
 }
 
+/**
+* @brief プレイヤー関するクラス
+*/
 Player::Player()
 {
 	xinput = Xinput::GetInstance();

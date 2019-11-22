@@ -5,9 +5,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "Main.h"
 #include "Character.h"
-#include "Xinput.h"
 
 enum class MODE
 {
