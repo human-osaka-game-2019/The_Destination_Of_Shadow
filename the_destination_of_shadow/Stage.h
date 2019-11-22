@@ -1,10 +1,11 @@
 ﻿#ifndef STAGE_H
 #define STAGE_H
 
-#include "DirectX.h"
 #include "Background.h"
 
-
+/**
+* @brief ステージに関するクラス
+*/
 class Stage
 {
 public:
@@ -28,5 +29,7 @@ public:
 
 	//! 遷移のクールタイム
 	INT fc_cooldown = 30;
+
+	VOID Scroll();
 };
 #endif

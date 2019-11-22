@@ -1,11 +1,10 @@
 ﻿/**
-* @file Player.h
+* @file Background.h
 */
 
 #ifndef BACKGROUND_H
 #define BACKGROUND_H
 
-#include "DirectX.h"
 #include "Object.h"
 
 /**
@@ -21,6 +20,9 @@ public:
 	RealBackground();
 };
 
+/**
+* @brief 山脈に関するクラス
+*/
 class Mountain :public Object
 {
 public:
@@ -31,15 +33,29 @@ public:
 	Mountain();
 
 	/**
-	* @brief ステージをスクロールする関数
+	* @brief m_save_directionのゲット関数
 	*/
-	VOID Scroll();
+	inline FLOAT GetSaveTu() { return m_save_tu; }
+	/**
+	* @brief m_save_tuのセット関数
+	* @param save_tu
+	*/
+	inline VOID SetSaveTu(FLOAT save_tu) { m_save_tu = save_tu; }
+	/**
+	* @brief m_save_tuに任意の値を足すセット関数
+	* @param plus_value
+	*/
+	inline VOID SetPlus(FLOAT plus_value) { m_save_tu + plus_value; }
+	/**
+	* @brief m_save_tuに任意の値を引くセット関数
+	* @param minus_value
+	*/
+	inline VOID SetMinus(FLOAT minus_value) { m_save_tu - minus_value; }
 
 private:
 
-	FLOAT save_tu = 0.0f;
-	FLOAT scroll_speed=0.2f;
-	FLOAT fc_scroll = 0;
+	FLOAT m_save_tu = 0.0f;
+	FLOAT m_fc_scroll = 0;
 };
 
 /**

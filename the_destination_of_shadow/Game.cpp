@@ -70,7 +70,7 @@ VOID Game::Process()
 		stage.real_background.Draw(stage.real_background.texture.GetUvCoordinate(), REAL_BACKGROUND);
 		stage.mountain.Draw(stage.mountain.texture.GetUvCoordinate(), MOUNTAIN);
 
-		stage.mountain.Scroll();
+		stage.Scroll();
 
 		break;
 	case Stage::CurrentStage::REAL:
