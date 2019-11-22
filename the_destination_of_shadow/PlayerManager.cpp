@@ -13,6 +13,7 @@ PlayerManager::~PlayerManager()
 VOID PlayerManager::Load()
 {
 	player->LoadTexture("../Texture/player.png", PLAYER);
+	cursor->LoadTexture("../Texture/kari.png", KARI);
 }
 
 VOID PlayerManager::Draw()
@@ -24,6 +25,7 @@ VOID PlayerManager::Draw()
 	case PLAYER_MODE::NORMAL:
 		break;
 	case PLAYER_MODE::SHADOW_BORROW:
+		cursor->Draw(cursor->texture.GetUvCoordinate(), KARI);
 		break;
 	case PLAYER_MODE::SHADOW_USE:
 		break;
@@ -32,6 +34,7 @@ VOID PlayerManager::Draw()
 
 VOID PlayerManager::ModeChange()
 {
+
 	switch (player->GetNextMode())
 	{
 	case PLAYER_MODE::NO_CHANGE:

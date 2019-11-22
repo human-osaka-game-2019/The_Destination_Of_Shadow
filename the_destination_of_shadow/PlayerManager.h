@@ -38,4 +38,3 @@ public:
 };
 
 #endif // !PLAYER_MANAGER_H_
-
