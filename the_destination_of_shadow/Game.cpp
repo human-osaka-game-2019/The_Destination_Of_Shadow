@@ -24,6 +24,7 @@ VOID Game::Load()
 	player.LoadTexture("../Texture/player.png", PLAYER);
 	stage.real_background.LoadTexture("../Texture/real_background.png", REAL_BACKGROUND);
 	stage.shadow_background.LoadTexture("../Texture/shadow_background.png", SHADOW_BACKGROUND);
+	stage.mountain.LoadTexture("../Texture/mountain.png", MOUNTAIN);
 
 	phase = PROCESSING;
 }
@@ -46,17 +47,20 @@ VOID Game::ChangeStage()
 
 VOID Game::Process()
 {
+	if (Xinput::GetInstance()->GetBotton() & XINPUT_GAMEPAD_Y)
+	{
 		player.m_uses_mirror = TRUE;
-	if (stage.fc_cooldown >= 30)
-	{
-		ChangeStage();
-		stage.fc_cooldown = 0;
-	}
-	else
-	{
-		if (stage.fc_cooldown <= 30)
+		if (stage.fc_cooldown >= 30)
 		{
-			stage.fc_cooldown++;
+			ChangeStage();
+			stage.fc_cooldown = 0;
+		}
+		else
+		{
+			if (stage.fc_cooldown <= 30)
+			{
+				stage.fc_cooldown++;
+			}
 		}
 	}
 
@@ -64,6 +68,10 @@ VOID Game::Process()
 	{
 	case Stage::CurrentStage::SHADOW:
 		stage.real_background.Draw(stage.real_background.texture.GetUvCoordinate(), REAL_BACKGROUND);
+		stage.mountain.Draw(stage.mountain.texture.GetUvCoordinate(), MOUNTAIN);
+
+		stage.mountain.Scroll();
+
 		break;
 	case Stage::CurrentStage::REAL:
 		stage.shadow_background.Draw(stage.shadow_background.texture.GetUvCoordinate(), SHADOW_BACKGROUND);
