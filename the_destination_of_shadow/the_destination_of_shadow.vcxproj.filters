@@ -19,6 +19,9 @@
     <ClCompile Include="PlayerManager.cpp">
       <Filter>cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Gimmick.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectX.h" />
@@ -38,6 +41,9 @@
       <Filter>h</Filter>
     </ClInclude>
     <ClInclude Include="PlayerManager.h">
+      <Filter>h</Filter>
+    </ClInclude>
+    <ClInclude Include="Gimmick.h">
       <Filter>h</Filter>
     </ClInclude>
   </ItemGroup>
