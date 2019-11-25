@@ -2,7 +2,16 @@
 #define CURSOR_H_
 
 #include "Object.h"
-#include "Xinput.h"
+#include "Gimmick.h" 
+
+enum class CURSOR_DIRECTION
+{
+	NO,
+	UP,
+	RIGHT,
+	LEFT,
+	DOWN,
+};
 
 class Cursor : public Object
 {
@@ -15,6 +24,8 @@ private:
 	FLOAT m_save_x;
 
 	FLOAT m_save_y;
+
+	CURSOR_DIRECTION m_save_direction= CURSOR_DIRECTION::NO;
 
 public:
 
@@ -45,6 +56,11 @@ public:
 	* @brief カーソルがウィンドウ外にでた場合前の座標に戻す関数
 	*/
 	VOID ModifyCoordinates();
+	/**
+	* @brief m_save_directionのセット関数
+	* @param カーソルの進む方向
+	*/
+	inline VOID SetSaveDirection(CURSOR_DIRECTION direction) { m_save_direction = direction; }
 };
 
 #endif // !CURSOR_H_

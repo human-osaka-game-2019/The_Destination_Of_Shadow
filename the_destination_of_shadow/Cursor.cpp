@@ -2,7 +2,6 @@
 
 Cursor::Cursor(XyCoordinate player)
 {
-	xinput = Xinput::GetInstance();
 
 	m_move_speed = 10.0f;
 
@@ -28,24 +27,24 @@ VOID Cursor::Move()
 {
 	SavePosition();
 
-	if (xinput->GetStick(STICK::LEFT_X) >= XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
+	switch (m_save_direction)
 	{
-		xy_coordinate.m_x += m_move_speed;
-	}
-
-	if (xinput->GetStick(STICK::LEFT_X) <= -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
-	{
-		xy_coordinate.m_x -= m_move_speed;
-	}
-
-	if (xinput->GetStick(STICK::LEFT_Y) >= XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
-	{
+	case CURSOR_DIRECTION::NO:
+		break;
+	case CURSOR_DIRECTION::UP:
 		xy_coordinate.m_y -= m_move_speed;
-	}
-
-	if (xinput->GetStick(STICK::LEFT_Y) <= -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
-	{
+		break;
+	case CURSOR_DIRECTION::RIGHT:
+		xy_coordinate.m_x += m_move_speed;
+		break;
+	case CURSOR_DIRECTION::LEFT:
+		xy_coordinate.m_x -= m_move_speed;
+		break;
+	case CURSOR_DIRECTION::DOWN:
 		xy_coordinate.m_y += m_move_speed;
+		break;
+	default:
+		break;
 	}
 
 	ModifyCoordinates();
