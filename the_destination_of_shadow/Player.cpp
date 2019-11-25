@@ -34,33 +34,24 @@ VOID Player::ShadowInstallation()
 VOID Player::Move()
 {
 
-	m_next_mode = PLAYER_MODE::NO_CHANGE;
-
-	if (xinput->GetStick(STICK::LEFT_X)>= XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
+	switch (m_save_direction)
 	{
-		m_save_direction = Right;
+	case RIGHT:
 		xy_coordinate.m_x += m_move_speed;
-
-	}
-
-	if (xinput->GetStick(STICK::LEFT_X) <= -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
-	{
-		m_save_direction = Left;
+		break;
+	case LEFT:
 		xy_coordinate.m_x -= m_move_speed;
-
-	}
-
-	if (xinput->IsKeyStrokePushed(VK_PAD_RTRIGGER))
-	{
-		m_next_mode = PLAYER_MODE::SHADOW_BORROW;
+		break;
+	default:
+		break;
 	}
 
 	switch (m_save_direction)
 	{
-	case Right:
+	case RIGHT:
 		texture.SetTuWidth(-1.0f);
 		break;
-	case Left:
+	case LEFT:
 		texture.SetTuWidth(1.0f);
 		break;
 	default:
@@ -71,10 +62,5 @@ VOID Player::Move()
 
 VOID Player::ShadowBorrow()
 {
-	m_next_mode = PLAYER_MODE::NO_CHANGE;
 
-	if (xinput->IsKeyStrokePushed(VK_PAD_RTRIGGER))
-	{
-		m_next_mode = PLAYER_MODE::NORMAL;
-	}
 }

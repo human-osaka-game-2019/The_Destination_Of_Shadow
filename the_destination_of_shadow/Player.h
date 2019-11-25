@@ -5,25 +5,13 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "Main.h"
 #include "Character.h"
-#include "Xinput.h"
-
-enum class PLAYER_MODE
-{
-	NO_CHANGE,
-	NORMAL,
-	SHADOW_BORROW,
-	SHADOW_USE,
-};
 
 class Player : public CharacterBase
 {
 private:
 
 	Xinput* xinput;
-
-	PLAYER_MODE m_next_mode = PLAYER_MODE::NO_CHANGE;
 
 public:
 
@@ -38,16 +26,17 @@ public:
 	/**
 	* @brief m_save_directionのゲット関数
 	*/
-	inline Direction GetSaveDirection() { return m_save_direction; }
+	inline DIRECTION GetSaveDirection() { return m_save_direction; }
 	/**
-	* @brief m_next_modeのゲット関数
+	* @brief m_save_directionのセット関数
+	* @direction playerの方向
 	*/
-	inline PLAYER_MODE GetNextMode() { return m_next_mode; }
+	inline DIRECTION SetSaveDirection(DIRECTION direction) { m_save_direction = direction; }
 	
 	//! 加速度
 	FLOAT m_acceleration;
 	//! 歩くスピード
-	FLOAT m_work_speed=4.0f;
+	FLOAT m_work_speed = 4.0f;
 	//! 最大のスピード
 	FLOAT m_max_speed;
 	//! 鏡を使用したか

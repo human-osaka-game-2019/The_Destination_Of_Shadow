@@ -4,6 +4,14 @@
 #include "Player.h"
 #include "Cursor.h"
 
+enum class PLAYER_MODE
+{
+	NO_CHANGE,
+	NORMAL,
+	SHADOW_BORROW,
+	SHADOW_USE,
+};
+
 class PlayerManager
 {
 private:
@@ -11,6 +19,10 @@ private:
 	Player* player;
 
 	Cursor* cursor;
+
+	Xinput* xinput;
+
+	PLAYER_MODE m_next_mode = PLAYER_MODE::NO_CHANGE;
 
 	PLAYER_MODE m_current_mode = PLAYER_MODE::NORMAL;
 
@@ -32,6 +44,18 @@ public:
 	* @brief モードごとのプレイヤーの動作を呼び出す関数
 	*/
 	VOID Move();
+	/**
+	* @brief  NormalMode時の挙動
+	*/
+	VOID NormalModeMove();
+	/**
+	* @brief ShadowBorrowMode時の挙動
+	*/
+	VOID ShadowBorrowModeMove();
+	/**
+	* @brief ShadowUseMode時の挙動
+	*/
+	VOID ShadowUseModeMove();
 	PlayerManager();
 	~PlayerManager();
 

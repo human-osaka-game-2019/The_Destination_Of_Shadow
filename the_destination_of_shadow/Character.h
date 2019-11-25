@@ -9,12 +9,12 @@
 * キャラクターの向きを管理する
 */
 
-enum Direction
+enum DIRECTION
 {
 	/*! 右を向いている */
-	Right,
+	RIGHT,
 	/*! 左を向いている */
-	Left,
+	LEFT,
 };
 
 /**
@@ -26,7 +26,7 @@ protected:
 
 	INT m_hp;
 	FLOAT m_move_speed;
-	Direction m_save_direction;
+	DIRECTION m_save_direction;
 
 public:
 

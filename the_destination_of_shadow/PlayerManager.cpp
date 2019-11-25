@@ -2,6 +2,7 @@
 
 PlayerManager::PlayerManager()
 {
+	xinput = Xinput::GetInstance();
 	player = new Player();
 }
 
@@ -35,7 +36,7 @@ VOID PlayerManager::Draw()
 VOID PlayerManager::ModeChange()
 {
 
-	switch (player->GetNextMode())
+	switch (m_next_mode)
 	{
 	case PLAYER_MODE::NO_CHANGE:
 		break;
@@ -60,15 +61,78 @@ VOID PlayerManager::Move()
 	switch (m_current_mode)
 	{
 	case PLAYER_MODE::NORMAL:
-		player->Move();
+		NormalModeMove();
 		break;
 	case PLAYER_MODE::SHADOW_BORROW:
-		player->ShadowBorrow();
-		cursor->Move();
+		ShadowBorrowModeMove();
 		break;
 	case PLAYER_MODE::SHADOW_USE:
+		ShadowUseModeMove();
 		break;
 	default:
 		break;
 	}
+}
+
+VOID PlayerManager::NormalModeMove()
+{
+	m_next_mode = PLAYER_MODE::NO_CHANGE;
+
+	if (xinput->GetStick(STICK::LEFT_X) >= XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
+	{
+		player->SetSaveDirection(RIGHT);
+		player->Move();
+	}
+
+	if (xinput->GetStick(STICK::LEFT_X) <= -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
+	{
+		player->SetSaveDirection(LEFT);
+		player->Move();
+	}
+
+	if (xinput->IsKeyStrokePushed(VK_PAD_RTRIGGER))
+	{
+		m_next_mode = PLAYER_MODE::SHADOW_BORROW;
+	}
+}
+
+VOID PlayerManager::ShadowBorrowModeMove()
+{
+	m_next_mode = PLAYER_MODE::NO_CHANGE;
+
+	if (xinput->GetStick(STICK::LEFT_Y) >= XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
+	{
+		cursor->SetSaveDirection(CURSOR_DIRECTION::UP);
+		cursor->Move();
+	}
+
+	if (xinput->GetStick(STICK::LEFT_X) >= XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
+	{
+		cursor->SetSaveDirection(CURSOR_DIRECTION::RIGHT);
+		cursor->Move();
+	}
+
+	if (xinput->GetStick(STICK::LEFT_X) <= -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
+	{
+		cursor->SetSaveDirection(CURSOR_DIRECTION::LEFT);
+		cursor->Move();
+	}
+
+	if (xinput->GetStick(STICK::LEFT_Y) <= -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
+	{
+		cursor->SetSaveDirection(CURSOR_DIRECTION::DOWN);
+		cursor->Move();
+	}
+
+	if (xinput->IsKeyStrokePushed(VK_PAD_RTRIGGER))
+	{
+		player->ShadowBorrow();
+		m_next_mode = PLAYER_MODE::NORMAL;
+	}
+
+}
+
+VOID PlayerManager::ShadowUseModeMove()
+{
+
 }
