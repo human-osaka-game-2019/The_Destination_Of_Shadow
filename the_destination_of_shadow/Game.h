@@ -9,7 +9,7 @@
 
 #include "Background.h"
 #include "Main.h"
-#include "PlayerManager.h"
+#include "GameManager.h"
 
 class Game
 {
@@ -41,7 +41,7 @@ private:
 	//! 遷移のクールタイム
 	INT fc_cooldown = 30;
 
-	PlayerManager player_manager;
+	GameManager game_manager;
 	RealBackground real_background;
 	ShadowBackground shadow_background;
 

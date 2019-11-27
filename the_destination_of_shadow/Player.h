@@ -11,8 +11,6 @@ class Player : public CharacterBase
 {
 private:
 
-	Xinput* xinput;
-
 public:
 
 	/**
@@ -31,7 +29,7 @@ public:
 	* @brief m_save_directionのセット関数
 	* @direction playerの方向
 	*/
-	inline DIRECTION SetSaveDirection(DIRECTION direction) { m_save_direction = direction; }
+	inline VOID SetSaveDirection(DIRECTION direction) { m_save_direction = direction; }
 	
 	//! 加速度
 	FLOAT m_acceleration;

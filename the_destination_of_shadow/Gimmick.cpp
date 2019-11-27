@@ -23,6 +23,8 @@ VOID Gimmick::InitBuilding(FLOAT x, FLOAT y)
 	xy_coordinate.m_width = 500;
 	xy_coordinate.m_height = 600;
 
+	texture.SetAlpha(255);
+
 	texture.SetTu(0.0f);
 	texture.SetTv(0.0f);
 	texture.SetTuWidth(1.0f);
@@ -31,7 +33,6 @@ VOID Gimmick::InitBuilding(FLOAT x, FLOAT y)
 
 VOID Gimmick::MakeTransparent()
 {
-	INT max_alpha = 255;
 	INT half_alpha = 128;
 
 	if (m_is_shadow == FALSE)

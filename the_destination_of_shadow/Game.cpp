@@ -21,7 +21,7 @@ VOID Game::Game_Scene()
 //ゲームのテクスチャの読み込み
 VOID Game::Load()
 {
-	player_manager.Load();
+	game_manager.Load();
 	real_background.LoadTexture("../Texture/real_background.png", REAL_BACKGROUND);
 	shadow_background.LoadTexture("../Texture/shadow_background.png", SHADOW_BACKGROUND);
 
@@ -73,11 +73,11 @@ VOID Game::Process()
 		break;
 	}
 
-	player_manager.Draw();
+	game_manager.Draw();
 
-	player_manager.ModeChange();
+	game_manager.PlayerMove();
 
-	player_manager.Move();
+	game_manager.GimmickMove();
 
 	//仮コード
 	if (Xinput::GetInstance()->GetBotton() & XINPUT_GAMEPAD_A)
