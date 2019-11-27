@@ -143,6 +143,7 @@
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="DirectX.cpp" />
     <ClCompile Include="Draw.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Gimmick.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -151,7 +152,6 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Background.cpp" />
-    <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="Xinput.cpp" />
@@ -162,6 +162,7 @@
     <ClInclude Include="Draw.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="Gimmick.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Background.h" />
@@ -169,7 +170,6 @@
     <ClInclude Include="Help.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="Result.h" />
     <ClInclude Include="Xinput.h" />

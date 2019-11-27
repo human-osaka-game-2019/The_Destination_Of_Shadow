@@ -2,8 +2,6 @@
 
 Player::Player()
 {
-	xinput = Xinput::GetInstance();
-
 	m_hp;
 	m_move_speed =4.0f;
 	m_save_direction;
@@ -13,6 +11,7 @@ Player::Player()
 	xy_coordinate.m_width = 300.0f;
 	xy_coordinate.m_height = 300.0f;
 
+	texture.SetAlpha(255);
 	texture.SetTu(0.0f);
 	texture.SetTv(0.0f);
 	texture.SetTuWidth(1.0f);

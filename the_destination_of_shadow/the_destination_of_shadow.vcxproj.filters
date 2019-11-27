@@ -16,10 +16,10 @@
     <ClCompile Include="Cursor.cpp">
       <Filter>cpp</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerManager.cpp">
+    <ClCompile Include="Gimmick.cpp">
       <Filter>cpp</Filter>
     </ClCompile>
-    <ClCompile Include="Gimmick.cpp">
+    <ClCompile Include="GameManager.cpp">
       <Filter>cpp</Filter>
     </ClCompile>
   </ItemGroup>
@@ -40,10 +40,10 @@
     <ClInclude Include="Cursor.h">
       <Filter>h</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerManager.h">
+    <ClInclude Include="Gimmick.h">
       <Filter>h</Filter>
     </ClInclude>
-    <ClInclude Include="Gimmick.h">
+    <ClInclude Include="GameManager.h">
       <Filter>h</Filter>
     </ClInclude>
   </ItemGroup>
