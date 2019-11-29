@@ -1,29 +1,35 @@
 ﻿#include "Gimmick.h"
 
+Gimmick::Gimmick()
+{
+	
+}
+
 Gimmick::Gimmick(FLOAT x,FLOAT y,GIMMICK_ID id)
 {
+
+	xy_coordinate.m_x = x;
+	xy_coordinate.m_y = y;
+
+	texture.SetAlpha(255);
+
 	switch (id)
 	{
 	case GIMMICK_ID::NO_ID:
 		break;
 	case GIMMICK_ID::BUILDING:
-		InitBuilding(x, y);
+		InitBuilding();
 		break;
 	default:
 		break;
 	}
 }
 
-VOID Gimmick::InitBuilding(FLOAT x, FLOAT y)
+VOID Gimmick::InitBuilding()
 {
-	xy_coordinate.m_x = x;
-	xy_coordinate.m_y = y;
-
 	//初期化の値は適当
-	xy_coordinate.m_width = 500;
-	xy_coordinate.m_height = 600;
-
-	texture.SetAlpha(255);
+	xy_coordinate.m_width = 750;
+	xy_coordinate.m_height = 1200;
 
 	texture.SetTu(0.0f);
 	texture.SetTv(0.0f);
