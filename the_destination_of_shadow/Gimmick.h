@@ -11,14 +11,13 @@ private:
 
 public:
 
+	Gimmick();
 	Gimmick(FLOAT x, FLOAT y, GIMMICK_ID id);
 	virtual ~Gimmick() {}
 	/**
 	* @brief ギミックを建物の状態で初期化する
-	* @param x x座標
-	* @param y y座標
 	*/
-	VOID InitBuilding(FLOAT x, FLOAT y);
+	VOID InitBuilding();
 	/**
 	* @brief 影を借りられた状態に変更する関数
 	*/

@@ -6,6 +6,7 @@
 #include "Cursor.h"
 #include "Gimmick.h"
 #include "Player.h"
+#include "shadow.h"
 #include "Xinput.h"
 
 enum class PLAYER_MODE
@@ -23,6 +24,7 @@ private:
 	Cursor* cursor;
 	std::vector<Gimmick>gimmick;
 	std::vector<Gimmick>shadow_items;
+	std::vector<Shadow>shadow;
 	Player* player;
 	Xinput* xinput;
 
@@ -30,7 +32,11 @@ private:
 
 	PLAYER_MODE m_current_mode = PLAYER_MODE::NORMAL;
 
-	Gimmick SelectShadow();
+	VOID InitGimmick();
+
+	VOID SelectShadow();
+
+	Gimmick m_select_shadow;
 
 	/**
 	* @brief ノーマルモード時の挙動

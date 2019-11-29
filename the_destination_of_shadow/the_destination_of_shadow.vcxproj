@@ -154,6 +154,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="Shadow.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="Xinput.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="Help.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Shadow.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="Result.h" />
     <ClInclude Include="Xinput.h" />

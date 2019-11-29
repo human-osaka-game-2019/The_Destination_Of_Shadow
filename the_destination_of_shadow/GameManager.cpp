@@ -1,17 +1,27 @@
 ﻿#include "GameManager.h"
 
+namespace
+{
+	const INT MAX_ITEMS = 5;
+}
+
 GameManager::GameManager()
 {
 	cursor = nullptr;
-	gimmick.push_back(Gimmick(100, 500, GIMMICK_ID::BUILDING));
-	gimmick.push_back(Gimmick(500, 500, GIMMICK_ID::BUILDING));
 	player = new Player();
+	InitGimmick();
 	xinput = Xinput::GetInstance();
 }
 
 GameManager::~GameManager()
 {
 	delete player;
+}
+
+VOID GameManager::InitGimmick()
+{
+	gimmick.push_back(Gimmick(100, -100, GIMMICK_ID::BUILDING));
+	gimmick.push_back(Gimmick(900, -100, GIMMICK_ID::BUILDING));
 }
 
 VOID GameManager::Load()
@@ -30,6 +40,14 @@ VOID GameManager::Draw()
 	}
 
 	player->Draw(player->texture.GetUvCoordinate(), PLAYER, player->texture.GetAlpha());
+
+	if (shadow.empty() == FALSE)
+	{
+		for (INT i = 0; i < shadow.size(); i++)
+		{
+			shadow[i].Draw(gimmick[i].texture.GetUvCoordinate(), KARI);
+		}
+	}
 
 	switch (m_current_mode)
 	{
@@ -63,7 +81,8 @@ VOID GameManager::ModeChange()
 		m_current_mode = PLAYER_MODE::SHADOW_BORROW;
 		break;
 	case PLAYER_MODE::SHADOW_USE:
-		cursor = new Cursor(player->GetXyCoordinate(), SelectShadow().GetXyCoordinate());
+		SelectShadow();
+		cursor = new Cursor(player->GetXyCoordinate(), m_select_shadow.GetXyCoordinate());
 		m_current_mode = PLAYER_MODE::SHADOW_USE;
 		break;
 	default:
@@ -86,6 +105,16 @@ VOID GameManager::NormalModeMove()
 	{
 		player->SetSaveDirection(LEFT);
 		player->Move();
+	}
+
+	if (xinput->IsKeyStrokePushed(VK_PAD_RSHOULDER))
+	{
+
+	}
+
+	if (xinput->IsKeyStrokePushed(VK_PAD_RSHOULDER))
+	{
+
 	}
 
 	if (xinput->IsKeyStrokePushed(VK_PAD_RTRIGGER))
@@ -154,6 +183,7 @@ VOID GameManager::ShadowUseModeMove()
 
 	if (xinput->IsKeyStrokePushed(VK_PAD_RTRIGGER))
 	{
+		shadow.push_back(Shadow(shadow_items[0].GetXyCoordinate(),cursor->GetXyCoordinate()));
 		m_next_mode = PLAYER_MODE::NORMAL;
 	}
 }
@@ -203,23 +233,27 @@ BOOL GameManager::IsHitGimmick(Gimmick gimmick)
 
 VOID GameManager::ShadowBorrowChacek(std::vector<Gimmick>&gimmick)
 {
-	for (INT i = 0; i < gimmick.size(); i++)
+	if (shadow_items.size() < MAX_ITEMS)
 	{
-		if (IsHitGimmick(gimmick[i]))
+		for (INT i = 0; i < gimmick.size(); i++)
 		{
-			if (gimmick[i].GetShadow())
+			if (IsHitGimmick(gimmick[i]))
 			{
-				GetShadow(&gimmick[i]);
+				if (gimmick[i].GetShadow())
+					GetShadow(&gimmick[i]);
 			}
 		}
 	}
 }
 
-Gimmick GameManager::SelectShadow()
+VOID GameManager::SelectShadow()
 {
-	Gimmick tmp = shadow_items[0];
-	shadow_items.pop_back();
-	return tmp;
+	if (shadow_items.empty() == FALSE)
+	{
+		auto itr = shadow_items.begin();
+		m_select_shadow = shadow_items[0];
+		shadow_items.pop_back();
+	}
 }
 
 VOID GameManager::GetShadow(Gimmick* gimmick)
@@ -230,13 +264,11 @@ VOID GameManager::GetShadow(Gimmick* gimmick)
 
 BOOL GameManager::IsExistShadow()
 {
-	if (shadow_items.empty())
-		return FALSE;
-
-	return TRUE;
+	return shadow_items.empty() ? FALSE : TRUE;
 }
 
 VOID GameManager::ShadowStore(Gimmick gimmick)
 {
 	shadow_items.push_back(gimmick);
+
 }
