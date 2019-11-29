@@ -31,6 +31,12 @@ VOID Gimmick::InitBuilding(FLOAT x, FLOAT y)
 	texture.SetTvHeight(1.0f);
 }
 
+VOID Gimmick::ChangeShadow()
+{
+	if (m_is_shadow)
+		m_is_shadow = FALSE;
+}
+
 VOID Gimmick::MakeTransparent()
 {
 	INT half_alpha = 128;

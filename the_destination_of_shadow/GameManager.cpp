@@ -2,22 +2,25 @@
 
 GameManager::GameManager()
 {
-	xinput = Xinput::GetInstance();
-	player = new Player();
 	cursor = nullptr;
 	gimmick.push_back(Gimmick(100, 500, GIMMICK_ID::BUILDING));
+	player = new Player();
+	shadow_pouch = new ShadowPouch;
+	xinput = Xinput::GetInstance();
 }
 
 GameManager::~GameManager()
 {
 	delete player;
+	delete shadow_pouch;
 }
 
 VOID GameManager::Load()
 {
-	player->LoadTexture("../Texture/player.png", PLAYER);
 	cursor->LoadTexture("../Texture/kari.png", KARI);
 	gimmick[0].LoadTexture("../Texture/kari.png", KARI);
+	player->LoadTexture("../Texture/player.png", PLAYER);
+	//shadow_pouch->LoadTexture();
 }
 
 VOID GameManager::Draw()
@@ -120,7 +123,7 @@ VOID GameManager::ShadowBorrowModeMove()
 
 	if (xinput->IsKeyStrokePushed(VK_PAD_RTRIGGER))
 	{
-		player->ShadowBorrow();
+		ShadowBorrowChacek(gimmick);
 		m_next_mode = PLAYER_MODE::NORMAL;
 	}
 }
@@ -155,4 +158,40 @@ VOID GameManager::PlayerMove()
 
 	ModeChange();
 
+}
+
+BOOL GameManager::IsHitGimmick(Gimmick gimmick)
+{
+	FLOAT cursor_width = cursor->GetX() + cursor->GetXWidth();
+	FLOAT cursor_height = cursor->GetY() + cursor->GetYHeight();
+	FLOAT gimmick_width = gimmick.GetX() + gimmick.GetXWidth();
+	FLOAT gimmick_height = gimmick.GetY() + gimmick.GetYHeight();
+
+	if (cursor->GetX() <= gimmick_width && gimmick.GetX() <= cursor_width
+		&& cursor->GetY() <= gimmick_height && gimmick.GetY() <= cursor_height)
+	{
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+VOID GameManager::ShadowBorrowChacek(std::vector<Gimmick>&gimmick)
+{
+	for (INT i = 0; i < gimmick.size(); i++)
+	{
+		if (IsHitGimmick(gimmick[i]))
+		{
+			if (gimmick[i].GetShadow())
+			{
+				GetShadow(&gimmick[i]);
+			}
+		}
+	}
+}
+
+VOID GameManager::GetShadow(Gimmick* gimmick)
+{
+	gimmick->ChangeShadow();
+	shadow_pouch->ShadowStore(gimmick->GetGimmickId());
 }
