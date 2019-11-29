@@ -11,6 +11,12 @@
 #include"Main.h"
 #include"Draw.h"
 
+enum class GIMMICK_ID
+{
+	NO_ID,
+	BUILDING,
+};
+
 /**
 * @brief 全てのオブジェクトのもとになるクラス
 */

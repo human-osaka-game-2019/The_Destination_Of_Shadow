@@ -3,7 +3,7 @@
 Player::Player()
 {
 	m_hp;
-	m_move_speed =4.0f;
+	m_move_speed = 4.0f;
 	m_save_direction;
 	
 	xy_coordinate.m_x = 0;
