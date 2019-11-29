@@ -17,6 +17,21 @@ Cursor::Cursor(XyCoordinate player)
 	//texture.SetTextureNum();
 }
 
+Cursor::Cursor(XyCoordinate player, XyCoordinate gimmick)
+{
+
+	m_move_speed = 10.0f;
+	xy_coordinate.m_width = gimmick.m_width;
+	xy_coordinate.m_height = gimmick.m_height;
+	xy_coordinate.m_x = player.m_x;
+	xy_coordinate.m_y = (player.m_y + player.m_height) - xy_coordinate.m_height;
+
+	texture.SetTu(0.0f);
+	texture.SetTv(0.0f);
+	texture.SetTuWidth(1.0f);
+	texture.SetTvHeight(1.0f);
+}
+
 VOID Cursor::SavePosition()
 {
 	m_save_x = xy_coordinate.m_x;

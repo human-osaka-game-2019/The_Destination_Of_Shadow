@@ -22,9 +22,6 @@
     <ClCompile Include="GameManager.cpp">
       <Filter>cpp</Filter>
     </ClCompile>
-    <ClCompile Include="ShadowPouch.cpp">
-      <Filter>cpp</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectX.h" />
@@ -47,9 +44,6 @@
       <Filter>h</Filter>
     </ClInclude>
     <ClInclude Include="GameManager.h">
-      <Filter>h</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowPouch.h">
       <Filter>h</Filter>
     </ClInclude>
   </ItemGroup>

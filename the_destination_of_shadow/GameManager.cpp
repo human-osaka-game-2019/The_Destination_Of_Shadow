@@ -4,15 +4,14 @@ GameManager::GameManager()
 {
 	cursor = nullptr;
 	gimmick.push_back(Gimmick(100, 500, GIMMICK_ID::BUILDING));
+	gimmick.push_back(Gimmick(500, 500, GIMMICK_ID::BUILDING));
 	player = new Player();
-	shadow_pouch = new ShadowPouch;
 	xinput = Xinput::GetInstance();
 }
 
 GameManager::~GameManager()
 {
 	delete player;
-	delete shadow_pouch;
 }
 
 VOID GameManager::Load()
@@ -40,6 +39,7 @@ VOID GameManager::Draw()
 		cursor->Draw(cursor->texture.GetUvCoordinate(), KARI);
 		break;
 	case PLAYER_MODE::SHADOW_USE:
+		cursor->Draw(cursor->texture.GetUvCoordinate(), KARI);
 		break;
 	default:
 		break;
@@ -63,6 +63,7 @@ VOID GameManager::ModeChange()
 		m_current_mode = PLAYER_MODE::SHADOW_BORROW;
 		break;
 	case PLAYER_MODE::SHADOW_USE:
+		cursor = new Cursor(player->GetXyCoordinate(), SelectShadow().GetXyCoordinate());
 		m_current_mode = PLAYER_MODE::SHADOW_USE;
 		break;
 	default:
@@ -90,6 +91,13 @@ VOID GameManager::NormalModeMove()
 	if (xinput->IsKeyStrokePushed(VK_PAD_RTRIGGER))
 	{
 		m_next_mode = PLAYER_MODE::SHADOW_BORROW;
+	}
+
+	//仮キーコンフィグ
+	if (xinput->IsKeyStrokePushed(VK_PAD_LTRIGGER))
+	{
+		if(IsExistShadow())
+		m_next_mode = PLAYER_MODE::SHADOW_USE;
 	}
 }
 
@@ -131,6 +139,23 @@ VOID GameManager::ShadowBorrowModeMove()
 VOID GameManager::ShadowUseModeMove()
 {
 	m_next_mode = PLAYER_MODE::NO_CHANGE;
+
+	if (xinput->GetStick(STICK::LEFT_X) >= XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
+	{
+		cursor->SetSaveDirection(CURSOR_DIRECTION::RIGHT);
+		cursor->Move();
+	}
+
+	if (xinput->GetStick(STICK::LEFT_X) <= -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
+	{
+		cursor->SetSaveDirection(CURSOR_DIRECTION::LEFT);
+		cursor->Move();
+	}
+
+	if (xinput->IsKeyStrokePushed(VK_PAD_RTRIGGER))
+	{
+		m_next_mode = PLAYER_MODE::NORMAL;
+	}
 }
 
 VOID GameManager::GimmickMove()
@@ -190,8 +215,28 @@ VOID GameManager::ShadowBorrowChacek(std::vector<Gimmick>&gimmick)
 	}
 }
 
+Gimmick GameManager::SelectShadow()
+{
+	Gimmick tmp = shadow_items[0];
+	shadow_items.pop_back();
+	return tmp;
+}
+
 VOID GameManager::GetShadow(Gimmick* gimmick)
 {
 	gimmick->ChangeShadow();
-	shadow_pouch->ShadowStore(gimmick->GetGimmickId());
+	ShadowStore(*gimmick);
+}
+
+BOOL GameManager::IsExistShadow()
+{
+	if (shadow_items.empty())
+		return FALSE;
+
+	return TRUE;
+}
+
+VOID GameManager::ShadowStore(Gimmick gimmick)
+{
+	shadow_items.push_back(gimmick);
 }
