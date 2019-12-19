@@ -1,8 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="DirectX.cpp" />
     <ClCompile Include="Draw.cpp" />
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="Gimmick.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Help.cpp" />
@@ -10,27 +13,23 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="Block.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="Xinput.cpp" />
-    <ClCompile Include="Cursor.cpp">
-      <Filter>cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Gimmick.cpp">
-      <Filter>cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="GameManager.cpp">
-      <Filter>cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Shadow.cpp">
-      <Filter>cpp</Filter>
-    </ClCompile>
+    <ClCompile Include="Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cursor.h" />
     <ClInclude Include="DirectX.h" />
     <ClInclude Include="Draw.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="Collision.h" />
+    <ClInclude Include="Block.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="Gimmick.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="Player.h" />
@@ -40,25 +39,6 @@
     <ClInclude Include="Title.h" />
     <ClInclude Include="Result.h" />
     <ClInclude Include="Xinput.h" />
-    <ClInclude Include="Cursor.h">
-      <Filter>h</Filter>
-    </ClInclude>
-    <ClInclude Include="Gimmick.h">
-      <Filter>h</Filter>
-    </ClInclude>
-    <ClInclude Include="GameManager.h">
-      <Filter>h</Filter>
-    </ClInclude>
-    <ClInclude Include="Shadow.h">
-      <Filter>h</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="cpp">
-      <UniqueIdentifier>{7a08a4a4-29d4-4642-8cc2-bfefaa5b9caf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="h">
-      <UniqueIdentifier>{f1e2039e-ebae-49cb-a388-0bc49cac6a5f}</UniqueIdentifier>
-    </Filter>
+    <ClInclude Include="Stage.h" />
   </ItemGroup>
 </Project>

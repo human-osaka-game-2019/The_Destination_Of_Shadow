@@ -18,12 +18,15 @@ enum TEX
 {
 	SKY,
 	CLOUD,
-	CLOUD02,
-	CLOUD03,
-	MOUNT,
+	MOUNTAIN,
 	PLAYER,
 	REAL_BACKGROUND,
 	SHADOW_BACKGROUND,
+	SHADOW_GROUND,
+	REAL_GROUND,
+	SHADOW_BLOCK,
+	REAL_BLOCK,
+	CURSOR,
 	KARI,
 	MAXTEX,
 };
@@ -85,29 +88,6 @@ public:
 	VOID Rotate(CUSTOMVERTEX  original[], CUSTOMVERTEX rotatevertex[], DOUBLE degree = 0.0f);
 
 	/**
-	* @brief 描画関数
-	* @param xy_coordinate	描画したい画像のxy座標
-	* @param alpha			アルファ値、最大255
-	* @param degree			描画したい画像の角度
-	*/
-	VOID Draw(XyCoordinate xy_coordinate, INT alpha = 255, DOUBLE degree = 0.0f);
-
-	/**
-	* @brief アニメーションの関数
-	* @param flamecount   なんのアニメーションをするためのflamecountか
-	* @param count  　　　何回処理に入るのか
-	* @param tu  　　　　 アニメーションをする初めのtu座標
-	* @param tv           アニメーションをする初めのtv座標
-	* @param split_tu     tuの幅（1/???）
-	* @param split_tv     tvの幅（1/???）
-	* @param start_tu	　開始地点のtu
-	* @param start_tv	　開始地点のtv
-	* @param finish_tu	　終了地点のtu
-	* @param finish_tv	　終了地点のtv
-	*/
-	VOID Animetion(INT* flamecount, INT count, FLOAT* tu, FLOAT* tv, FLOAT split_tu, FLOAT split_tv, FLOAT start_tu, FLOAT start_tv, FLOAT finish_tu, FLOAT finish_tv);
-
-	/**
 	* @brief 画像読み込み用関数
 	* @param FilePath	読み込む画像のファイルパス
 	* @param TEX		TextuerID
@@ -136,6 +116,9 @@ public:
 	* @param tv
 	*/
 	inline VOID SetTv(FLOAT tv) { uv_coordinate.m_tv = tv; }
+
+	inline FLOAT GetTu() { return uv_coordinate.m_tu; }
+	inline FLOAT GetTv() { return uv_coordinate.m_tv; }
 
 	/**
 	* @brief m_tu_widthのセット関数

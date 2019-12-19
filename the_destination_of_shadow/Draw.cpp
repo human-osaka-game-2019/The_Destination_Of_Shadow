@@ -41,34 +41,9 @@ VOID Texture::Rotate(CUSTOMVERTEX  original[], CUSTOMVERTEX rotatevertex[], DOUB
 		rotatevertex[i].x += center_x;
 		rotatevertex[i].y += center_y;
 	}
-
-}
-
-//アニメーション関数
-
-VOID Texture::Animetion(INT * flamecount, INT count, FLOAT * tu, FLOAT * tv, FLOAT split_tu, FLOAT split_tv, FLOAT start_tu, FLOAT start_tv, FLOAT finish_tu, FLOAT finish_tv)
-{
-	if (*flamecount >= count)
-	{
-		*tu += split_tu;
-		*tv += split_tv;
-		count = 0.0f;
-		*flamecount = count;
-	}
-	if (*tu >= finish_tu)
-	{
-		split_tu = start_tu;
-		*tu = split_tu;
-	}
-	if (*tv >= finish_tv)
-	{
-		split_tv = start_tv;
-		*tv = split_tv;
-	}
 }
 
 DOUBLE Texture::ToRadian(DOUBLE degree)
 {
-
 	return degree * atan(1.0)* 4.0 / 180.0;
 }

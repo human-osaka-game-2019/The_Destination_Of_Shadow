@@ -1,16 +1,12 @@
 ﻿#include "GameManager.h"
 
-namespace
-{
-	const INT MAX_ITEMS = 5;
-}
-
 GameManager::GameManager()
 {
-	cursor = nullptr;
-	player = new Player();
-	InitGimmick();
 	xinput = Xinput::GetInstance();
+	player = new Player();
+	cursor = nullptr;
+	stage = new Stage();
+	gimmick.push_back(Gimmick(600, 330, GIMMICK_ID::BUILDING));
 }
 
 GameManager::~GameManager()
@@ -18,22 +14,48 @@ GameManager::~GameManager()
 	delete player;
 }
 
-VOID GameManager::InitGimmick()
-{
-	gimmick.push_back(Gimmick(100, -100, GIMMICK_ID::BUILDING));
-	gimmick.push_back(Gimmick(900, -100, GIMMICK_ID::BUILDING));
-}
-
 VOID GameManager::Load()
 {
-	cursor->LoadTexture("../Texture/kari.png", KARI);
-	gimmick[0].LoadTexture("../Texture/kari.png", KARI);
 	player->LoadTexture("../Texture/player.png", PLAYER);
-	//shadow_pouch->LoadTexture();
+	cursor->LoadTexture("../Texture/cursor.png", CURSOR);
+	gimmick[0].LoadTexture("../Texture/kari.png", KARI);
+
+	stage->real_background.LoadTexture("../Texture/real_background.jpg", REAL_BACKGROUND);
+	stage->shadow_background.LoadTexture("../Texture/shadow_background.jpg", SHADOW_BACKGROUND);
+	stage->mountain->LoadTexture("../Texture/mountain.png", MOUNTAIN);
+	stage->cloud->LoadTexture("../Texture/cloud.png", CLOUD);
+	stage->real_ground->LoadTexture("../Texture/real_ground.png", REAL_GROUND);
+	stage->shadow_ground->LoadTexture("../Texture/shadow_ground.png", SHADOW_GROUND);
 }
 
 VOID GameManager::Draw()
 {
+	switch (stage->current_stage)
+	{
+	case Stage::CurrentStage::SHADOW:
+		stage->real_background.Draw(stage->real_background.texture.GetUvCoordinate(), REAL_BACKGROUND);
+		stage->mountain->Draw(stage->mountain->texture.GetUvCoordinate(), MOUNTAIN);
+		stage->cloud->Draw(stage->cloud->texture.GetUvCoordinate(), CLOUD);
+		stage->real_ground->Draw(stage->real_ground->texture.GetUvCoordinate(), REAL_GROUND);
+
+		if (xinput->IsKeyStrokePushed(VK_PAD_Y))
+		{
+			stage->current_stage = Stage::CurrentStage::REAL;
+		}
+
+		break;
+	case Stage::CurrentStage::REAL:
+		stage->shadow_background.Draw(stage->shadow_background.texture.GetUvCoordinate(), SHADOW_BACKGROUND);
+		stage->shadow_ground->Draw(stage->real_ground->texture.GetUvCoordinate(), SHADOW_GROUND);
+
+		if (xinput->IsKeyStrokePushed(VK_PAD_Y))
+		{
+			stage->current_stage = Stage::CurrentStage::SHADOW;
+		}
+
+	default:
+		break;
+	}
 	for (INT i = 0; i < gimmick.size(); i++)
 	{
 		gimmick[i].Draw(gimmick[i].texture.GetUvCoordinate(), KARI, gimmick[i].texture.GetAlpha());
@@ -41,23 +63,14 @@ VOID GameManager::Draw()
 
 	player->Draw(player->texture.GetUvCoordinate(), PLAYER, player->texture.GetAlpha());
 
-	if (shadow.empty() == FALSE)
-	{
-		for (INT i = 0; i < shadow.size(); i++)
-		{
-			shadow[i].Draw(gimmick[i].texture.GetUvCoordinate(), KARI);
-		}
-	}
-
 	switch (m_current_mode)
 	{
 	case PLAYER_MODE::NORMAL:
 		break;
 	case PLAYER_MODE::SHADOW_BORROW:
-		cursor->Draw(cursor->texture.GetUvCoordinate(), KARI);
+		cursor->Draw(cursor->texture.GetUvCoordinate(), CURSOR);
 		break;
 	case PLAYER_MODE::SHADOW_USE:
-		cursor->Draw(cursor->texture.GetUvCoordinate(), KARI);
 		break;
 	default:
 		break;
@@ -67,7 +80,6 @@ VOID GameManager::Draw()
 
 VOID GameManager::ModeChange()
 {
-
 	switch (m_next_mode)
 	{
 	case PLAYER_MODE::NO_CHANGE:
@@ -81,52 +93,43 @@ VOID GameManager::ModeChange()
 		m_current_mode = PLAYER_MODE::SHADOW_BORROW;
 		break;
 	case PLAYER_MODE::SHADOW_USE:
-		SelectShadow();
-		cursor = new Cursor(player->GetXyCoordinate(), m_select_shadow.GetXyCoordinate());
 		m_current_mode = PLAYER_MODE::SHADOW_USE;
 		break;
 	default:
 		break;
 	}
-
 }
 
 VOID GameManager::NormalModeMove()
 {
+	player->Animetion(&player->Idle_count->fc_animetion_type, player->Idle_count->m_count, &player->texture.GetUvCoordinate(), player->Idle_tu->m_start, player->Idle_tv->m_start, player->Idle_tu->m_finish, player->Idle_tv->m_finish);
 	m_next_mode = PLAYER_MODE::NO_CHANGE;
+
+	if (xinput->IsKeyStrokePushed(VK_PAD_A))
+	{
+		player->JumpStart();
+	}
 
 	if (xinput->GetStick(STICK::LEFT_X) >= XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
 	{
-		player->SetSaveDirection(RIGHT);
+		stage->SetLR_Direction(LR_Direction::RIGHT);
+		stage->MountainScroll();
+		stage->CloudScroll();
+		stage->RealGroundScroll();
+		gimmick[0].GimmickScroll();
 		player->Move();
 	}
 
 	if (xinput->GetStick(STICK::LEFT_X) <= -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
 	{
-		player->SetSaveDirection(LEFT);
+		stage->SetLR_Direction(LR_Direction::LEFT);
+		stage->ShadowGroundScroll();
 		player->Move();
-	}
-
-	if (xinput->IsKeyStrokePushed(VK_PAD_RSHOULDER))
-	{
-
-	}
-
-	if (xinput->IsKeyStrokePushed(VK_PAD_RSHOULDER))
-	{
-
 	}
 
 	if (xinput->IsKeyStrokePushed(VK_PAD_RTRIGGER))
 	{
 		m_next_mode = PLAYER_MODE::SHADOW_BORROW;
-	}
-
-	//仮キーコンフィグ
-	if (xinput->IsKeyStrokePushed(VK_PAD_LTRIGGER))
-	{
-		if(IsExistShadow())
-		m_next_mode = PLAYER_MODE::SHADOW_USE;
 	}
 }
 
@@ -168,24 +171,6 @@ VOID GameManager::ShadowBorrowModeMove()
 VOID GameManager::ShadowUseModeMove()
 {
 	m_next_mode = PLAYER_MODE::NO_CHANGE;
-
-	if (xinput->GetStick(STICK::LEFT_X) >= XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
-	{
-		cursor->SetSaveDirection(CURSOR_DIRECTION::RIGHT);
-		cursor->Move();
-	}
-
-	if (xinput->GetStick(STICK::LEFT_X) <= -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
-	{
-		cursor->SetSaveDirection(CURSOR_DIRECTION::LEFT);
-		cursor->Move();
-	}
-
-	if (xinput->IsKeyStrokePushed(VK_PAD_RTRIGGER))
-	{
-		shadow.push_back(Shadow(shadow_items[0].GetXyCoordinate(),cursor->GetXyCoordinate()));
-		m_next_mode = PLAYER_MODE::NORMAL;
-	}
 }
 
 VOID GameManager::GimmickMove()
@@ -211,8 +196,9 @@ VOID GameManager::PlayerMove()
 		break;
 	}
 
-	ModeChange();
+	player->Jump();
 
+	ModeChange();
 }
 
 BOOL GameManager::IsHitGimmick(Gimmick gimmick)
@@ -233,42 +219,20 @@ BOOL GameManager::IsHitGimmick(Gimmick gimmick)
 
 VOID GameManager::ShadowBorrowChacek(std::vector<Gimmick>&gimmick)
 {
-	if (shadow_items.size() < MAX_ITEMS)
+	for (INT i = 0; i < gimmick.size(); i++)
 	{
-		for (INT i = 0; i < gimmick.size(); i++)
+		if (IsHitGimmick(gimmick[i]))
 		{
-			if (IsHitGimmick(gimmick[i]))
+			if (gimmick[i].GetShadow())
 			{
-				if (gimmick[i].GetShadow())
-					GetShadow(&gimmick[i]);
+				GetShadow(&gimmick[i]);
 			}
 		}
-	}
-}
-
-VOID GameManager::SelectShadow()
-{
-	if (shadow_items.empty() == FALSE)
-	{
-		auto itr = shadow_items.begin();
-		m_select_shadow = shadow_items[0];
-		shadow_items.pop_back();
 	}
 }
 
 VOID GameManager::GetShadow(Gimmick* gimmick)
 {
 	gimmick->ChangeShadow();
-	ShadowStore(*gimmick);
-}
-
-BOOL GameManager::IsExistShadow()
-{
-	return shadow_items.empty() ? FALSE : TRUE;
-}
-
-VOID GameManager::ShadowStore(Gimmick gimmick)
-{
-	shadow_items.push_back(gimmick);
-
+	//player->ShadowBorrow();
 }

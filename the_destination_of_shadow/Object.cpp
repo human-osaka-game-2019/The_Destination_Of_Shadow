@@ -49,3 +49,24 @@ VOID Object::Draw(UvCoordinate uv_coordinate,TEX tex, INT alpha, DOUBLE degree)
 	directx.pD3Device->SetTexture(0, directx.pTexture[tex]);
 	directx.pD3Device->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, vertex, sizeof(CUSTOMVERTEX));
 }
+
+VOID Object::Animetion(INT* flamecount, INT count, UvCoordinate* uv_coordinate, FLOAT start_tu, FLOAT start_tv, FLOAT finish_tu, FLOAT finish_tv)
+{
+	flamecount++;
+	if (*flamecount >= count)
+	{
+		uv_coordinate->m_tu += uv_coordinate->m_tu_size;
+		uv_coordinate->m_tv += uv_coordinate->m_tv_size;
+		count = 0.0f;
+		*flamecount = 0;
+	}
+	if (uv_coordinate->m_tu >= finish_tu)
+	{
+		uv_coordinate->m_tu = start_tu;
+	}
+	if (uv_coordinate->m_tv >= finish_tv)
+	{
+		uv_coordinate->m_tv = start_tv;
+	}
+}
+
