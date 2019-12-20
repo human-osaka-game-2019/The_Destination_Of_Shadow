@@ -112,19 +112,16 @@ VOID GameManager::NormalModeMove()
 
 	if (xinput->GetStick(STICK::LEFT_X) >= XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
 	{
-		stage->SetLR_Direction(LR_Direction::RIGHT);
-		stage->MountainScroll();
-		stage->CloudScroll();
-		stage->RealGroundScroll();
-		gimmick[0].GimmickScroll();
+		player->SetSaveDirection(LR_Direction::RIGHT);
 		player->Move();
+		Scroll(player->GetSaveDirection());
 	}
 
 	if (xinput->GetStick(STICK::LEFT_X) <= -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
 	{
-		stage->SetLR_Direction(LR_Direction::LEFT);
-		stage->ShadowGroundScroll();
+		player->SetSaveDirection(LR_Direction::LEFT);
 		player->Move();
+		Scroll(player->GetSaveDirection());
 	}
 
 	if (xinput->IsKeyStrokePushed(VK_PAD_RTRIGGER))
@@ -198,6 +195,8 @@ VOID GameManager::PlayerMove()
 
 	player->Jump();
 
+	CameraMove(player->GetSaveDirection());
+
 	ModeChange();
 }
 
@@ -234,5 +233,42 @@ VOID GameManager::ShadowBorrowChacek(std::vector<Gimmick>&gimmick)
 VOID GameManager::GetShadow(Gimmick* gimmick)
 {
 	gimmick->ChangeShadow();
-	//player->ShadowBorrow();
+}
+
+VOID GameManager::Scroll(LR_Direction direction)
+{
+	stage->MountainScroll(direction);
+	stage->CloudScroll(direction);
+	stage->RealGroundScroll(direction);
+
+	for (INT i = 0; i < gimmick.size(); i++)
+	{
+		gimmick[i].ObjScroll(direction);
+	}
+
+	//if (shadow.empty() == FALSE)
+	//{
+	//	for (INT i = 0; i < shadow.size(); i++)
+	//	{
+	//		shadow[i].ObjScroll(direction);
+	//	}
+	//}
+}
+
+VOID GameManager::CameraMove(LR_Direction direction)
+{
+	for (INT i = 0; i < gimmick.size(); i++)
+	{
+		gimmick[i].CameraScroll(direction);
+	}
+
+	//if (shadow.empty() == FALSE)
+	//{
+	//	for (INT i = 0; i < shadow.size(); i++)
+	//	{
+	//		shadow[i].CameraScroll(direction);
+	//	}
+	//}
+
+	player->CameraScroll(direction);
 }

@@ -3,12 +3,6 @@
 
 #include "Background.h"
 
-enum class LR_Direction
-{
-	RIGHT,
-	LEFT
-};
-
 /**
 * @brief ステージに関するクラス
 */
@@ -42,8 +36,6 @@ public:
 
 	CurrentStage current_stage = CurrentStage::REAL;
 
-	VOID SetLR_Direction(LR_Direction direction) { lr_direction = direction; }
-
 	RealBackground real_background;
 	ShadowBackground shadow_background;
 	Mountain* mountain;
@@ -54,16 +46,16 @@ public:
 	//! 遷移のクールタイム
 	INT fc_cooldown = 30;
 
-	VOID MountainScroll();
+	VOID MountainScroll(LR_Direction direction);
 
-	VOID CloudScroll();
+	VOID CloudScroll(LR_Direction direction);
 
-	VOID RealGroundScroll();
+	VOID RealGroundScroll(LR_Direction direction);
 
-	VOID ShadowGroundScroll();
+	VOID ShadowGroundScroll(LR_Direction direction);
 
 private:
 
-	LR_Direction lr_direction = LR_Direction::RIGHT;
+	//LR_Direction lr_direction = LR_Direction::RIGHT;
 };
 #endif

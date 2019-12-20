@@ -9,7 +9,7 @@ enum class LR_Direction_2
 	LEFT
 };
 
-class Gimmick : public Object
+class Gimmick : public ScrollObject
 {
 private:
 	GIMMICK_ID m_id = GIMMICK_ID::NO_ID;

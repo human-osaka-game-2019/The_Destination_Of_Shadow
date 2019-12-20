@@ -160,7 +160,7 @@ VOID Mainloop(MSG* msg)
 				Prev = Curr;
 
 				//仮コード
-				if (Xinput::GetInstance()->GetBotton() & XINPUT_GAMEPAD_A)
+				if (Xinput::GetInstance()->GetBotton() & XINPUT_GAMEPAD_X)
 				{
 					Xinput::Destroy();
 					PostQuitMessage(0);

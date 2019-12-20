@@ -17,6 +17,24 @@ enum class GIMMICK_ID
 	BUILDING,
 };
 
+enum class LR_Direction
+{
+	RIGHT,
+	LEFT
+};
+
+/**
+* @enum Direction
+* 向きを管理する
+*/
+enum class DIRECTION
+{
+	/*! 右を向いている */
+	RIGHT,
+	/*! 左を向いている */
+	LEFT,
+};
+
 /**
 * @brief 全てのオブジェクトのもとになるクラス
 */
@@ -82,6 +100,20 @@ public:
 	* @brief m_y_heightのゲット関数
 	*/
 	inline FLOAT GetYHeight() const { return xy_coordinate.m_height; }
+};
+
+class ScrollObject : public Object
+{
+private:
+	const FLOAT MAX_CAMERA_MOVE = 1620.0f;
+	const FLOAT CAMERA_MOVE_SPEED = 10.0f;
+	FLOAT m_crrent_camera_pos = 0.0f;
+public:
+
+	ScrollObject() {}
+	virtual ~ScrollObject() {}
+	VOID ObjScroll(LR_Direction direction);
+	VOID CameraScroll(LR_Direction player);
 };
 
 #endif // !OBJECT_H_

@@ -8,7 +8,7 @@ Stage::Stage()
 	shadow_ground = new ShadowGround();
 }
 
-VOID Stage::CloudScroll()
+VOID Stage::CloudScroll(LR_Direction lr_direction)
 {
 	switch (lr_direction)
 	{
@@ -30,7 +30,7 @@ VOID Stage::CloudScroll()
 		break;
 	}
 }
-VOID Stage::RealGroundScroll()
+VOID Stage::RealGroundScroll(LR_Direction lr_direction)
 {
 	switch (lr_direction)
 	{
@@ -53,7 +53,7 @@ VOID Stage::RealGroundScroll()
 	}
 
 }
-VOID Stage::ShadowGroundScroll()
+VOID Stage::ShadowGroundScroll(LR_Direction lr_direction)
 {
 	switch (lr_direction)
 	{
@@ -77,7 +77,7 @@ VOID Stage::ShadowGroundScroll()
 
 }
 
-VOID Stage::MountainScroll()
+VOID Stage::MountainScroll(LR_Direction lr_direction)
 {
 	switch (lr_direction)
 	{

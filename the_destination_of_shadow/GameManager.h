@@ -60,6 +60,10 @@ private:
 	*/
 	BOOL IsHitGimmick(Gimmick gimmick);
 
+	VOID Scroll(LR_Direction direction);
+
+	VOID CameraMove(LR_Direction direction);
+
 public:
 
 	GameManager();

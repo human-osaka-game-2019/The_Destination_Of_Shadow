@@ -13,7 +13,6 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Background.cpp" />
-    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="Result.cpp" />
@@ -26,7 +25,6 @@
     <ClInclude Include="Draw.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Character.h" />
-    <ClInclude Include="Collision.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Gimmick.h" />

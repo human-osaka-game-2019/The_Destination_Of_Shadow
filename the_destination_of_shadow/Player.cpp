@@ -25,36 +25,28 @@ Player::Player()
 	xy_coordinate.m_height = 300.0f;
 
 	texture.SetAlpha(255);
-	texture.SetTu(0.0f);
+	texture.SetTu((1.0f / 8.0f));
 	texture.SetTv(0.0f);
-	texture.SetTuWidth(1.0f/8.0f);
+	texture.SetTuWidth(-(1.0f / 8.0f));
 	texture.SetTvHeight(1.0f/16.0f);
 	texture.SetTextureNum(PLAYER);
 }
 
 VOID Player::Move()
 {
-	/*switch (m_save_direction)
-	{
-	case RIGHT:
-		xy_coordinate.m_x += m_move_speed;
-		m_move_count += m_move_speed;
-		break;
-	case LEFT:
-		xy_coordinate.m_x -= m_move_speed;
-		break;
-	}
 	switch (m_save_direction)
 	{
-	case RIGHT:
-		texture.SetTuWidth(-1.0f);
+	case LR_Direction::RIGHT:
+		texture.SetTu((1.0f / 8.0f));
+		texture.SetTuWidth(-(1.0f / 8.0f));
 		break;
-	case LEFT:
-		texture.SetTuWidth(1.0f);
+	case LR_Direction::LEFT:
+		texture.SetTu(0.0);
+		texture.SetTuWidth((1.0f / 8.0f));
 		break;
 	default:
 		break;
-	}*/
+	}
 }
 
 VOID Player::JumpStart()

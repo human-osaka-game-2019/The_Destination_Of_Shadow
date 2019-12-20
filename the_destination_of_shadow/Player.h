@@ -26,12 +26,12 @@ public:
 	/**
 	* @brief m_save_directionのゲット関数
 	*/
-	inline DIRECTION GetSaveDirection() { return m_save_direction; }
+	inline LR_Direction GetSaveDirection() { return m_save_direction; }
 	/**
 	* @brief m_save_directionのセット関数
 	* @direction playerの方向
 	*/
-	inline VOID SetSaveDirection(DIRECTION direction) { m_save_direction = direction; }
+	inline VOID SetSaveDirection(LR_Direction direction) { m_save_direction = direction; }
 	
 	//! 加速度
 	FLOAT m_acceleration;
@@ -48,6 +48,7 @@ public:
 
 	const FLOAT JUMP_POWER = 50.0f;
 	const FLOAT GRAVITY = 2.0f;
+	LR_Direction m_save_direction = LR_Direction::RIGHT;
 	FLOAT m_crrent_jump_power = 0.0f;
 	FLOAT m_gravity = GRAVITY;
 	BOOL m_is_jumping = FALSE;

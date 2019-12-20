@@ -70,3 +70,39 @@ VOID Object::Animetion(INT* flamecount, INT count, UvCoordinate* uv_coordinate, 
 	}
 }
 
+VOID ScrollObject::ObjScroll(LR_Direction direction)
+{
+	switch (direction)
+	{
+	case LR_Direction::RIGHT:
+		xy_coordinate.m_x -= 4.0f;
+		break;
+	case LR_Direction::LEFT:
+		xy_coordinate.m_x += 4.0f;
+		break;
+	default:
+		break;
+	}
+
+}
+
+VOID ScrollObject::CameraScroll(LR_Direction player)
+{
+	switch (player)
+	{
+	case LR_Direction::RIGHT:
+		if (m_crrent_camera_pos > 0)
+		{
+			xy_coordinate.m_x -= CAMERA_MOVE_SPEED;
+			m_crrent_camera_pos -= CAMERA_MOVE_SPEED;
+		}
+		break;
+	case LR_Direction::LEFT:
+		if (m_crrent_camera_pos < MAX_CAMERA_MOVE)
+		{
+			xy_coordinate.m_x += CAMERA_MOVE_SPEED;
+			m_crrent_camera_pos += CAMERA_MOVE_SPEED;
+		}
+		break;
+	}
+}

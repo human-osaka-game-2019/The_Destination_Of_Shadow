@@ -47,36 +47,6 @@ VOID Game::Load()
 
 VOID Game::Process()
 {
-	//一応残してます
-	//	player.m_uses_mirror = TRUE;
-	//if (fc_cooldown >= 30)
-	//{
-	//	ChangeStage();
-	//	fc_cooldown = 0;
-	//}
-	//else
-	//{
-	//	if (fc_cooldown <= 30)
-	//	{
-	//		fc_cooldown++;
-	//	}
-	//}
-
-	/*switch (stage.current_stage)
-	{
-	case Stage::CurrentStage::SHADOW:
-		stage.real_background.Draw(stage.real_background.texture.GetUvCoordinate(), REAL_BACKGROUND);
-		stage.mountain.Draw(stage.mountain.texture.GetUvCoordinate(), MOUNTAIN);
-
-		stage.Scroll();
-
-		break;
-	case Stage::CurrentStage::REAL:
-		stage.shadow_background.Draw(stage.shadow_background.texture.GetUvCoordinate(), SHADOW_BACKGROUND);
-		break;
-	default:
-		break;
-	}*/
 
 	game_manager.Draw();
 
@@ -85,7 +55,7 @@ VOID Game::Process()
 	game_manager.GimmickMove();
 
 	//仮コード
-	if (Xinput::GetInstance()->GetBotton() & XINPUT_GAMEPAD_A)
+	if (Xinput::GetInstance()->GetBotton() & XINPUT_GAMEPAD_Y)
 	{
 		phase = RELEASES;
 	}

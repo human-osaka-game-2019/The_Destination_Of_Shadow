@@ -7,21 +7,9 @@
 /**
 * @brief PlayerとEnemyの親class
 */
-class CharacterBase : public Object
+class CharacterBase : public ScrollObject
 {
 public:
-
-   /**
-   * @enum Direction
-   * キャラクターの向きを管理する
-   */
-	enum class DIRECTION
-	{
-		/*! 右を向いている */
-		RIGHT,
-		/*! 左を向いている */
-		LEFT,
-	};
 
 	/**
    * @enum ANIMETION_TYPE
