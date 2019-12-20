@@ -34,7 +34,6 @@ public:
 	* @brief プレイヤーの前に描画されるように初期化する用
 	*/
 	Cursor(XyCoordinate player);
-	Cursor(XyCoordinate player, XyCoordinate gimmick);
 	/**
 	* @brief カーソルとウィンドウのX軸の当たり判定
 	* @return カーソルのX座標がウィンドウないならばTRUEを返す

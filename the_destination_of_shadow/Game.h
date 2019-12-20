@@ -7,8 +7,9 @@
 
 #include <Windows.h>
 
-#include "Background.h"
 #include "Main.h"
+#include "Stage.h"
+#include "Player.h"
 #include "GameManager.h"
 
 class Game
@@ -26,24 +27,8 @@ private:
 		PROCESSING,
 		RELEASES
 	};
-	
-	/**
-	* @enum CurrentStage
-	* 現在どのステージにいるかの判定
-	*/
-	enum CurrentStage
-	{
-		SHADOW,
-		REAL
-	};
-	CurrentStage current_stage;
-
-	//! 遷移のクールタイム
-	INT fc_cooldown = 30;
 
 	GameManager game_manager;
-	RealBackground real_background;
-	ShadowBackground shadow_background;
 
 	VOID Load();
 	VOID Process();

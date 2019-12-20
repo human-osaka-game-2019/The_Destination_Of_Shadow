@@ -6,7 +6,7 @@
 #include "Cursor.h"
 #include "Gimmick.h"
 #include "Player.h"
-#include "shadow.h"
+#include "Stage.h"
 #include "Xinput.h"
 
 enum class PLAYER_MODE
@@ -21,22 +21,16 @@ class GameManager
 {
 private:
 
-	Cursor* cursor;
-	std::vector<Gimmick>gimmick;
-	std::vector<Gimmick>shadow_items;
-	std::vector<Shadow>shadow;
-	Player* player;
 	Xinput* xinput;
+	Player* player;
+	Cursor* cursor;
+	Stage* stage;
+
+	std::vector<Gimmick>gimmick;
 
 	PLAYER_MODE m_next_mode = PLAYER_MODE::NO_CHANGE;
 
 	PLAYER_MODE m_current_mode = PLAYER_MODE::NORMAL;
-
-	VOID InitGimmick();
-
-	VOID SelectShadow();
-
-	Gimmick m_select_shadow;
 
 	/**
 	* @brief ノーマルモード時の挙動
@@ -65,8 +59,6 @@ private:
 	* @param gimmick 確認するギミッククラス
 	*/
 	BOOL IsHitGimmick(Gimmick gimmick);
-	BOOL IsExistShadow();
-	VOID ShadowStore(Gimmick gimmick);
 
 public:
 

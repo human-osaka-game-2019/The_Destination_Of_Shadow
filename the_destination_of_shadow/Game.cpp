@@ -22,27 +22,28 @@ VOID Game::Game_Scene()
 VOID Game::Load()
 {
 	game_manager.Load();
-	real_background.LoadTexture("../Texture/real_background.png", REAL_BACKGROUND);
-	shadow_background.LoadTexture("../Texture/shadow_background.png", SHADOW_BACKGROUND);
+	/*stage.real_background.LoadTexture("../Texture/real_background.png", REAL_BACKGROUND);
+	stage.shadow_background.LoadTexture("../Texture/shadow_background.png", SHADOW_BACKGROUND);
+	stage.mountain.LoadTexture("../Texture/mountain.png", MOUNTAIN);*/
 
 	phase = PROCESSING;
 }
 
-VOID Game::ChangeStage()
-{
-	switch (current_stage)
-	{
-	case SHADOW:
-		current_stage = REAL;
-		break;
-	case REAL:
-		current_stage = SHADOW;
-		break;
-	default:
-			break;
-	}
-
-}
+//VOID Game::ChangeStage()
+//{
+//	switch (stage.current_stage)
+//	{
+//	case Stage::CurrentStage::SHADOW:
+//		stage.current_stage = Stage::CurrentStage::REAL;
+//		break;
+//	case Stage::CurrentStage::REAL:
+//		stage.current_stage = Stage::CurrentStage::SHADOW;
+//		break;
+//	default:
+//			break;
+//	}
+//
+//}
 
 VOID Game::Process()
 {
@@ -61,17 +62,21 @@ VOID Game::Process()
 	//	}
 	//}
 
-	switch (current_stage)
+	/*switch (stage.current_stage)
 	{
-	case SHADOW:
-		real_background.Draw(real_background.texture.GetUvCoordinate(), REAL_BACKGROUND);
+	case Stage::CurrentStage::SHADOW:
+		stage.real_background.Draw(stage.real_background.texture.GetUvCoordinate(), REAL_BACKGROUND);
+		stage.mountain.Draw(stage.mountain.texture.GetUvCoordinate(), MOUNTAIN);
+
+		stage.Scroll();
+
 		break;
-	case REAL:
-		shadow_background.Draw(shadow_background.texture.GetUvCoordinate(), SHADOW_BACKGROUND);
+	case Stage::CurrentStage::REAL:
+		stage.shadow_background.Draw(stage.shadow_background.texture.GetUvCoordinate(), SHADOW_BACKGROUND);
 		break;
 	default:
 		break;
-	}
+	}*/
 
 	game_manager.Draw();
 
